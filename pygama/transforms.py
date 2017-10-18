@@ -10,7 +10,7 @@ def remove_baseline(waveform, bl_val=0):
 def savgol_filter(waveform, window_length=47, order=2):
   return signal.savgol_filter(waveform, window_length, order)
 
-def trapFilter(waveform, rampTime=400, flatTime=200, decayTime=0.):
+def trap_filter(waveform, rampTime=400, flatTime=200, decayTime=0.):
     """ Apply a trap filter to a waveform. """
     baseline = 0.
     decayConstant = 0.
@@ -42,7 +42,7 @@ def trapFilter(waveform, rampTime=400, flatTime=200, decayTime=0.):
     trapOutput.resize( (len(waveform) - (2*rampTime+flatTime)))
     return trapOutput
 
-def asymTrapFilter(waveform,ramp=200,flat=100,fall=40,padAfter=False):
+def asym_trap_filter(waveform,ramp=200,flat=100,fall=40,padAfter=False):
     """ Computes an asymmetric trapezoidal filter """
     trap = np.zeros(len(waveform))
     for i in range(len(waveform)-1000):
