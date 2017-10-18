@@ -11,6 +11,8 @@ import matplotlib.pyplot as plt
 
 import pandas as pd
 
+from future.utils import iteritems
+
 update_freq = 2000
 
 def ProcessTier0( filenamestr, n_max=np.inf):
@@ -127,11 +129,8 @@ class TierOneProcessorList():
       #check args list for string vals which match keys in param dict
       args = perm_args.copy() #copy we'll actually pass to the function
 
-      # print("-->{}".format(fn))
-      for (arg, val) in args.items():
-        # if output == "blrm_wf": print( "    checking if {} is in {}".format(val, self.param_dict.keys() ))
+      for (arg, val) in iteritems(args):
         if val in self.param_dict.keys():
-          # print("    getting {} to {} from dict...".format(val, self.param_dict[val]))
           args[arg] = self.param_dict[val]
 
       if input is None: input = "waveform"

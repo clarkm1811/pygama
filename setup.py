@@ -60,5 +60,5 @@ if __name__ == "__main__":
         author_email="benjamin.shanks@gmail.com",
         packages=["pygama"],
         ext_modules=extensions,
-        install_requires=["numpy", "scipy", "pandas", "tables"]
+        install_requires=["numpy", "scipy", "pandas", "tables", "future"]
     )
