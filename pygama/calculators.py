@@ -30,3 +30,7 @@ def t0_estimate(waveform, baseline=0):
 #Estimate arbitrary timepoint before max
 def calc_timepoint(waveform, percentage=0.5, baseline=0):
     return np.argmax( waveform >= (percentage*(np.amax(waveform) - baseline) + baseline) )
+
+#Calculate maximum of trapezoid -- no pride here
+def trap_max(waveform):
+    return np.amax(waveform)
