@@ -51,7 +51,7 @@ if __name__ == "__main__":
         include_dirs=include_dirs
     )
 
-    if do_cython: extensions = cythonize([ext])
+    if do_cython: ext = cythonize([ext])
 
     setup(
         name="pygama",
@@ -59,6 +59,6 @@ if __name__ == "__main__":
         author="Ben Shanks",
         author_email="benjamin.shanks@gmail.com",
         packages=["pygama"],
-        ext_modules=extensions,
+        ext_modules=ext,
         install_requires=["numpy", "scipy", "pandas", "tables", "future"]
     )
