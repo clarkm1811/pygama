@@ -14,9 +14,6 @@ try:
 except ImportError:
     do_cython = False
 
-
-
-
 if __name__ == "__main__":
 
     # The root of the siggen repo.
@@ -44,14 +41,14 @@ if __name__ == "__main__":
         os.path.join("pygama", "_pygama"+ext),
     ]
 
-    ext = Extension(
-        "pygama._pygama",
-        sources=src,
-        language="c",
-        include_dirs=include_dirs
-    )
+    ext = [Extension(
+            "pygama._pygama",
+            sources=src,
+            language="c",
+            include_dirs=include_dirs
+        )]
 
-    if do_cython: ext = cythonize([ext])
+    if do_cython: ext = cythonize(ext)
 
     setup(
         name="pygama",
