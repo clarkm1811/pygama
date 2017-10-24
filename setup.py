@@ -33,7 +33,6 @@ if __name__ == "__main__":
         do_cython = False
 
     src = [os.path.join(basedir, "c", fn) for fn in [
-        "decode_runfile_header.c",
         "siginspect.c",
     ]]
     ext = ".pyx" if do_cython else ".c"

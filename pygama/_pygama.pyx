@@ -13,72 +13,78 @@ import pandas as pd
 
 from future.utils import iteritems
 
+from ._header_parser import *
+
+WF_LEN = 2018
+
+
+#Silence harmless warning about saving numpy array to hdf5
+import warnings
+warnings.filterwarnings(action="ignore", module="pandas", message="^\nyour performance")
+
 update_freq = 2000
 
 def ProcessTier0( filenamestr, n_max=np.inf):
-  cdef MJDetInfo  detInfo[100];
-  cdef MJRunInfo  runInfo;
   cdef FILE       *f_in
   cdef int nDets
 
-  fname = filenamestr.encode('utf-8')
+  #parse the header (in python)
+  reclen, reclen2, headerDict = parse_header(filenamestr)
 
+  fname = filenamestr.encode('utf-8')
   f_in = fopen(fname, "r")
   if f_in == NULL:
     print("Couldn't file the file %s" % fname)
     exit(0)
 
-  strncpy(runInfo.filename, fname, 256);
-  runInfo.argc = 0;
-  runInfo.argv = NULL;
+  #skip the header
+  fseek(f_in, reclen*4, SEEK_SET)
 
-  #read run info, channel settings, etc from header
-  nDets = decode_runfile_header(f_in, detInfo, &runInfo);
+  #pull out important header info for event processing
+  dataIdRun = get_data_id(headerDict, "ORRunModel", "Run")
+  dataIdG   = get_data_id(headerDict, "ORGretina4M", "Gretina4M")
+  runNumber = get_run_number(headerDict)
 
-  dataIdG = runInfo.dataIdG;
-  for i in range(runInfo.idNum):
-    if (strstr(runInfo.decoder[i], "ORRunDecoderForRun")):
-      dataIdRun = runInfo.dataId[i];
-      printf("dataIdRun = %d %s %d\n", dataIdRun, runInfo.decoder[i], i);
+  #read all header info into a single, channel-keyed data frame for saving
+  headerinfo = get_header_dataframe_info(headerDict)
+  df_channels = pd.DataFrame(headerinfo)
+  df_channels.set_index("channel", drop=False, inplace=True)
 
-  printf("dataIdRun = %d\n", dataIdRun);
 
-  cdef np.ndarray[int16_t, ndim=1, mode="c"] narr = np.zeros((2018), dtype='int16')
+  cdef np.ndarray[int16_t, ndim=1, mode="c"] narr = np.zeros((WF_LEN), dtype='int16')
   cdef int16_t* sig_ptr
   cdef int16_t [:] sig_arr
 
-  #now read the file in as a bytearray
   n=0
   res = 0
   cdef uint64_t timestamp
   cdef uint32_t energy
   cdef uint32_t evtdat[20000];
   cdef uint16_t channel;
+  cdef int card
+  cdef int crate;
 
   times = []
   energies = []
   appended_data = []
   while (res >=0 and n < n_max):
 
-    res = get_next_event(f_in, evtdat, dataIdRun, dataIdG)
+    res = get_next_event(f_in, evtdat, dataIdRun, dataIdG, &card, &crate)
     sig_ptr = parse_event_data(evtdat, &timestamp, &energy, &channel)
-
-    sig_arr = <int16_t [:2018]> sig_ptr
-
     if res ==0: continue
-
     if (n%update_freq == 0): print("Tier 0 processing: {}".format(n))
 
+    crate_card_chan = (crate << 12) + (card << 4) + channel
+
+    sig_arr = <int16_t [:WF_LEN]> sig_ptr
     times.append(timestamp)
     energies.append(energy)
     # plt.plot(np.copy(narr))
     data = {}
     data["energy"] = energy
     data["timestamp"] = timestamp
-    data["channel"] = channel
+    data["channel"] = crate_card_chan
     data["waveform"] = [np.copy(sig_arr)]
-
-    #avg basel
 
     dr = pd.DataFrame(data, index=[n])
 
@@ -88,7 +94,8 @@ def ProcessTier0( filenamestr, n_max=np.inf):
   fclose(f_in);
   appended_data = pd.concat(appended_data, axis=0)
 
-  appended_data.to_hdf('t0_run%d.h5' %runInfo.runNumber, key="data", mode='w', data_columns=['energy', 'channel', 'timestamp'],)
+  appended_data.to_hdf('t0_run{}.h5'.format(runNumber), key="data", mode='w', data_columns=['energy', 'channel', 'timestamp'],)
+  df_channels.to_hdf('t0_run{}.h5'.format(runNumber),   key="channel_info", mode='a', data_columns=True,)
   return appended_data
 
 
