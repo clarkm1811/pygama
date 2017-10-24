@@ -46,3 +46,7 @@ def calc_timepoint(waveform, percentage=0.5, baseline=0, do_interp=False):
             val = np.interp(percentage, ( waveform[last_over],   waveform[last_over+1] ), (last_over, last_over+1))
         else: val = last_over
     return val
+
+#Calculate maximum of trapezoid -- no pride here
+def trap_max(waveform):
+    return np.amax(waveform)
