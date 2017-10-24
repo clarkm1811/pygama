@@ -3,6 +3,10 @@ import pandas as pd
 from scipy.ndimage.filters import gaussian_filter1d
 from scipy import signal
 
+#Silence harmless warning you get using savgol on old LAPACK
+import warnings
+warnings.filterwarnings(action="ignore", module="scipy", message="^internal gelsd")
+
 #Finds average baseline from first [samples] number of samples
 def remove_baseline(waveform, bl_val=0):
     return (waveform - bl_val)
