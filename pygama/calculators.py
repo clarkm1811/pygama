@@ -11,9 +11,13 @@ def current_max(waveform, sigma=1):
       print("Current max requires smooth>0")
       exit(0)
 
-#Finds average baseline from first [samples] number of samples
-def avg_baseline(waveform, num_samples=500):
-    return np.mean(waveform[:num_samples])
+#Finds baseline from first [samples] number of samples (default linear)
+def fit_baseline(waveform, num_samples=500, order=1):
+    p = np.polyfit(np.arange(num_samples), waveform[:num_samples], 1)
+    return p
+
+def is_saturated(waveform, bit_precision=14):
+    return True if np.amax(waveform) >= 0.5*2**bit_precision else False
 
 #Estimate t0
 def t0_estimate(waveform, baseline=0):
@@ -47,6 +51,8 @@ def calc_timepoint(waveform, percentage=0.5, baseline=0, do_interp=False):
         else: val = last_over
     return val
 
+
 #Calculate maximum of trapezoid -- no pride here
-def trap_max(waveform):
-    return np.amax(waveform)
+def trap_max(waveform, method = "max", pickoff_sample = 0):
+    if method == "max": return np.amax(waveform)
+    elif method == "fixed_time": return waveform[pickoff_sample]
