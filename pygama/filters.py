@@ -1,6 +1,15 @@
 import numpy as np
 from scipy import signal
 
+
+def rc_decay(rc1_us, freq = 100E6):
+    rc1_dig= 1E-6 * (rc1_us) * freq
+    rc1_exp = np.exp(-1./rc1_dig)
+    num = [1,-1]
+    den = [1, -rc1_exp]
+
+    return (num, den)
+
 def rc_decay_2pole(rc1_us, rs2_us, rc1_frac, freq = 100E6):
     '''
     Returns numerator/denominator pair for a filter which _applies_ a 2-pole RC decay
