@@ -35,14 +35,6 @@ def get_data_id(headerDict, class_name, super_name):
 
 def get_header_dataframe_info(headerDict):
     #key by card-crate-channel
-
-    #only pull in info for gretina cards right now...
-    keys_to_save = [
-        "Collection Time",
-        "Integration Time",
-
-    ]
-
     d = []
 
     crates = headerDict["ObjectInfo"]["Crates"]
@@ -60,8 +52,11 @@ def get_header_dataframe_info(headerDict):
                             "PreSum Enabled": card["PreSum Enabled"][channum],
                             "Prerecnt": card["Prerecnt"][channum],
                             "FtCnt": card["FtCnt"][channum],
-                            "Postrecnt": card["Postrecnt"][channum]
+                            "Postrecnt": card["Postrecnt"][channum],
+                            "multirate_div": 2**card["Mrpsdv"][channum],
+                            "multirate_sum": 10 if card["Mrpsrt"][channum] == 3 else 2 **(card["Mrpsrt"][channum]+1),
+                            "channel_div": 2**card["Chpsdv"][channum],
+                            "channel_sum": 10 if card["Chpsrt"][channum] == 3 else 2 **(card["Chpsrt"][channum]+1),
                     }
-
                     d.append(row)
     return d
