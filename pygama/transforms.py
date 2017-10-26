@@ -45,15 +45,15 @@ def trap_filter(waveform, rampTime=400, flatTime=200, decayTime=0.):
 
     wf_minus_ramp = np.zeros_like(waveform)
     wf_minus_ramp[:rampTime] = baseline
-    wf_minus_ramp[rampTime:] = waveform[x-rampTime]
+    wf_minus_ramp[rampTime:] = waveform[:len(waveform)-rampTime]
 
     wf_minus_ft_and_ramp = np.zeros_like(waveform)
     wf_minus_ft_and_ramp[:(flatTime+rampTime)] = baseline
-    wf_minus_ft_and_ramp[(flatTime+rampTime):] = waveform[x-flatTime-rampTime]
+    wf_minus_ft_and_ramp[(flatTime+rampTime):] = waveform[:len(waveform)-flatTime-rampTime]
 
     wf_minus_ft_and_2ramp = np.zeros_like(waveform)
     wf_minus_ft_and_2ramp[:(flatTime+2*rampTime)] = baseline
-    wf_minus_ft_and_2ramp[(flatTime+2*rampTime):] = waveform[x-flatTime-2*rampTime]
+    wf_minus_ft_and_2ramp[(flatTime+2*rampTime):] = waveform[:len(waveform)-flatTime-2*rampTime]
 
     scratch = waveform - (wf_minus_ramp + wf_minus_ft_and_ramp + wf_minus_ft_and_2ramp )
 
