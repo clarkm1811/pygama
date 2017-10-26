@@ -8,12 +8,14 @@ from cython.view cimport array as cvarray
 cimport numpy as np
 import numpy as np
 import matplotlib.pyplot as plt
+import os, re
 
 import pandas as pd
 
 from future.utils import iteritems
 
 from ._header_parser import *
+from .utils import update_progress
 
 WF_LEN = 2018
 
@@ -24,18 +26,24 @@ warnings.filterwarnings(action="ignore", module="pandas", message="^\nyour perfo
 
 update_freq = 2000
 
-def ProcessTier0( filenamestr, n_max=np.inf):
+def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf):
   cdef FILE       *f_in
-  cdef int nDets
+  cdef int file_size
+
+  directory = os.path.dirname(filename)
 
   #parse the header (in python)
-  reclen, reclen2, headerDict = parse_header(filenamestr)
+  reclen, reclen2, headerDict = parse_header(filename)
 
-  fname = filenamestr.encode('utf-8')
-  f_in = fopen(fname, "r")
+  f_in = fopen(filename.encode('utf-8'), "r")
   if f_in == NULL:
-    print("Couldn't file the file %s" % fname)
+    print("Couldn't file the file %s" % filename)
     exit(0)
+  #figure out the total size
+
+  fseek(f_in, 0L, SEEK_END);
+  file_size = ftell(f_in);
+  rewind(f_in);
 
   #skip the header
   fseek(f_in, reclen*4, SEEK_SET)
@@ -49,7 +57,6 @@ def ProcessTier0( filenamestr, n_max=np.inf):
   headerinfo = get_header_dataframe_info(headerDict)
   df_channels = pd.DataFrame(headerinfo)
   df_channels.set_index("channel", drop=False, inplace=True)
-
 
   cdef np.ndarray[int16_t, ndim=1, mode="c"] narr = np.zeros((WF_LEN), dtype='int16')
   cdef int16_t* sig_ptr
@@ -67,12 +74,15 @@ def ProcessTier0( filenamestr, n_max=np.inf):
   times = []
   energies = []
   appended_data = []
+  print("Beginning Tier 0 processing of file {}:".format(filename))
+
   while (res >=0 and n < n_max):
+    #
+    update_progress( float(ftell(f_in))/ file_size)
 
     res = get_next_event(f_in, evtdat, dataIdRun, dataIdG, &card, &crate)
     sig_ptr = parse_event_data(evtdat, &timestamp, &energy, &channel)
     if res ==0: continue
-    if (n%update_freq == 0): print("Tier 0 processing: {}".format(n))
 
     crate_card_chan = (crate << 12) + (card << 4) + channel
 
@@ -94,27 +104,38 @@ def ProcessTier0( filenamestr, n_max=np.inf):
   fclose(f_in);
   appended_data = pd.concat(appended_data, axis=0)
 
-  appended_data.to_hdf('t0_run{}.h5'.format(runNumber), key="data", mode='w', data_columns=['energy', 'channel', 'timestamp'],)
-  df_channels.to_hdf('t0_run{}.h5'.format(runNumber),   key="channel_info", mode='a', data_columns=True,)
+  t1_file_name = os.path.join(directory, output_file_string+'_run{}.h5'.format(runNumber))
+  appended_data.to_hdf(t1_file_name, key="data", mode='w', data_columns=['energy', 'channel', 'timestamp'],)
+  df_channels.to_hdf(t1_file_name,   key="channel_info", mode='a', data_columns=True,)
+
   return appended_data
 
 
 
-def ProcessTier1(runNumber, processorList):
-  #load in tier 0 data
-  df = pd.read_hdf('t0_run%d.h5' %runNumber,key="data")
+def ProcessTier1(filename,  processorList, output_file_string="t2",):
+  directory = os.path.dirname(filename)
+
+  #snag the run number (assuming filename ends in _run<number>.<filetype>)
+  run_str = re.findall('run\d+', filename)[-1]
+  runNumber = int(''.join(filter(str.isdigit, run_str)))
+
+  df = pd.read_hdf(filename,key="data")
   appended_data = []
+  print("Beginning Tier 1 processing of file {}:".format(filename))
   for i, (index, row) in enumerate(df.iterrows()):
-    if (i%update_freq == 0): print("Tier 1 processing: {}/{}".format( i, df.shape[0]))
+    update_progress( i/ len(df.index))
+
     #convert the stored waveform (which is int16) to a float, throw it to the processorList
-    # print("\n\nTier 1 processing: {}/{}".format( i, df.shape[0]))
     processorList.Reset( row["waveform"].astype('float32') )
 
     paramDict = processorList.Process(row)
     dr = pd.DataFrame(paramDict, index=[index])
     appended_data.append(dr)
+
   appended_data = pd.concat(appended_data, axis=0)
-  appended_data.to_hdf('t1_run%d.h5' % runNumber, key="data", format='table', mode='w', data_columns=True)
+
+  t2_file_name = os.path.join(directory, output_file_string+'_run{}.h5'.format(runNumber))
+  appended_data.to_hdf(t2_file_name, key="data", format='table', mode='w', data_columns=True)
   return appended_data
 
 class TierOneProcessorList():
@@ -150,7 +171,11 @@ class TierOneProcessorList():
         self.waveform_dict[output] = fn(input, **args)
 
       elif type == "calculator":
-        self.param_dict[output] = fn(input, **args)
+        calc = fn(input, **args)
+        if not isinstance(output, str) and len(output) > 1:
+          for i, out in enumerate(output):
+            self.param_dict[out] = calc[i]
+        else: self.param_dict[output] = calc
         # print("    setting {} to {}...".format(output, self.param_dict[output]))
 
     return self.param_dict
