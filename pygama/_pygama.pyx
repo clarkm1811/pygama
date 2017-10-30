@@ -26,7 +26,15 @@ warnings.filterwarnings(action="ignore", module="pandas", message="^\nyour perfo
 
 update_freq = 2000
 
-def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf):
+def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=False):
+  '''
+  Reads in "raw," or "tier 0," Orca data and saves to a hdf5 format using pandas
+    filename: path to an orca data file
+    output_file_string: output file name will be <output_file_string>_run<runNumber>.h5
+    n_max: maximum number of events to process (useful for debugging)
+    verbose: spits out a progressbar to let you know how the processing is going
+  '''
+
   cdef FILE       *f_in
   cdef int file_size
 
@@ -74,11 +82,11 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf):
   times = []
   energies = []
   appended_data = []
-  print("Beginning Tier 0 processing of file {}:".format(filename))
+  print("Beginning Tier 0 processing of file {}...".format(filename))
 
   while (res >=0 and n < n_max):
     #
-    update_progress( float(ftell(f_in))/ file_size)
+    if verbose and n%100==0: update_progress( float(ftell(f_in))/ file_size)
 
     res = get_next_event(f_in, evtdat, dataIdRun, dataIdG, &card, &crate)
     sig_ptr = parse_event_data(evtdat, &timestamp, &energy, &channel)
@@ -90,29 +98,38 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf):
     times.append(timestamp)
     energies.append(energy)
     # plt.plot(np.copy(narr))
-    data = {}
-    data["energy"] = energy
-    data["timestamp"] = timestamp
-    data["channel"] = crate_card_chan
-    data["waveform"] = [np.copy(sig_arr)]
-
-    dr = pd.DataFrame(data, index=[n])
-
-    appended_data.append(dr)
+    data = {
+      "energy": energy,
+      "timestamp": timestamp,
+      "channel": crate_card_chan,
+      "waveform": [np.copy(sig_arr)]
+    }
+    # dr = pd.DataFrame(data, index=[n])
+    appended_data.append(data)
     n+=1;
 
   fclose(f_in);
-  appended_data = pd.concat(appended_data, axis=0)
-
+  if verbose: update_progress(1)
+  verbose=True
+  if verbose: print("Creating dataframe for file {}...".format(filename))
+  df_data = pd.DataFrame.from_dict(appended_data)
   t1_file_name = os.path.join(directory, output_file_string+'_run{}.h5'.format(runNumber))
-  appended_data.to_hdf(t1_file_name, key="data", mode='w', data_columns=['energy', 'channel', 'timestamp'],)
+  if verbose: print("Writing {} to tier1 file {}...".format(filename, t1_file_name))
+  
+  df_data.to_hdf(t1_file_name, key="data", mode='w', data_columns=['energy', 'channel', 'timestamp'],)
   df_channels.to_hdf(t1_file_name,   key="channel_info", mode='a', data_columns=True,)
 
-  return appended_data
+  return df_data
 
+def ProcessTier1(filename,  processorList, output_file_string="t2", verbose=False):
+  '''
+  Reads in "raw," or "tier 0," Orca data and saves to a hdf5 format using pandas
+    filename: path to a tier1 data file
+    processorList: TierOneProcessorList object with list of calculations/transforms you want done
+    output_file_string: file is saved as <output_file_string>_run<runNumber>.h5
+    verbose: spits out a progressbar to let you know how the processing is going
+  '''
 
-
-def ProcessTier1(filename,  processorList, output_file_string="t2",):
   directory = os.path.dirname(filename)
 
   #snag the run number (assuming filename ends in _run<number>.<filetype>)
@@ -121,22 +138,27 @@ def ProcessTier1(filename,  processorList, output_file_string="t2",):
 
   df = pd.read_hdf(filename,key="data")
   appended_data = []
-  print("Beginning Tier 1 processing of file {}:".format(filename))
+
+  print("Beginning Tier 1 processing of file {}...".format(filename))
+
   for i, (index, row) in enumerate(df.iterrows()):
-    update_progress( i/ len(df.index))
+    if verbose and i%100==0: update_progress( i/ len(df.index))
 
     #convert the stored waveform (which is int16) to a float, throw it to the processorList
-    processorList.Reset( row["waveform"].astype('float32') )
+    processorList.Reset( row["waveform"][0].astype('float32') )
 
     paramDict = processorList.Process(row)
-    dr = pd.DataFrame(paramDict, index=[index])
-    appended_data.append(dr)
-
-  appended_data = pd.concat(appended_data, axis=0)
-
+    appended_data.append(paramDict)
+    # print(row["channel"],  paramDict["channel"])
+  if verbose: update_progress(1)
+  verbose=True
+  if verbose: print("Creating dataframe for file {}...".format(filename))
+  df_data = pd.DataFrame(appended_data)
   t2_file_name = os.path.join(directory, output_file_string+'_run{}.h5'.format(runNumber))
-  appended_data.to_hdf(t2_file_name, key="data", format='table', mode='w', data_columns=True)
-  return appended_data
+  if verbose: print("Writing {} to tier2 file {}...".format(filename, t2_file_name))
+
+  df_data.to_hdf(t2_file_name, key="data", format='fixed', mode='w', data_columns=True)
+  return df_data
 
 class TierOneProcessorList():
   def __init__(self):
