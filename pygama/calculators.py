@@ -3,6 +3,8 @@ import pandas as pd
 from scipy.ndimage.filters import gaussian_filter1d
 from scipy import signal
 
+
+
 #Finds the maximum current ("A").  Current is calculated by convolution with a first-deriv. of Gaussian
 def current_max(waveform, sigma=1):
   if sigma > 0:
@@ -11,13 +13,14 @@ def current_max(waveform, sigma=1):
       print("Current max requires smooth>0")
       exit(0)
 
-#Finds baseline from first [samples] number of samples (default linear)
-def fit_baseline(waveform, num_samples=500, order=1):
-    p = np.polyfit(np.arange(num_samples), waveform[:num_samples], 1)
+#Finds baseline from start index to end index samples (default linear)
+def fit_baseline(waveform, start_index=0, end_index=500, order=1):
+    if end_index == -1: end_index = len(waveform)
+    p = np.polyfit(np.arange(start_index, end_index), waveform[start_index:end_index], 1)
     return p
 
 def is_saturated(waveform, bit_precision=14):
-    return True if np.amax(waveform) >= 0.5*2**bit_precision else False
+    return True if np.amax(waveform) >= 0.5*2**bit_precision - 1 else False
 
 #Estimate t0
 def t0_estimate(waveform, baseline=0):
