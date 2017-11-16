@@ -7,7 +7,7 @@ from libc.stdint cimport *
 from cython.view cimport array as cvarray
 cimport numpy as np
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import os, re
 
 import pandas as pd
@@ -142,7 +142,8 @@ def ProcessTier1(filename,  processorList, output_file_string="t2", verbose=Fals
   print("Beginning Tier 1 processing of file {}...".format(filename))
 
   for i, (index, row) in enumerate(df.iterrows()):
-    if verbose and i%100==0: update_progress( i/ len(df.index))
+    # print("im alive")
+    if verbose and i%100==0: update_progress( float(i)/ len(df.index))
 
     #convert the stored waveform (which is int16) to a float, throw it to the processorList
     processorList.Reset( row["waveform"][0].astype('float32') )

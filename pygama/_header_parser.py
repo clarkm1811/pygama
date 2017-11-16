@@ -1,4 +1,4 @@
-from plistlib import readPlistFromBytes
+import plistlib
 import sys
 
 def parse_header(xmlfile):
@@ -6,17 +6,38 @@ def parse_header(xmlfile):
         #read the first word:
         ba = bytearray(xmlfile_handle.read(8))
 
-        #first 4 bytes: header length in long words
-        i = int.from_bytes(ba[:4], byteorder=sys.byteorder)
 
-        #second 4 bytes: header length in bytes
-        j = int.from_bytes(ba[4:], byteorder=sys.byteorder)
+        #Replacing this to be python2 friendly
+        # #first 4 bytes: header length in long words
+        # i = int.from_bytes(ba[:4], byteorder=sys.byteorder)
+        # #second 4 bytes: header length in bytes
+        # j = int.from_bytes(ba[4:], byteorder=sys.byteorder)
+
+        big_endian = False if sys.byteorder == "little" else True
+        i = from_bytes(ba[:4], big_endian=big_endian)
+        j = from_bytes(ba[4:], big_endian=big_endian)
 
         #read in the next that-many bytes
         ba = bytearray(xmlfile_handle.read(j))
 
-        header_dict = readPlistFromBytes(ba)
+        #convert to string
+        if sys.version_info[0] < 3: #the readPlistFromBytes method doesn't exist in 2.7
+            header_string = ba.decode("utf-8")
+            header_dict = plistlib.readPlistFromString(header_string)
+        else:
+            header_dict = plistlib.readPlistFromBytes(ba)
         return i,j,header_dict
+
+def from_bytes (data, big_endian = False):
+    #python2 doesn't have this function, so rewrite it for bw compatibility
+    if isinstance(data, str):
+        data = bytearray(data)
+    if big_endian:
+        data = reversed(data)
+    num = 0
+    for offset, byte in enumerate(data):
+        num += byte << (offset * 8)
+    return num
 
 def get_run_number(header_dict):
     for d in (header_dict["ObjectInfo"]["DataChain"]):

@@ -1,6 +1,7 @@
 import sys
 
 def update_progress(progress):
+    #adapted from from https://stackoverflow.com/a/15860757
     barLength = 10 # Modify this to change the length of the progress bar
     status = ""
     if isinstance(progress, int):
