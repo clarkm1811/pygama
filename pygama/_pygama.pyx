@@ -115,7 +115,7 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
   df_data = pd.DataFrame.from_dict(appended_data)
   t1_file_name = os.path.join(directory, output_file_string+'_run{}.h5'.format(runNumber))
   if verbose: print("Writing {} to tier1 file {}...".format(filename, t1_file_name))
-  
+
   df_data.to_hdf(t1_file_name, key="data", mode='w', data_columns=['energy', 'channel', 'timestamp'],)
   df_channels.to_hdf(t1_file_name,   key="channel_info", mode='a', data_columns=True,)
 
@@ -161,6 +161,10 @@ def ProcessTier1(filename,  processorList, output_file_string="t2", verbose=Fals
   return df_data
 
 class TierOneProcessorList():
+  '''
+  Class to handle the list of transforms/calculations we do in the processing
+  '''
+
   def __init__(self):
     self.list = []
     self.waveform_dict = {}
