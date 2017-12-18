@@ -30,7 +30,7 @@ def t0_estimate(waveform, baseline=0):
     #find first index below or equal to baseline value walking back from the max
     t0_from_max = np.argmax(waveform[maxidx::-1] <= baseline)
     if t0_from_max == 0:
-        print("warning: t0_from_max is zero")
+        # print("warning: t0_from_max is zero")
         return 0
     return maxidx - t0_from_max
 

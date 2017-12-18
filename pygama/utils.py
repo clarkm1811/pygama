@@ -19,3 +19,6 @@ def update_progress(progress):
     text = "\rPercent: [{}] {:0.3f}% {}".format( "#"*block + "-"*(barLength-block), progress*100, status)
     sys.stdout.write(text)
     sys.stdout.flush()
+
+def get_bin_centers(bins):
+    return bins[:-1] + 0.5*(bins[1] - bins[0] )

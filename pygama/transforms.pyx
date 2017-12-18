@@ -82,3 +82,42 @@ def asym_trap_filter(waveform,ramp=200,flat=100,fall=40,padAfter=False):
         else:
             trap[i] = r2 - r1
     return trap
+
+def nonlinearity_correct(waveform, time_constant_samples, fNLCMap, fNLCMap2 = None, n_bl=100):
+
+  map_offset = np.int((len(fNLCMap) - 1)/2)
+
+  if (time_constant_samples == 0.):
+    waveform -= fNLCMap.GetCorrection();
+  else:
+    # // Apply Radford's time-lagged correction
+    #
+    # // first, average baseline at the beginning to get a good starting
+    # // point for current_inl
+
+    if(n_bl >= len(waveform)):
+      print("input wf length is only {}".format(len(waveform)))
+      return
+
+    # // David initializes bl to nBLEst/2 to get good rounding when he does integer division
+    # // by nBLEst, but we do floating point division so that's not necessary
+
+    try:
+      bl = np.int( np.sum(waveform[:n_bl])/n_bl )
+      current_inl = fNLCMap[bl + map_offset];
+
+      for i in range(n_bl, len(waveform)):
+        wf_pt_int = np.int(waveform[i])
+        if wf_pt_int + map_offset >= len(fNLCMap): continue
+
+        summand = fNLCMap[ wf_pt_int + map_offset ];
+        current_inl += (summand - current_inl) / time_constant_samples;
+        if(fNLCMap2 is None): waveform[i] -= current_inl;
+        else: waveform[i] -= fNLCMap2[ wf_pt_int+ map_offset ] + current_inl; # maybe needs to be +=! check
+
+    except IndexError:
+        print("\nadc value {} and int {}".format(waveform[i], wf_pt_int))
+        print("wf_offset {}".format(map_offset))
+        print("looking for index {}/{}".format(wf_pt_int + map_offset, len(fNLCMap)))
+
+  return waveform

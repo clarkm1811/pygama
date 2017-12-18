@@ -38,6 +38,7 @@ if __name__ == "__main__":
     ext = ".pyx" if do_cython else ".c"
     src += [
         os.path.join("pygama", "_pygama"+ext),
+        os.path.join("pygama", "transforms"+ext)
     ]
 
     ext = [Extension(

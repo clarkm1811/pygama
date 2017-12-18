@@ -65,7 +65,7 @@ def get_header_dataframe_info(headerDict):
             if card["Class Name"] == "ORGretina4MModel":
                 for (channum, en) in enumerate(card["Enabled"]):
                     if en == False: continue
-                    ccc = (crate["CrateNumber"] << 14) + (card["Card"] << 4) + channum
+                    ccc = (crate["CrateNumber"] << 9) + (card["Card"] << 4) + channum
 
                     row = { "channel": ccc,
                             "Collection Time": card["Collection Time"],

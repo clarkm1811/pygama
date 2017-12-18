@@ -34,8 +34,9 @@ int16_t* parse_event_data(unsigned int*evtdat, uint64_t* timestamp, uint32_t* en
     return sig;
 }
 
-int get_next_event(FILE *f_in,  unsigned int*evtdat, int dataIdRun, int dataIdG, int* slotout, int* crateout ){
+int get_next_event(FILE *f_in,  unsigned int*evtdat, int dataIdRun, int dataIdG, int* slotout, int* crateout, unsigned short* board_id_out ){
   unsigned int  head[2];
+  unsigned short board_id;
   int    board_type, evlen, current_runNumber;
   int slot, crate;
   // static int totevts=0, out_evts=0;
@@ -44,6 +45,7 @@ int get_next_event(FILE *f_in,  unsigned int*evtdat, int dataIdRun, int dataIdG,
 
   board_type = head[0] >> 18;
   evlen = (head[0] & 0x3ffff);
+  board_id = (head[1] & 0xffff);
 
   if (board_type == dataIdRun) {
     if (fread(evtdat, 8, 1, f_in) != 1) return -1;
@@ -69,6 +71,7 @@ int get_next_event(FILE *f_in,  unsigned int*evtdat, int dataIdRun, int dataIdG,
 
   *slotout = slot;
   *crateout = crate;
+  *board_id_out = board_id;
 
   if (crate < 0 || crate > NCRATES || slot  < 0 || slot > 20) {
     printf("ERROR: Illegal VME crate or slot number %d %d\n", crate, slot);
