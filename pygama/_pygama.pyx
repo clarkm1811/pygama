@@ -214,8 +214,9 @@ class TierOneProcessorList():
     self.list = []
     self.waveform_dict = {}
     self.param_dict = {}
-    # self.t0_dict = {}
-    self.t0_list = []
+
+    #t1 fields to make available for t2 processors
+    self.t0_list = ["channel", "energy", "timestamp"]
 
   def Reset(self, waveform):
     self.param_dict = {}
@@ -224,14 +225,11 @@ class TierOneProcessorList():
     self.waveform_dict = {"waveform":waveform}
 
   def Process(self, t0_row):
-    for name in self.t0_list:
-      self.param_dict[name] = t0_row[name]
-    # for (name, output_name) in iteritems(self.t0_list):
-    #   self.param_dict[output_name] = t0_row[name]
-
-    # (type, input, output, fn, perm_args)
-
     for processor in self.list:
+      #Parse out the t0 fields
+      for name in self.t0_list: self.param_dict[name] = t0_row[name]
+
+
       processor.replace_args(self.param_dict)
 
       #TODO: what if output is None??
@@ -264,9 +262,7 @@ class TierOneProcessorList():
     self.list.append( DatabaseLookup(function, args, output_name) )
 
   def AddFromTier0(self, name, output_name=None):
-    if output_name is None: output_name = name
-    self.t0_list.append(name)
-    # self.t0_list[name] = output_name
+    self.list.append( Tier0Passer(name, output_name) )
 
 #Classes that wrap functional implementations of calculators or transformers
 
@@ -328,6 +324,18 @@ class DatabaseLookup():
 
   def process(self):
     return self.function(**self.args)
+
+class Tier0Passer():
+  def __init__(self, t0_name, output_name=None):
+    self.t0_name = t0_name
+    if output_name is None: output_name = t0_name
+    self.output_name = output_name
+
+  def replace_args(self, param_dict):
+    self.t0_value = param_dict[self.t0_name]
+
+  def process(self):
+    return self.t0_value
 
 # ######################################################################################
 #

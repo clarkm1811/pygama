@@ -37,8 +37,7 @@ if __name__ == "__main__":
     ]]
     ext = ".pyx" if do_cython else ".c"
     src += [
-        os.path.join("pygama", "_pygama"+ext),
-        os.path.join("pygama", "transforms"+ext)
+        os.path.join("pygama", "_pygama"+ext)
     ]
 
     ext = [Extension(
@@ -46,7 +45,13 @@ if __name__ == "__main__":
             sources=src,
             language="c",
             include_dirs=include_dirs
-        )]
+        ),
+        Extension(
+                "pygama.transforms",
+                sources=[os.path.join("pygama", "transforms"+ext)],
+                language="c",
+            )
+        ]
 
     if do_cython: ext = cythonize(ext)
 

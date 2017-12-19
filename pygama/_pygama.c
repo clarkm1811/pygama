@@ -2421,6 +2421,7 @@ static const char __pyx_k_run_str[] = "run_str";
 static const char __pyx_k_sig_arr[] = "sig_arr";
 static const char __pyx_k_sig_ptr[] = "sig_ptr";
 static const char __pyx_k_t0_list[] = "t0_list";
+static const char __pyx_k_t0_name[] = "t0_name";
 static const char __pyx_k_t2_path[] = "t2_path";
 static const char __pyx_k_verbose[] = "verbose";
 static const char __pyx_k_Ellipsis[] = "Ellipsis";
@@ -2436,6 +2437,7 @@ static const char __pyx_k_pyx_type[] = "__pyx_type";
 static const char __pyx_k_qualname[] = "__qualname__";
 static const char __pyx_k_read_hdf[] = "read_hdf";
 static const char __pyx_k_setstate[] = "__setstate__";
+static const char __pyx_k_t0_value[] = "t0_value";
 static const char __pyx_k_warnings[] = "warnings";
 static const char __pyx_k_waveform[] = "waveform";
 static const char __pyx_k_DataFrame[] = "DataFrame";
@@ -2471,6 +2473,7 @@ static const char __pyx_k_ImportError[] = "ImportError";
 static const char __pyx_k_MemoryError[] = "MemoryError";
 static const char __pyx_k_ORGretina4M[] = "ORGretina4M";
 static const char __pyx_k_PickleError[] = "PickleError";
+static const char __pyx_k_Tier0Passer[] = "Tier0Passer";
 static const char __pyx_k_Transformer[] = "Transformer";
 static const char __pyx_k_df_channels[] = "df_channels";
 static const char __pyx_k_get_data_id[] = "get_data_id";
@@ -2521,11 +2524,13 @@ static const char __pyx_k_Calculator___init[] = "Calculator.__init__";
 static const char __pyx_k_min_signal_thresh[] = "min_signal_thresh";
 static const char __pyx_k_pyx_unpickle_Enum[] = "__pyx_unpickle_Enum";
 static const char __pyx_k_Calculator_process[] = "Calculator.process";
+static const char __pyx_k_Tier0Passer___init[] = "Tier0Passer.__init__";
 static const char __pyx_k_Transformer___init[] = "Transformer.__init__";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_output_file_string[] = "output_file_string";
 static const char __pyx_k_pygama__pygama_pyx[] = "pygama/_pygama.pyx";
 static const char __pyx_k_strided_and_direct[] = "<strided and direct>";
+static const char __pyx_k_Tier0Passer_process[] = "Tier0Passer.process";
 static const char __pyx_k_Transformer_process[] = "Transformer.process";
 static const char __pyx_k_input_waveform_name[] = "input_waveform_name";
 static const char __pyx_k_TierOneProcessorList[] = "TierOneProcessorList";
@@ -2541,6 +2546,7 @@ static const char __pyx_k_MemoryView_of_r_at_0x_x[] = "<MemoryView of %r at 0x%x
 static const char __pyx_k_contiguous_and_indirect[] = "<contiguous and indirect>";
 static const char __pyx_k_Cannot_index_with_type_s[] = "Cannot index with type '%s'";
 static const char __pyx_k_Couldn_t_file_the_file_s[] = "Couldn't file the file %s";
+static const char __pyx_k_Tier0Passer_replace_args[] = "Tier0Passer.replace_args";
 static const char __pyx_k_Transformer_replace_args[] = "Transformer.replace_args";
 static const char __pyx_k_Transformer_set_waveform[] = "Transformer.set_waveform";
 static const char __pyx_k_Invalid_shape_in_axis_d_d[] = "Invalid shape in axis %d: %d.";
@@ -2634,6 +2640,10 @@ static PyObject *__pyx_n_s_Reset;
 static PyObject *__pyx_n_s_Run;
 static PyObject *__pyx_n_s_RuntimeError;
 static PyObject *__pyx_kp_b_T;
+static PyObject *__pyx_n_s_Tier0Passer;
+static PyObject *__pyx_n_s_Tier0Passer___init;
+static PyObject *__pyx_n_s_Tier0Passer_process;
+static PyObject *__pyx_n_s_Tier0Passer_replace_args;
 static PyObject *__pyx_n_s_TierOneProcessorList;
 static PyObject *__pyx_n_s_TierOneProcessorList_AddCalculat;
 static PyObject *__pyx_n_s_TierOneProcessorList_AddDatabase;
@@ -2852,7 +2862,9 @@ static PyObject *__pyx_kp_s_strided_and_indirect;
 static PyObject *__pyx_kp_s_stringsource;
 static PyObject *__pyx_n_s_struct;
 static PyObject *__pyx_n_s_t0_list;
+static PyObject *__pyx_n_s_t0_name;
 static PyObject *__pyx_n_s_t0_row;
+static PyObject *__pyx_n_s_t0_value;
 static PyObject *__pyx_n_s_t1;
 static PyObject *__pyx_n_s_t1_file_name;
 static PyObject *__pyx_n_s_t2;
@@ -2905,6 +2917,9 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14__defaults__(CYTHON_UNUSED PyObject
 static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_function, PyObject *__pyx_v_args, PyObject *__pyx_v_output_name); /* proto */
 static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_param_dict); /* proto */
 static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_4process(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6pygama_7_pygama_11Tier0Passer___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_t0_name, PyObject *__pyx_v_output_name); /* proto */
+static PyObject *__pyx_pf_6pygama_7_pygama_11Tier0Passer_2replace_args(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_param_dict); /* proto */
+static PyObject *__pyx_pf_6pygama_7_pygama_11Tier0Passer_4process(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
 static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
@@ -3018,11 +3033,15 @@ static PyObject *__pyx_tuple__77;
 static PyObject *__pyx_tuple__79;
 static PyObject *__pyx_tuple__81;
 static PyObject *__pyx_tuple__83;
-static PyObject *__pyx_tuple__84;
 static PyObject *__pyx_tuple__85;
 static PyObject *__pyx_tuple__86;
-static PyObject *__pyx_tuple__87;
 static PyObject *__pyx_tuple__88;
+static PyObject *__pyx_tuple__90;
+static PyObject *__pyx_tuple__91;
+static PyObject *__pyx_tuple__92;
+static PyObject *__pyx_tuple__93;
+static PyObject *__pyx_tuple__94;
+static PyObject *__pyx_tuple__95;
 static PyObject *__pyx_codeobj__43;
 static PyObject *__pyx_codeobj__45;
 static PyObject *__pyx_codeobj__47;
@@ -3043,7 +3062,10 @@ static PyObject *__pyx_codeobj__76;
 static PyObject *__pyx_codeobj__78;
 static PyObject *__pyx_codeobj__80;
 static PyObject *__pyx_codeobj__82;
+static PyObject *__pyx_codeobj__84;
+static PyObject *__pyx_codeobj__87;
 static PyObject *__pyx_codeobj__89;
+static PyObject *__pyx_codeobj__96;
 
 /* "pygama/_pygama.pyx":28
  * update_freq = 2000
@@ -6732,7 +6754,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList___init__(CYTHO
  *     self.list = []
  *     self.waveform_dict = {}             # <<<<<<<<<<<<<<
  *     self.param_dict = {}
- *     # self.t0_dict = {}
+ * 
  */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -6743,24 +6765,33 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList___init__(CYTHO
  *     self.list = []
  *     self.waveform_dict = {}
  *     self.param_dict = {}             # <<<<<<<<<<<<<<
- *     # self.t0_dict = {}
- *     self.t0_list = []
+ * 
+ *     #t1 fields to make available for t2 processors
  */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 216, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_param_dict, __pyx_t_1) < 0) __PYX_ERR(0, 216, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pygama/_pygama.pyx":218
- *     self.param_dict = {}
- *     # self.t0_dict = {}
- *     self.t0_list = []             # <<<<<<<<<<<<<<
+  /* "pygama/_pygama.pyx":219
+ * 
+ *     #t1 fields to make available for t2 processors
+ *     self.t0_list = ["channel", "energy", "timestamp"]             # <<<<<<<<<<<<<<
  * 
  *   def Reset(self, waveform):
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 218, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_t0_list, __pyx_t_1) < 0) __PYX_ERR(0, 218, __pyx_L1_error)
+  __Pyx_INCREF(__pyx_n_s_channel);
+  __Pyx_GIVEREF(__pyx_n_s_channel);
+  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_channel);
+  __Pyx_INCREF(__pyx_n_s_energy);
+  __Pyx_GIVEREF(__pyx_n_s_energy);
+  PyList_SET_ITEM(__pyx_t_1, 1, __pyx_n_s_energy);
+  __Pyx_INCREF(__pyx_n_s_timestamp);
+  __Pyx_GIVEREF(__pyx_n_s_timestamp);
+  PyList_SET_ITEM(__pyx_t_1, 2, __pyx_n_s_timestamp);
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_t0_list, __pyx_t_1) < 0) __PYX_ERR(0, 219, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "pygama/_pygama.pyx":213
@@ -6784,8 +6815,8 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList___init__(CYTHO
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":220
- *     self.t0_list = []
+/* "pygama/_pygama.pyx":221
+ *     self.t0_list = ["channel", "energy", "timestamp"]
  * 
  *   def Reset(self, waveform):             # <<<<<<<<<<<<<<
  *     self.param_dict = {}
@@ -6824,11 +6855,11 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_3Reset(PyObjec
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_waveform)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("Reset", 1, 2, 2, 1); __PYX_ERR(0, 220, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("Reset", 1, 2, 2, 1); __PYX_ERR(0, 221, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "Reset") < 0)) __PYX_ERR(0, 220, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "Reset") < 0)) __PYX_ERR(0, 221, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -6841,7 +6872,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_3Reset(PyObjec
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("Reset", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 220, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("Reset", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 221, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pygama._pygama.TierOneProcessorList.Reset", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -6860,33 +6891,33 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_2Reset(CYTHON_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("Reset", 0);
 
-  /* "pygama/_pygama.pyx":221
+  /* "pygama/_pygama.pyx":222
  * 
  *   def Reset(self, waveform):
  *     self.param_dict = {}             # <<<<<<<<<<<<<<
  *     # print("TierOneProcessorList.reset() not implemented")
  *     # exit()
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_param_dict, __pyx_t_1) < 0) __PYX_ERR(0, 221, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_param_dict, __pyx_t_1) < 0) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pygama/_pygama.pyx":224
+  /* "pygama/_pygama.pyx":225
  *     # print("TierOneProcessorList.reset() not implemented")
  *     # exit()
  *     self.waveform_dict = {"waveform":waveform}             # <<<<<<<<<<<<<<
  * 
  *   def Process(self, t0_row):
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 225, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_waveform, __pyx_v_waveform) < 0) __PYX_ERR(0, 224, __pyx_L1_error)
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_waveform_dict, __pyx_t_1) < 0) __PYX_ERR(0, 224, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_waveform, __pyx_v_waveform) < 0) __PYX_ERR(0, 225, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_waveform_dict, __pyx_t_1) < 0) __PYX_ERR(0, 225, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pygama/_pygama.pyx":220
- *     self.t0_list = []
+  /* "pygama/_pygama.pyx":221
+ *     self.t0_list = ["channel", "energy", "timestamp"]
  * 
  *   def Reset(self, waveform):             # <<<<<<<<<<<<<<
  *     self.param_dict = {}
@@ -6906,12 +6937,12 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_2Reset(CYTHON_
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":226
+/* "pygama/_pygama.pyx":227
  *     self.waveform_dict = {"waveform":waveform}
  * 
  *   def Process(self, t0_row):             # <<<<<<<<<<<<<<
- *     for name in self.t0_list:
- *       self.param_dict[name] = t0_row[name]
+ *     for processor in self.list:
+ *       #Parse out the t0 fields
  */
 
 /* Python wrapper */
@@ -6946,11 +6977,11 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_5Process(PyObj
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_t0_row)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("Process", 1, 2, 2, 1); __PYX_ERR(0, 226, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("Process", 1, 2, 2, 1); __PYX_ERR(0, 227, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "Process") < 0)) __PYX_ERR(0, 226, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "Process") < 0)) __PYX_ERR(0, 227, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -6963,7 +6994,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_5Process(PyObj
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("Process", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 226, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("Process", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 227, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pygama._pygama.TierOneProcessorList.Process", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -6977,8 +7008,8 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_5Process(PyObj
 }
 
 static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_4Process(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_t0_row) {
-  PyObject *__pyx_v_name = NULL;
   PyObject *__pyx_v_processor = NULL;
+  PyObject *__pyx_v_name = NULL;
   PyObject *__pyx_v_output = NULL;
   PyObject *__pyx_v_calc = NULL;
   PyObject *__pyx_v_i = NULL;
@@ -6990,36 +7021,36 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_4Process(CYTHO
   Py_ssize_t __pyx_t_3;
   PyObject *(*__pyx_t_4)(PyObject *);
   PyObject *__pyx_t_5 = NULL;
-  PyObject *__pyx_t_6 = NULL;
-  PyObject *__pyx_t_7 = NULL;
+  Py_ssize_t __pyx_t_6;
+  PyObject *(*__pyx_t_7)(PyObject *);
   PyObject *__pyx_t_8 = NULL;
   PyObject *__pyx_t_9 = NULL;
   PyObject *__pyx_t_10 = NULL;
   PyObject *__pyx_t_11 = NULL;
-  int __pyx_t_12;
-  int __pyx_t_13;
+  PyObject *__pyx_t_12 = NULL;
+  PyObject *__pyx_t_13 = NULL;
   int __pyx_t_14;
   int __pyx_t_15;
-  Py_ssize_t __pyx_t_16;
-  PyObject *(*__pyx_t_17)(PyObject *);
+  int __pyx_t_16;
+  int __pyx_t_17;
   __Pyx_RefNannySetupContext("Process", 0);
 
-  /* "pygama/_pygama.pyx":227
+  /* "pygama/_pygama.pyx":228
  * 
  *   def Process(self, t0_row):
- *     for name in self.t0_list:             # <<<<<<<<<<<<<<
- *       self.param_dict[name] = t0_row[name]
- *     # for (name, output_name) in iteritems(self.t0_list):
+ *     for processor in self.list:             # <<<<<<<<<<<<<<
+ *       #Parse out the t0 fields
+ *       for name in self.t0_list: self.param_dict[name] = t0_row[name]
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_t0_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
     __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_3 = 0;
     __pyx_t_4 = NULL;
   } else {
-    __pyx_t_3 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 227, __pyx_L1_error)
+    __pyx_t_3 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 228, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 227, __pyx_L1_error)
+    __pyx_t_4 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 228, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -7027,17 +7058,17 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_4Process(CYTHO
       if (likely(PyList_CheckExact(__pyx_t_2))) {
         if (__pyx_t_3 >= PyList_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 227, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 228, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 227, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_3 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 227, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 228, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 227, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -7047,152 +7078,136 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_4Process(CYTHO
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 227, __pyx_L1_error)
+          else __PYX_ERR(0, 228, __pyx_L1_error)
         }
         break;
       }
       __Pyx_GOTREF(__pyx_t_1);
     }
-    __Pyx_XDECREF_SET(__pyx_v_name, __pyx_t_1);
+    __Pyx_XDECREF_SET(__pyx_v_processor, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "pygama/_pygama.pyx":228
- *   def Process(self, t0_row):
- *     for name in self.t0_list:
- *       self.param_dict[name] = t0_row[name]             # <<<<<<<<<<<<<<
- *     # for (name, output_name) in iteritems(self.t0_list):
- *     #   self.param_dict[output_name] = t0_row[name]
- */
-    __pyx_t_1 = PyObject_GetItem(__pyx_v_t0_row, __pyx_v_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_param_dict); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 228, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    if (unlikely(PyObject_SetItem(__pyx_t_5, __pyx_v_name, __pyx_t_1) < 0)) __PYX_ERR(0, 228, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-    /* "pygama/_pygama.pyx":227
- * 
- *   def Process(self, t0_row):
- *     for name in self.t0_list:             # <<<<<<<<<<<<<<
- *       self.param_dict[name] = t0_row[name]
- *     # for (name, output_name) in iteritems(self.t0_list):
- */
-  }
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "pygama/_pygama.pyx":234
- *     # (type, input, output, fn, perm_args)
- * 
- *     for processor in self.list:             # <<<<<<<<<<<<<<
- *       processor.replace_args(self.param_dict)
- * 
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
-    __pyx_t_1 = __pyx_t_2; __Pyx_INCREF(__pyx_t_1); __pyx_t_3 = 0;
-    __pyx_t_4 = NULL;
-  } else {
-    __pyx_t_3 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 234, __pyx_L1_error)
-  }
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  for (;;) {
-    if (likely(!__pyx_t_4)) {
-      if (likely(PyList_CheckExact(__pyx_t_1))) {
-        if (__pyx_t_3 >= PyList_GET_SIZE(__pyx_t_1)) break;
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_3); __Pyx_INCREF(__pyx_t_2); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 234, __pyx_L1_error)
-        #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        #endif
-      } else {
-        if (__pyx_t_3 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_3); __Pyx_INCREF(__pyx_t_2); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 234, __pyx_L1_error)
-        #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        #endif
-      }
-    } else {
-      __pyx_t_2 = __pyx_t_4(__pyx_t_1);
-      if (unlikely(!__pyx_t_2)) {
-        PyObject* exc_type = PyErr_Occurred();
-        if (exc_type) {
-          if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 234, __pyx_L1_error)
-        }
-        break;
-      }
-      __Pyx_GOTREF(__pyx_t_2);
-    }
-    __Pyx_XDECREF_SET(__pyx_v_processor, __pyx_t_2);
-    __pyx_t_2 = 0;
-
-    /* "pygama/_pygama.pyx":235
- * 
+    /* "pygama/_pygama.pyx":230
  *     for processor in self.list:
+ *       #Parse out the t0 fields
+ *       for name in self.t0_list: self.param_dict[name] = t0_row[name]             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_t0_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
+      __pyx_t_5 = __pyx_t_1; __Pyx_INCREF(__pyx_t_5); __pyx_t_6 = 0;
+      __pyx_t_7 = NULL;
+    } else {
+      __pyx_t_6 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 230, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+      __pyx_t_7 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 230, __pyx_L1_error)
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    for (;;) {
+      if (likely(!__pyx_t_7)) {
+        if (likely(PyList_CheckExact(__pyx_t_5))) {
+          if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_5)) break;
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 230, __pyx_L1_error)
+          #else
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_5, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          #endif
+        } else {
+          if (__pyx_t_6 >= PyTuple_GET_SIZE(__pyx_t_5)) break;
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 230, __pyx_L1_error)
+          #else
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_5, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          #endif
+        }
+      } else {
+        __pyx_t_1 = __pyx_t_7(__pyx_t_5);
+        if (unlikely(!__pyx_t_1)) {
+          PyObject* exc_type = PyErr_Occurred();
+          if (exc_type) {
+            if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+            else __PYX_ERR(0, 230, __pyx_L1_error)
+          }
+          break;
+        }
+        __Pyx_GOTREF(__pyx_t_1);
+      }
+      __Pyx_XDECREF_SET(__pyx_v_name, __pyx_t_1);
+      __pyx_t_1 = 0;
+      __pyx_t_1 = PyObject_GetItem(__pyx_v_t0_row, __pyx_v_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_param_dict); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 230, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_8);
+      if (unlikely(PyObject_SetItem(__pyx_t_8, __pyx_v_name, __pyx_t_1) < 0)) __PYX_ERR(0, 230, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    }
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+    /* "pygama/_pygama.pyx":233
+ * 
+ * 
  *       processor.replace_args(self.param_dict)             # <<<<<<<<<<<<<<
  * 
  *       #TODO: what if output is None??
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_processor, __pyx_n_s_replace_args); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 235, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_param_dict); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 235, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_7 = NULL;
-    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
-      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_5);
-      if (likely(__pyx_t_7)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
-        __Pyx_INCREF(__pyx_t_7);
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_processor, __pyx_n_s_replace_args); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_param_dict); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 233, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __pyx_t_9 = NULL;
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+      __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_1);
+      if (likely(__pyx_t_9)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+        __Pyx_INCREF(__pyx_t_9);
         __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_5, function);
+        __Pyx_DECREF_SET(__pyx_t_1, function);
       }
     }
-    if (!__pyx_t_7) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 235, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __Pyx_GOTREF(__pyx_t_2);
+    if (!__pyx_t_9) {
+      __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 233, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+      __Pyx_GOTREF(__pyx_t_5);
     } else {
       #if CYTHON_FAST_PYCALL
-      if (PyFunction_Check(__pyx_t_5)) {
-        PyObject *__pyx_temp[2] = {__pyx_t_7, __pyx_t_6};
-        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 235, __pyx_L1_error)
-        __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __Pyx_GOTREF(__pyx_t_2);
-        __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      if (PyFunction_Check(__pyx_t_1)) {
+        PyObject *__pyx_temp[2] = {__pyx_t_9, __pyx_t_8};
+        __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 233, __pyx_L1_error)
+        __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
+        __Pyx_GOTREF(__pyx_t_5);
+        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       } else
       #endif
       #if CYTHON_FAST_PYCCALL
-      if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
-        PyObject *__pyx_temp[2] = {__pyx_t_7, __pyx_t_6};
-        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 235, __pyx_L1_error)
-        __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __Pyx_GOTREF(__pyx_t_2);
-        __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
+        PyObject *__pyx_temp[2] = {__pyx_t_9, __pyx_t_8};
+        __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 233, __pyx_L1_error)
+        __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
+        __Pyx_GOTREF(__pyx_t_5);
+        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       } else
       #endif
       {
-        __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 235, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
-        __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_7); __pyx_t_7 = NULL;
-        __Pyx_GIVEREF(__pyx_t_6);
-        PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_t_6);
-        __pyx_t_6 = 0;
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 235, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+        __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 233, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        __Pyx_GIVEREF(__pyx_t_9); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_9); __pyx_t_9 = NULL;
+        __Pyx_GIVEREF(__pyx_t_8);
+        PyTuple_SET_ITEM(__pyx_t_10, 0+1, __pyx_t_8);
+        __pyx_t_8 = 0;
+        __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_10, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 233, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_5);
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       }
     }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "pygama/_pygama.pyx":239
+    /* "pygama/_pygama.pyx":237
  *       #TODO: what if output is None??
  * 
  *       try: #if you can set a waveform, do it             # <<<<<<<<<<<<<<
@@ -7202,72 +7217,72 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_4Process(CYTHO
     {
       __Pyx_PyThreadState_declare
       __Pyx_PyThreadState_assign
-      __Pyx_ExceptionSave(&__pyx_t_9, &__pyx_t_10, &__pyx_t_11);
-      __Pyx_XGOTREF(__pyx_t_9);
-      __Pyx_XGOTREF(__pyx_t_10);
+      __Pyx_ExceptionSave(&__pyx_t_11, &__pyx_t_12, &__pyx_t_13);
       __Pyx_XGOTREF(__pyx_t_11);
+      __Pyx_XGOTREF(__pyx_t_12);
+      __Pyx_XGOTREF(__pyx_t_13);
       /*try:*/ {
 
-        /* "pygama/_pygama.pyx":240
+        /* "pygama/_pygama.pyx":238
  * 
  *       try: #if you can set a waveform, do it
  *         processor.set_waveform(self.waveform_dict)             # <<<<<<<<<<<<<<
  *       except AttributeError:
  *         pass
  */
-        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_processor, __pyx_n_s_set_waveform); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 240, __pyx_L7_error)
-        __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_waveform_dict); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 240, __pyx_L7_error)
-        __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_6 = NULL;
-        if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
-          __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_5);
-          if (likely(__pyx_t_6)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
-            __Pyx_INCREF(__pyx_t_6);
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_processor, __pyx_n_s_set_waveform); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 238, __pyx_L7_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_waveform_dict); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 238, __pyx_L7_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        __pyx_t_8 = NULL;
+        if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+          __pyx_t_8 = PyMethod_GET_SELF(__pyx_t_1);
+          if (likely(__pyx_t_8)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+            __Pyx_INCREF(__pyx_t_8);
             __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_5, function);
+            __Pyx_DECREF_SET(__pyx_t_1, function);
           }
         }
-        if (!__pyx_t_6) {
-          __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L7_error)
-          __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-          __Pyx_GOTREF(__pyx_t_2);
+        if (!__pyx_t_8) {
+          __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_10); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 238, __pyx_L7_error)
+          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+          __Pyx_GOTREF(__pyx_t_5);
         } else {
           #if CYTHON_FAST_PYCALL
-          if (PyFunction_Check(__pyx_t_5)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_6, __pyx_t_8};
-            __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L7_error)
-            __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-            __Pyx_GOTREF(__pyx_t_2);
-            __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+          if (PyFunction_Check(__pyx_t_1)) {
+            PyObject *__pyx_temp[2] = {__pyx_t_8, __pyx_t_10};
+            __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 238, __pyx_L7_error)
+            __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
+            __Pyx_GOTREF(__pyx_t_5);
+            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
           } else
           #endif
           #if CYTHON_FAST_PYCCALL
-          if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_6, __pyx_t_8};
-            __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L7_error)
-            __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-            __Pyx_GOTREF(__pyx_t_2);
-            __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+          if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
+            PyObject *__pyx_temp[2] = {__pyx_t_8, __pyx_t_10};
+            __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 238, __pyx_L7_error)
+            __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
+            __Pyx_GOTREF(__pyx_t_5);
+            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
           } else
           #endif
           {
-            __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 240, __pyx_L7_error)
-            __Pyx_GOTREF(__pyx_t_7);
-            __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_6); __pyx_t_6 = NULL;
-            __Pyx_GIVEREF(__pyx_t_8);
-            PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_t_8);
-            __pyx_t_8 = 0;
-            __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L7_error)
-            __Pyx_GOTREF(__pyx_t_2);
-            __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+            __pyx_t_9 = PyTuple_New(1+1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 238, __pyx_L7_error)
+            __Pyx_GOTREF(__pyx_t_9);
+            __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_8); __pyx_t_8 = NULL;
+            __Pyx_GIVEREF(__pyx_t_10);
+            PyTuple_SET_ITEM(__pyx_t_9, 0+1, __pyx_t_10);
+            __pyx_t_10 = 0;
+            __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_9, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 238, __pyx_L7_error)
+            __Pyx_GOTREF(__pyx_t_5);
+            __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
           }
         }
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "pygama/_pygama.pyx":239
+        /* "pygama/_pygama.pyx":237
  *       #TODO: what if output is None??
  * 
  *       try: #if you can set a waveform, do it             # <<<<<<<<<<<<<<
@@ -7275,103 +7290,103 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_4Process(CYTHO
  *       except AttributeError:
  */
       }
-      __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
+      __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
+      __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
       goto __pyx_L14_try_end;
       __pyx_L7_error:;
-      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
+      __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
+      __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "pygama/_pygama.pyx":241
+      /* "pygama/_pygama.pyx":239
  *       try: #if you can set a waveform, do it
  *         processor.set_waveform(self.waveform_dict)
  *       except AttributeError:             # <<<<<<<<<<<<<<
  *         pass
  * 
  */
-      __pyx_t_12 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_AttributeError);
-      if (__pyx_t_12) {
+      __pyx_t_14 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_AttributeError);
+      if (__pyx_t_14) {
         __Pyx_ErrRestore(0,0,0);
         goto __pyx_L8_exception_handled;
       }
       goto __pyx_L9_except_error;
       __pyx_L9_except_error:;
 
-      /* "pygama/_pygama.pyx":239
+      /* "pygama/_pygama.pyx":237
  *       #TODO: what if output is None??
  * 
  *       try: #if you can set a waveform, do it             # <<<<<<<<<<<<<<
  *         processor.set_waveform(self.waveform_dict)
  *       except AttributeError:
  */
-      __Pyx_XGIVEREF(__pyx_t_9);
-      __Pyx_XGIVEREF(__pyx_t_10);
       __Pyx_XGIVEREF(__pyx_t_11);
-      __Pyx_ExceptionReset(__pyx_t_9, __pyx_t_10, __pyx_t_11);
+      __Pyx_XGIVEREF(__pyx_t_12);
+      __Pyx_XGIVEREF(__pyx_t_13);
+      __Pyx_ExceptionReset(__pyx_t_11, __pyx_t_12, __pyx_t_13);
       goto __pyx_L1_error;
       __pyx_L8_exception_handled:;
-      __Pyx_XGIVEREF(__pyx_t_9);
-      __Pyx_XGIVEREF(__pyx_t_10);
       __Pyx_XGIVEREF(__pyx_t_11);
-      __Pyx_ExceptionReset(__pyx_t_9, __pyx_t_10, __pyx_t_11);
+      __Pyx_XGIVEREF(__pyx_t_12);
+      __Pyx_XGIVEREF(__pyx_t_13);
+      __Pyx_ExceptionReset(__pyx_t_11, __pyx_t_12, __pyx_t_13);
       __pyx_L14_try_end:;
     }
 
-    /* "pygama/_pygama.pyx":244
+    /* "pygama/_pygama.pyx":242
  *         pass
  * 
  *       if isinstance(processor, Transformer):             # <<<<<<<<<<<<<<
  *         self.waveform_dict[processor.output_name] = processor.process()
  * 
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_Transformer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 244, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_13 = PyObject_IsInstance(__pyx_v_processor, __pyx_t_2); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 244, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_14 = (__pyx_t_13 != 0);
-    if (__pyx_t_14) {
+    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_Transformer); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 242, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_15 = PyObject_IsInstance(__pyx_v_processor, __pyx_t_5); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 242, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __pyx_t_16 = (__pyx_t_15 != 0);
+    if (__pyx_t_16) {
 
-      /* "pygama/_pygama.pyx":245
+      /* "pygama/_pygama.pyx":243
  * 
  *       if isinstance(processor, Transformer):
  *         self.waveform_dict[processor.output_name] = processor.process()             # <<<<<<<<<<<<<<
  * 
  *       else:
  */
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_processor, __pyx_n_s_process); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 245, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_7 = NULL;
-      if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
-        __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_5);
-        if (likely(__pyx_t_7)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
-          __Pyx_INCREF(__pyx_t_7);
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_processor, __pyx_n_s_process); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 243, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_9 = NULL;
+      if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+        __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_1);
+        if (likely(__pyx_t_9)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+          __Pyx_INCREF(__pyx_t_9);
           __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_5, function);
+          __Pyx_DECREF_SET(__pyx_t_1, function);
         }
       }
-      if (__pyx_t_7) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 245, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      if (__pyx_t_9) {
+        __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 243, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 245, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 243, __pyx_L1_error)
       }
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_waveform_dict); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 245, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_processor, __pyx_n_s_output_name); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 245, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_7);
-      if (unlikely(PyObject_SetItem(__pyx_t_5, __pyx_t_7, __pyx_t_2) < 0)) __PYX_ERR(0, 245, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_waveform_dict); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 243, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_processor, __pyx_n_s_output_name); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 243, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_9);
+      if (unlikely(PyObject_SetItem(__pyx_t_1, __pyx_t_9, __pyx_t_5) < 0)) __PYX_ERR(0, 243, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "pygama/_pygama.pyx":244
+      /* "pygama/_pygama.pyx":242
  *         pass
  * 
  *       if isinstance(processor, Transformer):             # <<<<<<<<<<<<<<
@@ -7381,7 +7396,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_4Process(CYTHO
       goto __pyx_L15;
     }
 
-    /* "pygama/_pygama.pyx":248
+    /* "pygama/_pygama.pyx":246
  * 
  *       else:
  *         output = processor.output_name             # <<<<<<<<<<<<<<
@@ -7389,62 +7404,62 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_4Process(CYTHO
  *         if not isinstance(output, str) and len(output) > 1:
  */
     /*else*/ {
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_processor, __pyx_n_s_output_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 248, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_XDECREF_SET(__pyx_v_output, __pyx_t_2);
-      __pyx_t_2 = 0;
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_processor, __pyx_n_s_output_name); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 246, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+      __Pyx_XDECREF_SET(__pyx_v_output, __pyx_t_5);
+      __pyx_t_5 = 0;
 
-      /* "pygama/_pygama.pyx":249
+      /* "pygama/_pygama.pyx":247
  *       else:
  *         output = processor.output_name
  *         calc = processor.process()             # <<<<<<<<<<<<<<
  *         if not isinstance(output, str) and len(output) > 1:
  *           for i, out in enumerate(output):
  */
-      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_processor, __pyx_n_s_process); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_5 = NULL;
-      if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_7))) {
-        __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_7);
-        if (likely(__pyx_t_5)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
-          __Pyx_INCREF(__pyx_t_5);
+      __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_processor, __pyx_n_s_process); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 247, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_9);
+      __pyx_t_1 = NULL;
+      if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_9))) {
+        __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_9);
+        if (likely(__pyx_t_1)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_9);
+          __Pyx_INCREF(__pyx_t_1);
           __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_7, function);
+          __Pyx_DECREF_SET(__pyx_t_9, function);
         }
       }
-      if (__pyx_t_5) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 249, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      if (__pyx_t_1) {
+        __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_9, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 247, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 249, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 247, __pyx_L1_error)
       }
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __Pyx_XDECREF_SET(__pyx_v_calc, __pyx_t_2);
-      __pyx_t_2 = 0;
+      __Pyx_GOTREF(__pyx_t_5);
+      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_calc, __pyx_t_5);
+      __pyx_t_5 = 0;
 
-      /* "pygama/_pygama.pyx":250
+      /* "pygama/_pygama.pyx":248
  *         output = processor.output_name
  *         calc = processor.process()
  *         if not isinstance(output, str) and len(output) > 1:             # <<<<<<<<<<<<<<
  *           for i, out in enumerate(output):
  *             self.param_dict[out] = calc[i]
  */
-      __pyx_t_13 = PyString_Check(__pyx_v_output); 
-      __pyx_t_15 = ((!(__pyx_t_13 != 0)) != 0);
-      if (__pyx_t_15) {
+      __pyx_t_15 = PyString_Check(__pyx_v_output); 
+      __pyx_t_17 = ((!(__pyx_t_15 != 0)) != 0);
+      if (__pyx_t_17) {
       } else {
-        __pyx_t_14 = __pyx_t_15;
+        __pyx_t_16 = __pyx_t_17;
         goto __pyx_L17_bool_binop_done;
       }
-      __pyx_t_16 = PyObject_Length(__pyx_v_output); if (unlikely(__pyx_t_16 == ((Py_ssize_t)-1))) __PYX_ERR(0, 250, __pyx_L1_error)
-      __pyx_t_15 = ((__pyx_t_16 > 1) != 0);
-      __pyx_t_14 = __pyx_t_15;
+      __pyx_t_6 = PyObject_Length(__pyx_v_output); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 248, __pyx_L1_error)
+      __pyx_t_17 = ((__pyx_t_6 > 1) != 0);
+      __pyx_t_16 = __pyx_t_17;
       __pyx_L17_bool_binop_done:;
-      if (__pyx_t_14) {
+      if (__pyx_t_16) {
 
-        /* "pygama/_pygama.pyx":251
+        /* "pygama/_pygama.pyx":249
  *         calc = processor.process()
  *         if not isinstance(output, str) and len(output) > 1:
  *           for i, out in enumerate(output):             # <<<<<<<<<<<<<<
@@ -7452,72 +7467,72 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_4Process(CYTHO
  *         else: self.param_dict[output] = calc
  */
         __Pyx_INCREF(__pyx_int_0);
-        __pyx_t_2 = __pyx_int_0;
+        __pyx_t_5 = __pyx_int_0;
         if (likely(PyList_CheckExact(__pyx_v_output)) || PyTuple_CheckExact(__pyx_v_output)) {
-          __pyx_t_7 = __pyx_v_output; __Pyx_INCREF(__pyx_t_7); __pyx_t_16 = 0;
-          __pyx_t_17 = NULL;
+          __pyx_t_9 = __pyx_v_output; __Pyx_INCREF(__pyx_t_9); __pyx_t_6 = 0;
+          __pyx_t_7 = NULL;
         } else {
-          __pyx_t_16 = -1; __pyx_t_7 = PyObject_GetIter(__pyx_v_output); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 251, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_7);
-          __pyx_t_17 = Py_TYPE(__pyx_t_7)->tp_iternext; if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 251, __pyx_L1_error)
+          __pyx_t_6 = -1; __pyx_t_9 = PyObject_GetIter(__pyx_v_output); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 249, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_9);
+          __pyx_t_7 = Py_TYPE(__pyx_t_9)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)
         }
         for (;;) {
-          if (likely(!__pyx_t_17)) {
-            if (likely(PyList_CheckExact(__pyx_t_7))) {
-              if (__pyx_t_16 >= PyList_GET_SIZE(__pyx_t_7)) break;
+          if (likely(!__pyx_t_7)) {
+            if (likely(PyList_CheckExact(__pyx_t_9))) {
+              if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_9)) break;
               #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-              __pyx_t_5 = PyList_GET_ITEM(__pyx_t_7, __pyx_t_16); __Pyx_INCREF(__pyx_t_5); __pyx_t_16++; if (unlikely(0 < 0)) __PYX_ERR(0, 251, __pyx_L1_error)
+              __pyx_t_1 = PyList_GET_ITEM(__pyx_t_9, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 249, __pyx_L1_error)
               #else
-              __pyx_t_5 = PySequence_ITEM(__pyx_t_7, __pyx_t_16); __pyx_t_16++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 251, __pyx_L1_error)
-              __Pyx_GOTREF(__pyx_t_5);
+              __pyx_t_1 = PySequence_ITEM(__pyx_t_9, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 249, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_1);
               #endif
             } else {
-              if (__pyx_t_16 >= PyTuple_GET_SIZE(__pyx_t_7)) break;
+              if (__pyx_t_6 >= PyTuple_GET_SIZE(__pyx_t_9)) break;
               #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-              __pyx_t_5 = PyTuple_GET_ITEM(__pyx_t_7, __pyx_t_16); __Pyx_INCREF(__pyx_t_5); __pyx_t_16++; if (unlikely(0 < 0)) __PYX_ERR(0, 251, __pyx_L1_error)
+              __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_9, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 249, __pyx_L1_error)
               #else
-              __pyx_t_5 = PySequence_ITEM(__pyx_t_7, __pyx_t_16); __pyx_t_16++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 251, __pyx_L1_error)
-              __Pyx_GOTREF(__pyx_t_5);
+              __pyx_t_1 = PySequence_ITEM(__pyx_t_9, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 249, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_1);
               #endif
             }
           } else {
-            __pyx_t_5 = __pyx_t_17(__pyx_t_7);
-            if (unlikely(!__pyx_t_5)) {
+            __pyx_t_1 = __pyx_t_7(__pyx_t_9);
+            if (unlikely(!__pyx_t_1)) {
               PyObject* exc_type = PyErr_Occurred();
               if (exc_type) {
                 if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                else __PYX_ERR(0, 251, __pyx_L1_error)
+                else __PYX_ERR(0, 249, __pyx_L1_error)
               }
               break;
             }
-            __Pyx_GOTREF(__pyx_t_5);
+            __Pyx_GOTREF(__pyx_t_1);
           }
-          __Pyx_XDECREF_SET(__pyx_v_out, __pyx_t_5);
-          __pyx_t_5 = 0;
-          __Pyx_INCREF(__pyx_t_2);
-          __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_2);
-          __pyx_t_5 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 251, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_5);
-          __Pyx_DECREF(__pyx_t_2);
-          __pyx_t_2 = __pyx_t_5;
-          __pyx_t_5 = 0;
+          __Pyx_XDECREF_SET(__pyx_v_out, __pyx_t_1);
+          __pyx_t_1 = 0;
+          __Pyx_INCREF(__pyx_t_5);
+          __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_5);
+          __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_t_5, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 249, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          __Pyx_DECREF(__pyx_t_5);
+          __pyx_t_5 = __pyx_t_1;
+          __pyx_t_1 = 0;
 
-          /* "pygama/_pygama.pyx":252
+          /* "pygama/_pygama.pyx":250
  *         if not isinstance(output, str) and len(output) > 1:
  *           for i, out in enumerate(output):
  *             self.param_dict[out] = calc[i]             # <<<<<<<<<<<<<<
  *         else: self.param_dict[output] = calc
  * 
  */
-          __pyx_t_5 = PyObject_GetItem(__pyx_v_calc, __pyx_v_i); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 252, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_5);
-          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_param_dict); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 252, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_8);
-          if (unlikely(PyObject_SetItem(__pyx_t_8, __pyx_v_out, __pyx_t_5) < 0)) __PYX_ERR(0, 252, __pyx_L1_error)
-          __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-          __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+          __pyx_t_1 = PyObject_GetItem(__pyx_v_calc, __pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_param_dict); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 250, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_10);
+          if (unlikely(PyObject_SetItem(__pyx_t_10, __pyx_v_out, __pyx_t_1) < 0)) __PYX_ERR(0, 250, __pyx_L1_error)
+          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-          /* "pygama/_pygama.pyx":251
+          /* "pygama/_pygama.pyx":249
  *         calc = processor.process()
  *         if not isinstance(output, str) and len(output) > 1:
  *           for i, out in enumerate(output):             # <<<<<<<<<<<<<<
@@ -7525,10 +7540,10 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_4Process(CYTHO
  *         else: self.param_dict[output] = calc
  */
         }
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-        /* "pygama/_pygama.pyx":250
+        /* "pygama/_pygama.pyx":248
  *         output = processor.output_name
  *         calc = processor.process()
  *         if not isinstance(output, str) and len(output) > 1:             # <<<<<<<<<<<<<<
@@ -7538,7 +7553,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_4Process(CYTHO
         goto __pyx_L16;
       }
 
-      /* "pygama/_pygama.pyx":253
+      /* "pygama/_pygama.pyx":251
  *           for i, out in enumerate(output):
  *             self.param_dict[out] = calc[i]
  *         else: self.param_dict[output] = calc             # <<<<<<<<<<<<<<
@@ -7546,26 +7561,26 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_4Process(CYTHO
  *     return self.param_dict
  */
       /*else*/ {
-        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_param_dict); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 253, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        if (unlikely(PyObject_SetItem(__pyx_t_2, __pyx_v_output, __pyx_v_calc) < 0)) __PYX_ERR(0, 253, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_param_dict); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 251, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_5);
+        if (unlikely(PyObject_SetItem(__pyx_t_5, __pyx_v_output, __pyx_v_calc) < 0)) __PYX_ERR(0, 251, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       }
       __pyx_L16:;
     }
     __pyx_L15:;
 
-    /* "pygama/_pygama.pyx":234
- *     # (type, input, output, fn, perm_args)
+    /* "pygama/_pygama.pyx":228
  * 
+ *   def Process(self, t0_row):
  *     for processor in self.list:             # <<<<<<<<<<<<<<
- *       processor.replace_args(self.param_dict)
- * 
+ *       #Parse out the t0 fields
+ *       for name in self.t0_list: self.param_dict[name] = t0_row[name]
  */
   }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pygama/_pygama.pyx":255
+  /* "pygama/_pygama.pyx":253
  *         else: self.param_dict[output] = calc
  * 
  *     return self.param_dict             # <<<<<<<<<<<<<<
@@ -7573,18 +7588,18 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_4Process(CYTHO
  *   def AddTransform(self, function, args={}, input_waveform="waveform", output_waveform=None):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_param_dict); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 255, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_param_dict); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 253, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pygama/_pygama.pyx":226
+  /* "pygama/_pygama.pyx":227
  *     self.waveform_dict = {"waveform":waveform}
  * 
  *   def Process(self, t0_row):             # <<<<<<<<<<<<<<
- *     for name in self.t0_list:
- *       self.param_dict[name] = t0_row[name]
+ *     for processor in self.list:
+ *       #Parse out the t0 fields
  */
 
   /* function exit code */
@@ -7592,14 +7607,14 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_4Process(CYTHO
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_XDECREF(__pyx_t_10);
   __Pyx_AddTraceback("pygama._pygama.TierOneProcessorList.Process", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_name);
   __Pyx_XDECREF(__pyx_v_processor);
+  __Pyx_XDECREF(__pyx_v_name);
   __Pyx_XDECREF(__pyx_v_output);
   __Pyx_XDECREF(__pyx_v_calc);
   __Pyx_XDECREF(__pyx_v_i);
@@ -7609,7 +7624,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_4Process(CYTHO
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":257
+/* "pygama/_pygama.pyx":255
  *     return self.param_dict
  * 
  *   def AddTransform(self, function, args={}, input_waveform="waveform", output_waveform=None):             # <<<<<<<<<<<<<<
@@ -7624,7 +7639,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_4__defaults__(CYTHON_UNUSED PyObject 
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("__defaults__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 257, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__Pyx_CyFunction_Defaults(__pyx_defaults, __pyx_self)->__pyx_arg_args);
   __Pyx_GIVEREF(__Pyx_CyFunction_Defaults(__pyx_defaults, __pyx_self)->__pyx_arg_args);
@@ -7635,7 +7650,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_4__defaults__(CYTHON_UNUSED PyObject 
   __Pyx_INCREF(((PyObject *)Py_None));
   __Pyx_GIVEREF(((PyObject *)Py_None));
   PyTuple_SET_ITEM(__pyx_t_1, 2, ((PyObject *)Py_None));
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 257, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
@@ -7704,7 +7719,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_7AddTransform(
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_function)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("AddTransform", 0, 2, 5, 1); __PYX_ERR(0, 257, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("AddTransform", 0, 2, 5, 1); __PYX_ERR(0, 255, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -7726,7 +7741,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_7AddTransform(
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "AddTransform") < 0)) __PYX_ERR(0, 257, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "AddTransform") < 0)) __PYX_ERR(0, 255, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -7750,7 +7765,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_7AddTransform(
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("AddTransform", 0, 2, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 257, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("AddTransform", 0, 2, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 255, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pygama._pygama.TierOneProcessorList.AddTransform", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -7775,16 +7790,16 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_6AddTransform(
   int __pyx_t_7;
   __Pyx_RefNannySetupContext("AddTransform", 0);
 
-  /* "pygama/_pygama.pyx":258
+  /* "pygama/_pygama.pyx":256
  * 
  *   def AddTransform(self, function, args={}, input_waveform="waveform", output_waveform=None):
  *     self.list.append( Transformer(function, args, input_waveform, output_waveform) )             # <<<<<<<<<<<<<<
  * 
  *   def AddCalculator(self, function, args={}, input_waveform="waveform",  output_name=None):
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 256, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_Transformer); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 258, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_Transformer); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 256, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -7801,7 +7816,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_6AddTransform(
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[5] = {__pyx_t_4, __pyx_v_function, __pyx_v_args, __pyx_v_input_waveform, __pyx_v_output_waveform};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 4+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 258, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 4+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 256, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else
@@ -7809,13 +7824,13 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_6AddTransform(
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[5] = {__pyx_t_4, __pyx_v_function, __pyx_v_args, __pyx_v_input_waveform, __pyx_v_output_waveform};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 4+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 258, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 4+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 256, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(4+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 258, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(4+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 256, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -7832,16 +7847,16 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_6AddTransform(
     __Pyx_INCREF(__pyx_v_output_waveform);
     __Pyx_GIVEREF(__pyx_v_output_waveform);
     PyTuple_SET_ITEM(__pyx_t_6, 3+__pyx_t_5, __pyx_v_output_waveform);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 258, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 256, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_7 = __Pyx_PyObject_Append(__pyx_t_1, __pyx_t_2); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 258, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_Append(__pyx_t_1, __pyx_t_2); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 256, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pygama/_pygama.pyx":257
+  /* "pygama/_pygama.pyx":255
  *     return self.param_dict
  * 
  *   def AddTransform(self, function, args={}, input_waveform="waveform", output_waveform=None):             # <<<<<<<<<<<<<<
@@ -7866,7 +7881,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_6AddTransform(
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":260
+/* "pygama/_pygama.pyx":258
  *     self.list.append( Transformer(function, args, input_waveform, output_waveform) )
  * 
  *   def AddCalculator(self, function, args={}, input_waveform="waveform",  output_name=None):             # <<<<<<<<<<<<<<
@@ -7881,7 +7896,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_6__defaults__(CYTHON_UNUSED PyObject 
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("__defaults__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__Pyx_CyFunction_Defaults(__pyx_defaults1, __pyx_self)->__pyx_arg_args);
   __Pyx_GIVEREF(__Pyx_CyFunction_Defaults(__pyx_defaults1, __pyx_self)->__pyx_arg_args);
@@ -7892,7 +7907,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_6__defaults__(CYTHON_UNUSED PyObject 
   __Pyx_INCREF(((PyObject *)Py_None));
   __Pyx_GIVEREF(((PyObject *)Py_None));
   PyTuple_SET_ITEM(__pyx_t_1, 2, ((PyObject *)Py_None));
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
@@ -7961,7 +7976,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_9AddCalculator
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_function)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("AddCalculator", 0, 2, 5, 1); __PYX_ERR(0, 260, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("AddCalculator", 0, 2, 5, 1); __PYX_ERR(0, 258, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -7983,7 +7998,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_9AddCalculator
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "AddCalculator") < 0)) __PYX_ERR(0, 260, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "AddCalculator") < 0)) __PYX_ERR(0, 258, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -8007,7 +8022,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_9AddCalculator
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("AddCalculator", 0, 2, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 260, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("AddCalculator", 0, 2, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 258, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pygama._pygama.TierOneProcessorList.AddCalculator", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -8032,16 +8047,16 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_8AddCalculator
   int __pyx_t_7;
   __Pyx_RefNannySetupContext("AddCalculator", 0);
 
-  /* "pygama/_pygama.pyx":261
+  /* "pygama/_pygama.pyx":259
  * 
  *   def AddCalculator(self, function, args={}, input_waveform="waveform",  output_name=None):
  *     self.list.append( Calculator(function, args, input_waveform, output_name) )             # <<<<<<<<<<<<<<
  * 
  *   def AddDatabaseLookup(self, function, args={}, output_name=None):
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 261, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_Calculator); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 261, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_Calculator); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -8058,7 +8073,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_8AddCalculator
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[5] = {__pyx_t_4, __pyx_v_function, __pyx_v_args, __pyx_v_input_waveform, __pyx_v_output_name};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 4+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 261, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 4+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else
@@ -8066,13 +8081,13 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_8AddCalculator
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[5] = {__pyx_t_4, __pyx_v_function, __pyx_v_args, __pyx_v_input_waveform, __pyx_v_output_name};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 4+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 261, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 4+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(4+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 261, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(4+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 259, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -8089,16 +8104,16 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_8AddCalculator
     __Pyx_INCREF(__pyx_v_output_name);
     __Pyx_GIVEREF(__pyx_v_output_name);
     PyTuple_SET_ITEM(__pyx_t_6, 3+__pyx_t_5, __pyx_v_output_name);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 261, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_7 = __Pyx_PyObject_Append(__pyx_t_1, __pyx_t_2); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 261, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_Append(__pyx_t_1, __pyx_t_2); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pygama/_pygama.pyx":260
+  /* "pygama/_pygama.pyx":258
  *     self.list.append( Transformer(function, args, input_waveform, output_waveform) )
  * 
  *   def AddCalculator(self, function, args={}, input_waveform="waveform",  output_name=None):             # <<<<<<<<<<<<<<
@@ -8123,7 +8138,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_8AddCalculator
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":263
+/* "pygama/_pygama.pyx":261
  *     self.list.append( Calculator(function, args, input_waveform, output_name) )
  * 
  *   def AddDatabaseLookup(self, function, args={}, output_name=None):             # <<<<<<<<<<<<<<
@@ -8138,7 +8153,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_8__defaults__(CYTHON_UNUSED PyObject 
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("__defaults__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 263, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__Pyx_CyFunction_Defaults(__pyx_defaults2, __pyx_self)->__pyx_arg_args);
   __Pyx_GIVEREF(__Pyx_CyFunction_Defaults(__pyx_defaults2, __pyx_self)->__pyx_arg_args);
@@ -8146,7 +8161,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_8__defaults__(CYTHON_UNUSED PyObject 
   __Pyx_INCREF(((PyObject *)Py_None));
   __Pyx_GIVEREF(((PyObject *)Py_None));
   PyTuple_SET_ITEM(__pyx_t_1, 1, ((PyObject *)Py_None));
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 263, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
@@ -8211,7 +8226,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_11AddDatabaseL
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_function)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("AddDatabaseLookup", 0, 2, 4, 1); __PYX_ERR(0, 263, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("AddDatabaseLookup", 0, 2, 4, 1); __PYX_ERR(0, 261, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -8227,7 +8242,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_11AddDatabaseL
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "AddDatabaseLookup") < 0)) __PYX_ERR(0, 263, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "AddDatabaseLookup") < 0)) __PYX_ERR(0, 261, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -8248,7 +8263,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_11AddDatabaseL
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("AddDatabaseLookup", 0, 2, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 263, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("AddDatabaseLookup", 0, 2, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 261, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pygama._pygama.TierOneProcessorList.AddDatabaseLookup", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -8273,16 +8288,16 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_10AddDatabaseL
   int __pyx_t_7;
   __Pyx_RefNannySetupContext("AddDatabaseLookup", 0);
 
-  /* "pygama/_pygama.pyx":264
+  /* "pygama/_pygama.pyx":262
  * 
  *   def AddDatabaseLookup(self, function, args={}, output_name=None):
  *     self.list.append( DatabaseLookup(function, args, output_name) )             # <<<<<<<<<<<<<<
  * 
  *   def AddFromTier0(self, name, output_name=None):
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 262, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_DatabaseLookup); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_DatabaseLookup); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 262, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -8299,7 +8314,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_10AddDatabaseL
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_4, __pyx_v_function, __pyx_v_args, __pyx_v_output_name};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 264, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 262, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else
@@ -8307,13 +8322,13 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_10AddDatabaseL
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_4, __pyx_v_function, __pyx_v_args, __pyx_v_output_name};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 264, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 262, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(3+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 264, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(3+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 262, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -8327,16 +8342,16 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_10AddDatabaseL
     __Pyx_INCREF(__pyx_v_output_name);
     __Pyx_GIVEREF(__pyx_v_output_name);
     PyTuple_SET_ITEM(__pyx_t_6, 2+__pyx_t_5, __pyx_v_output_name);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 264, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 262, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_7 = __Pyx_PyObject_Append(__pyx_t_1, __pyx_t_2); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_Append(__pyx_t_1, __pyx_t_2); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 262, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pygama/_pygama.pyx":263
+  /* "pygama/_pygama.pyx":261
  *     self.list.append( Calculator(function, args, input_waveform, output_name) )
  * 
  *   def AddDatabaseLookup(self, function, args={}, output_name=None):             # <<<<<<<<<<<<<<
@@ -8361,12 +8376,12 @@ static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_10AddDatabaseL
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":266
+/* "pygama/_pygama.pyx":264
  *     self.list.append( DatabaseLookup(function, args, output_name) )
  * 
  *   def AddFromTier0(self, name, output_name=None):             # <<<<<<<<<<<<<<
- *     if output_name is None: output_name = name
- *     self.t0_list.append(name)
+ *     self.list.append( Tier0Passer(name, output_name) )
+ * 
  */
 
 /* Python wrapper */
@@ -8405,7 +8420,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_13AddFromTier0
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_name)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("AddFromTier0", 0, 2, 3, 1); __PYX_ERR(0, 266, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("AddFromTier0", 0, 2, 3, 1); __PYX_ERR(0, 264, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -8415,7 +8430,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_13AddFromTier0
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "AddFromTier0") < 0)) __PYX_ERR(0, 266, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "AddFromTier0") < 0)) __PYX_ERR(0, 264, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -8433,7 +8448,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_13AddFromTier0
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("AddFromTier0", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 266, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("AddFromTier0", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 264, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pygama._pygama.TierOneProcessorList.AddFromTier0", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -8449,62 +8464,101 @@ static PyObject *__pyx_pw_6pygama_7_pygama_20TierOneProcessorList_13AddFromTier0
 static PyObject *__pyx_pf_6pygama_7_pygama_20TierOneProcessorList_12AddFromTier0(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_output_name) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
-  int __pyx_t_2;
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
-  int __pyx_t_4;
+  PyObject *__pyx_t_4 = NULL;
+  int __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
+  int __pyx_t_7;
   __Pyx_RefNannySetupContext("AddFromTier0", 0);
-  __Pyx_INCREF(__pyx_v_output_name);
 
-  /* "pygama/_pygama.pyx":267
+  /* "pygama/_pygama.pyx":265
  * 
  *   def AddFromTier0(self, name, output_name=None):
- *     if output_name is None: output_name = name             # <<<<<<<<<<<<<<
- *     self.t0_list.append(name)
- *     # self.t0_list[name] = output_name
- */
-  __pyx_t_1 = (__pyx_v_output_name == Py_None);
-  __pyx_t_2 = (__pyx_t_1 != 0);
-  if (__pyx_t_2) {
-    __Pyx_INCREF(__pyx_v_name);
-    __Pyx_DECREF_SET(__pyx_v_output_name, __pyx_v_name);
-  }
-
-  /* "pygama/_pygama.pyx":268
- *   def AddFromTier0(self, name, output_name=None):
- *     if output_name is None: output_name = name
- *     self.t0_list.append(name)             # <<<<<<<<<<<<<<
- *     # self.t0_list[name] = output_name
+ *     self.list.append( Tier0Passer(name, output_name) )             # <<<<<<<<<<<<<<
  * 
+ * #Classes that wrap functional implementations of calculators or transformers
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_t0_list); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 268, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 265, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_Tier0Passer); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 265, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_Append(__pyx_t_3, __pyx_v_name); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 268, __pyx_L1_error)
+  __pyx_t_4 = NULL;
+  __pyx_t_5 = 0;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+      __pyx_t_5 = 1;
+    }
+  }
+  #if CYTHON_FAST_PYCALL
+  if (PyFunction_Check(__pyx_t_3)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_name, __pyx_v_output_name};
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 265, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_GOTREF(__pyx_t_2);
+  } else
+  #endif
+  #if CYTHON_FAST_PYCCALL
+  if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_name, __pyx_v_output_name};
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 265, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_GOTREF(__pyx_t_2);
+  } else
+  #endif
+  {
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 265, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    if (__pyx_t_4) {
+      __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
+    }
+    __Pyx_INCREF(__pyx_v_name);
+    __Pyx_GIVEREF(__pyx_v_name);
+    PyTuple_SET_ITEM(__pyx_t_6, 0+__pyx_t_5, __pyx_v_name);
+    __Pyx_INCREF(__pyx_v_output_name);
+    __Pyx_GIVEREF(__pyx_v_output_name);
+    PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_output_name);
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 265, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_7 = __Pyx_PyObject_Append(__pyx_t_1, __pyx_t_2); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 265, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pygama/_pygama.pyx":266
+  /* "pygama/_pygama.pyx":264
  *     self.list.append( DatabaseLookup(function, args, output_name) )
  * 
  *   def AddFromTier0(self, name, output_name=None):             # <<<<<<<<<<<<<<
- *     if output_name is None: output_name = name
- *     self.t0_list.append(name)
+ *     self.list.append( Tier0Passer(name, output_name) )
+ * 
  */
 
   /* function exit code */
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
   __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_AddTraceback("pygama._pygama.TierOneProcessorList.AddFromTier0", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_output_name);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":274
+/* "pygama/_pygama.pyx":270
  * 
  * class Calculator():
  *   def __init__(self, function, args={}, input_waveform="waveform",  output_name=None):             # <<<<<<<<<<<<<<
@@ -8519,7 +8573,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10__defaults__(CYTHON_UNUSED PyObject
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("__defaults__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 270, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__Pyx_CyFunction_Defaults(__pyx_defaults3, __pyx_self)->__pyx_arg_args);
   __Pyx_GIVEREF(__Pyx_CyFunction_Defaults(__pyx_defaults3, __pyx_self)->__pyx_arg_args);
@@ -8530,7 +8584,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10__defaults__(CYTHON_UNUSED PyObject
   __Pyx_INCREF(((PyObject *)Py_None));
   __Pyx_GIVEREF(((PyObject *)Py_None));
   PyTuple_SET_ITEM(__pyx_t_1, 2, ((PyObject *)Py_None));
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 270, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
@@ -8599,7 +8653,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_10Calculator_1__init__(PyObject *__py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_function)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 5, 1); __PYX_ERR(0, 274, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 5, 1); __PYX_ERR(0, 270, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -8621,7 +8675,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_10Calculator_1__init__(PyObject *__py
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 274, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 270, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -8645,7 +8699,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_10Calculator_1__init__(PyObject *__py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 274, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 270, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pygama._pygama.Calculator.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -8663,43 +8717,43 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator___init__(CYTHON_UNUSED P
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "pygama/_pygama.pyx":275
+  /* "pygama/_pygama.pyx":271
  * class Calculator():
  *   def __init__(self, function, args={}, input_waveform="waveform",  output_name=None):
  *     self.function = function             # <<<<<<<<<<<<<<
  *     self.perm_args = args
  *     self.input_waveform_name = input_waveform
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_function, __pyx_v_function) < 0) __PYX_ERR(0, 275, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_function, __pyx_v_function) < 0) __PYX_ERR(0, 271, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":276
+  /* "pygama/_pygama.pyx":272
  *   def __init__(self, function, args={}, input_waveform="waveform",  output_name=None):
  *     self.function = function
  *     self.perm_args = args             # <<<<<<<<<<<<<<
  *     self.input_waveform_name = input_waveform
  *     self.output_name = output_name
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_perm_args, __pyx_v_args) < 0) __PYX_ERR(0, 276, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_perm_args, __pyx_v_args) < 0) __PYX_ERR(0, 272, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":277
+  /* "pygama/_pygama.pyx":273
  *     self.function = function
  *     self.perm_args = args
  *     self.input_waveform_name = input_waveform             # <<<<<<<<<<<<<<
  *     self.output_name = output_name
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_input_waveform_name, __pyx_v_input_waveform) < 0) __PYX_ERR(0, 277, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_input_waveform_name, __pyx_v_input_waveform) < 0) __PYX_ERR(0, 273, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":278
+  /* "pygama/_pygama.pyx":274
  *     self.perm_args = args
  *     self.input_waveform_name = input_waveform
  *     self.output_name = output_name             # <<<<<<<<<<<<<<
  * 
  *   def replace_args(self, param_dict):
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_output_name, __pyx_v_output_name) < 0) __PYX_ERR(0, 278, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_output_name, __pyx_v_output_name) < 0) __PYX_ERR(0, 274, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":274
+  /* "pygama/_pygama.pyx":270
  * 
  * class Calculator():
  *   def __init__(self, function, args={}, input_waveform="waveform",  output_name=None):             # <<<<<<<<<<<<<<
@@ -8719,7 +8773,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator___init__(CYTHON_UNUSED P
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":280
+/* "pygama/_pygama.pyx":276
  *     self.output_name = output_name
  * 
  *   def replace_args(self, param_dict):             # <<<<<<<<<<<<<<
@@ -8759,11 +8813,11 @@ static PyObject *__pyx_pw_6pygama_7_pygama_10Calculator_3replace_args(PyObject *
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_param_dict)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("replace_args", 1, 2, 2, 1); __PYX_ERR(0, 280, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("replace_args", 1, 2, 2, 1); __PYX_ERR(0, 276, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "replace_args") < 0)) __PYX_ERR(0, 280, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "replace_args") < 0)) __PYX_ERR(0, 276, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -8776,7 +8830,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_10Calculator_3replace_args(PyObject *
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("replace_args", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 280, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("replace_args", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 276, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pygama._pygama.Calculator.replace_args", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -8806,16 +8860,16 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_2replace_args(CYTHON_UNU
   int __pyx_t_10;
   __Pyx_RefNannySetupContext("replace_args", 0);
 
-  /* "pygama/_pygama.pyx":282
+  /* "pygama/_pygama.pyx":278
  *   def replace_args(self, param_dict):
  *     #check args list for string vals which match keys in param dict
  *     self.args = self.perm_args.copy() #copy we'll actually pass to the function             # <<<<<<<<<<<<<<
  * 
  *     for (arg, val) in iteritems(self.args):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_perm_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 282, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_perm_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 278, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_copy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 282, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_copy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 278, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -8829,26 +8883,26 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_2replace_args(CYTHON_UNU
     }
   }
   if (__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 282, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 278, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 282, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 278, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_args, __pyx_t_1) < 0) __PYX_ERR(0, 282, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_args, __pyx_t_1) < 0) __PYX_ERR(0, 278, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pygama/_pygama.pyx":284
+  /* "pygama/_pygama.pyx":280
  *     self.args = self.perm_args.copy() #copy we'll actually pass to the function
  * 
  *     for (arg, val) in iteritems(self.args):             # <<<<<<<<<<<<<<
  *       if val in param_dict.keys():
  *         self.args[arg] = param_dict[val]
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_iteritems); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_iteritems); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -8861,14 +8915,14 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_2replace_args(CYTHON_UNU
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 280, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_2};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 280, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -8877,20 +8931,20 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_2replace_args(CYTHON_UNU
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_2};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 280, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else
     #endif
     {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 284, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 280, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
       __Pyx_GIVEREF(__pyx_t_2);
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 280, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
@@ -8900,9 +8954,9 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_2replace_args(CYTHON_UNU
     __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3); __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
   } else {
-    __pyx_t_6 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 284, __pyx_L1_error)
+    __pyx_t_6 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 280, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 284, __pyx_L1_error)
+    __pyx_t_7 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 280, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -8910,17 +8964,17 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_2replace_args(CYTHON_UNU
       if (likely(PyList_CheckExact(__pyx_t_3))) {
         if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 284, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 280, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 280, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_6 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 284, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 280, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 280, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -8930,7 +8984,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_2replace_args(CYTHON_UNU
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 284, __pyx_L1_error)
+          else __PYX_ERR(0, 280, __pyx_L1_error)
         }
         break;
       }
@@ -8946,7 +9000,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_2replace_args(CYTHON_UNU
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 284, __pyx_L1_error)
+        __PYX_ERR(0, 280, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -8959,15 +9013,15 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_2replace_args(CYTHON_UNU
       __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_2);
       #else
-      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 284, __pyx_L1_error)
+      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 280, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 284, __pyx_L1_error)
+      __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 280, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       #endif
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 284, __pyx_L1_error)
+      __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 280, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_4)->tp_iternext;
@@ -8975,7 +9029,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_2replace_args(CYTHON_UNU
       __Pyx_GOTREF(__pyx_t_5);
       index = 1; __pyx_t_2 = __pyx_t_8(__pyx_t_4); if (unlikely(!__pyx_t_2)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_2);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_4), 2) < 0) __PYX_ERR(0, 284, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_4), 2) < 0) __PYX_ERR(0, 280, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       goto __pyx_L6_unpacking_done;
@@ -8983,7 +9037,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_2replace_args(CYTHON_UNU
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 284, __pyx_L1_error)
+      __PYX_ERR(0, 280, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_arg, __pyx_t_5);
@@ -8991,14 +9045,14 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_2replace_args(CYTHON_UNU
     __Pyx_XDECREF_SET(__pyx_v_val, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "pygama/_pygama.pyx":285
+    /* "pygama/_pygama.pyx":281
  * 
  *     for (arg, val) in iteritems(self.args):
  *       if val in param_dict.keys():             # <<<<<<<<<<<<<<
  *         self.args[arg] = param_dict[val]
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_param_dict, __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 285, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_param_dict, __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 281, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -9011,34 +9065,34 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_2replace_args(CYTHON_UNU
       }
     }
     if (__pyx_t_5) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 285, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 281, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     } else {
-      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 285, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 281, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_9 = (__Pyx_PySequence_ContainsTF(__pyx_v_val, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 285, __pyx_L1_error)
+    __pyx_t_9 = (__Pyx_PySequence_ContainsTF(__pyx_v_val, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 281, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_10 = (__pyx_t_9 != 0);
     if (__pyx_t_10) {
 
-      /* "pygama/_pygama.pyx":286
+      /* "pygama/_pygama.pyx":282
  *     for (arg, val) in iteritems(self.args):
  *       if val in param_dict.keys():
  *         self.args[arg] = param_dict[val]             # <<<<<<<<<<<<<<
  * 
  *   def set_waveform(self, waveform_dict):
  */
-      __pyx_t_1 = PyObject_GetItem(__pyx_v_param_dict, __pyx_v_val); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
+      __pyx_t_1 = PyObject_GetItem(__pyx_v_param_dict, __pyx_v_val); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 282, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 286, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 282, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      if (unlikely(PyObject_SetItem(__pyx_t_2, __pyx_v_arg, __pyx_t_1) < 0)) __PYX_ERR(0, 286, __pyx_L1_error)
+      if (unlikely(PyObject_SetItem(__pyx_t_2, __pyx_v_arg, __pyx_t_1) < 0)) __PYX_ERR(0, 282, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "pygama/_pygama.pyx":285
+      /* "pygama/_pygama.pyx":281
  * 
  *     for (arg, val) in iteritems(self.args):
  *       if val in param_dict.keys():             # <<<<<<<<<<<<<<
@@ -9047,7 +9101,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_2replace_args(CYTHON_UNU
  */
     }
 
-    /* "pygama/_pygama.pyx":284
+    /* "pygama/_pygama.pyx":280
  *     self.args = self.perm_args.copy() #copy we'll actually pass to the function
  * 
  *     for (arg, val) in iteritems(self.args):             # <<<<<<<<<<<<<<
@@ -9057,7 +9111,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_2replace_args(CYTHON_UNU
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":280
+  /* "pygama/_pygama.pyx":276
  *     self.output_name = output_name
  * 
  *   def replace_args(self, param_dict):             # <<<<<<<<<<<<<<
@@ -9084,7 +9138,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_2replace_args(CYTHON_UNU
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":288
+/* "pygama/_pygama.pyx":284
  *         self.args[arg] = param_dict[val]
  * 
  *   def set_waveform(self, waveform_dict):             # <<<<<<<<<<<<<<
@@ -9124,11 +9178,11 @@ static PyObject *__pyx_pw_6pygama_7_pygama_10Calculator_5set_waveform(PyObject *
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_waveform_dict)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("set_waveform", 1, 2, 2, 1); __PYX_ERR(0, 288, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("set_waveform", 1, 2, 2, 1); __PYX_ERR(0, 284, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_waveform") < 0)) __PYX_ERR(0, 288, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_waveform") < 0)) __PYX_ERR(0, 284, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -9141,7 +9195,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_10Calculator_5set_waveform(PyObject *
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("set_waveform", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 288, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("set_waveform", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 284, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pygama._pygama.Calculator.set_waveform", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -9161,22 +9215,22 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_4set_waveform(CYTHON_UNU
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("set_waveform", 0);
 
-  /* "pygama/_pygama.pyx":289
+  /* "pygama/_pygama.pyx":285
  * 
  *   def set_waveform(self, waveform_dict):
  *     self.input_wf = waveform_dict[self.input_waveform_name]             # <<<<<<<<<<<<<<
  * 
  *   def process(self):
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_input_waveform_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 289, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_input_waveform_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_GetItem(__pyx_v_waveform_dict, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 289, __pyx_L1_error)
+  __pyx_t_2 = PyObject_GetItem(__pyx_v_waveform_dict, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_input_wf, __pyx_t_2) < 0) __PYX_ERR(0, 289, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_input_wf, __pyx_t_2) < 0) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pygama/_pygama.pyx":288
+  /* "pygama/_pygama.pyx":284
  *         self.args[arg] = param_dict[val]
  * 
  *   def set_waveform(self, waveform_dict):             # <<<<<<<<<<<<<<
@@ -9198,7 +9252,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_4set_waveform(CYTHON_UNU
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":291
+/* "pygama/_pygama.pyx":287
  *     self.input_wf = waveform_dict[self.input_waveform_name]
  * 
  *   def process(self):             # <<<<<<<<<<<<<<
@@ -9229,7 +9283,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_6process(CYTHON_UNUSED P
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("process", 0);
 
-  /* "pygama/_pygama.pyx":292
+  /* "pygama/_pygama.pyx":288
  * 
  *   def process(self):
  *     return self.function(self.input_wf, **self.args)             # <<<<<<<<<<<<<<
@@ -9237,31 +9291,31 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_6process(CYTHON_UNUSED P
  * class Transformer():
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_function); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_function); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_input_wf); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_input_wf); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   if (unlikely(__pyx_t_4 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "argument after ** must be a mapping, not NoneType");
-    __PYX_ERR(0, 292, __pyx_L1_error)
+    __PYX_ERR(0, 288, __pyx_L1_error)
   }
   if (likely(PyDict_CheckExact(__pyx_t_4))) {
-    __pyx_t_2 = PyDict_Copy(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 292, __pyx_L1_error)
+    __pyx_t_2 = PyDict_Copy(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 288, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else {
-    __pyx_t_2 = PyObject_CallFunctionObjArgs((PyObject*)&PyDict_Type, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 292, __pyx_L1_error)
+    __pyx_t_2 = PyObject_CallFunctionObjArgs((PyObject*)&PyDict_Type, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 288, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -9270,7 +9324,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_6process(CYTHON_UNUSED P
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "pygama/_pygama.pyx":291
+  /* "pygama/_pygama.pyx":287
  *     self.input_wf = waveform_dict[self.input_waveform_name]
  * 
  *   def process(self):             # <<<<<<<<<<<<<<
@@ -9292,7 +9346,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_10Calculator_6process(CYTHON_UNUSED P
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":295
+/* "pygama/_pygama.pyx":291
  * 
  * class Transformer():
  *   def __init__(self, function, args={}, input_waveform="waveform",  output_waveform=None):             # <<<<<<<<<<<<<<
@@ -9307,7 +9361,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_12__defaults__(CYTHON_UNUSED PyObject
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("__defaults__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__Pyx_CyFunction_Defaults(__pyx_defaults4, __pyx_self)->__pyx_arg_args);
   __Pyx_GIVEREF(__Pyx_CyFunction_Defaults(__pyx_defaults4, __pyx_self)->__pyx_arg_args);
@@ -9318,7 +9372,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_12__defaults__(CYTHON_UNUSED PyObject
   __Pyx_INCREF(((PyObject *)Py_None));
   __Pyx_GIVEREF(((PyObject *)Py_None));
   PyTuple_SET_ITEM(__pyx_t_1, 2, ((PyObject *)Py_None));
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
@@ -9387,7 +9441,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_11Transformer_1__init__(PyObject *__p
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_function)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 5, 1); __PYX_ERR(0, 295, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 5, 1); __PYX_ERR(0, 291, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -9409,7 +9463,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_11Transformer_1__init__(PyObject *__p
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 295, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 291, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -9433,7 +9487,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_11Transformer_1__init__(PyObject *__p
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 295, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 291, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pygama._pygama.Transformer.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -9451,43 +9505,43 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer___init__(CYTHON_UNUSED 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "pygama/_pygama.pyx":296
+  /* "pygama/_pygama.pyx":292
  * class Transformer():
  *   def __init__(self, function, args={}, input_waveform="waveform",  output_waveform=None):
  *     self.function = function             # <<<<<<<<<<<<<<
  *     self.perm_args = args
  *     self.input_waveform_name = input_waveform
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_function, __pyx_v_function) < 0) __PYX_ERR(0, 296, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_function, __pyx_v_function) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":297
+  /* "pygama/_pygama.pyx":293
  *   def __init__(self, function, args={}, input_waveform="waveform",  output_waveform=None):
  *     self.function = function
  *     self.perm_args = args             # <<<<<<<<<<<<<<
  *     self.input_waveform_name = input_waveform
  *     self.output_name = output_waveform
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_perm_args, __pyx_v_args) < 0) __PYX_ERR(0, 297, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_perm_args, __pyx_v_args) < 0) __PYX_ERR(0, 293, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":298
+  /* "pygama/_pygama.pyx":294
  *     self.function = function
  *     self.perm_args = args
  *     self.input_waveform_name = input_waveform             # <<<<<<<<<<<<<<
  *     self.output_name = output_waveform
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_input_waveform_name, __pyx_v_input_waveform) < 0) __PYX_ERR(0, 298, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_input_waveform_name, __pyx_v_input_waveform) < 0) __PYX_ERR(0, 294, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":299
+  /* "pygama/_pygama.pyx":295
  *     self.perm_args = args
  *     self.input_waveform_name = input_waveform
  *     self.output_name = output_waveform             # <<<<<<<<<<<<<<
  * 
  *   def replace_args(self, param_dict):
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_output_name, __pyx_v_output_waveform) < 0) __PYX_ERR(0, 299, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_output_name, __pyx_v_output_waveform) < 0) __PYX_ERR(0, 295, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":295
+  /* "pygama/_pygama.pyx":291
  * 
  * class Transformer():
  *   def __init__(self, function, args={}, input_waveform="waveform",  output_waveform=None):             # <<<<<<<<<<<<<<
@@ -9507,7 +9561,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer___init__(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":301
+/* "pygama/_pygama.pyx":297
  *     self.output_name = output_waveform
  * 
  *   def replace_args(self, param_dict):             # <<<<<<<<<<<<<<
@@ -9547,11 +9601,11 @@ static PyObject *__pyx_pw_6pygama_7_pygama_11Transformer_3replace_args(PyObject 
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_param_dict)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("replace_args", 1, 2, 2, 1); __PYX_ERR(0, 301, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("replace_args", 1, 2, 2, 1); __PYX_ERR(0, 297, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "replace_args") < 0)) __PYX_ERR(0, 301, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "replace_args") < 0)) __PYX_ERR(0, 297, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -9564,7 +9618,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_11Transformer_3replace_args(PyObject 
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("replace_args", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 301, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("replace_args", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 297, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pygama._pygama.Transformer.replace_args", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -9594,16 +9648,16 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_2replace_args(CYTHON_UN
   int __pyx_t_10;
   __Pyx_RefNannySetupContext("replace_args", 0);
 
-  /* "pygama/_pygama.pyx":303
+  /* "pygama/_pygama.pyx":299
  *   def replace_args(self, param_dict):
  *     #check args list for string vals which match keys in param dict
  *     self.args = self.perm_args.copy() #copy we'll actually pass to the function             # <<<<<<<<<<<<<<
  * 
  *     for (arg, val) in iteritems(self.args):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_perm_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 303, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_perm_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_copy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 303, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_copy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -9617,26 +9671,26 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_2replace_args(CYTHON_UN
     }
   }
   if (__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 299, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 299, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_args, __pyx_t_1) < 0) __PYX_ERR(0, 303, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_args, __pyx_t_1) < 0) __PYX_ERR(0, 299, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pygama/_pygama.pyx":305
+  /* "pygama/_pygama.pyx":301
  *     self.args = self.perm_args.copy() #copy we'll actually pass to the function
  * 
  *     for (arg, val) in iteritems(self.args):             # <<<<<<<<<<<<<<
  *       if val in param_dict.keys():
  *         self.args[arg] = param_dict[val]
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_iteritems); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 305, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_iteritems); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 305, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -9649,14 +9703,14 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_2replace_args(CYTHON_UN
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 305, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_2};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 305, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -9665,20 +9719,20 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_2replace_args(CYTHON_UN
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_2};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 305, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else
     #endif
     {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 305, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 301, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
       __Pyx_GIVEREF(__pyx_t_2);
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 305, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
@@ -9688,9 +9742,9 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_2replace_args(CYTHON_UN
     __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3); __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
   } else {
-    __pyx_t_6 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 305, __pyx_L1_error)
+    __pyx_t_6 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 301, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 305, __pyx_L1_error)
+    __pyx_t_7 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 301, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -9698,17 +9752,17 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_2replace_args(CYTHON_UN
       if (likely(PyList_CheckExact(__pyx_t_3))) {
         if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 305, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 301, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 305, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_6 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 305, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 301, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 305, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -9718,7 +9772,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_2replace_args(CYTHON_UN
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 305, __pyx_L1_error)
+          else __PYX_ERR(0, 301, __pyx_L1_error)
         }
         break;
       }
@@ -9734,7 +9788,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_2replace_args(CYTHON_UN
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 305, __pyx_L1_error)
+        __PYX_ERR(0, 301, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -9747,15 +9801,15 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_2replace_args(CYTHON_UN
       __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_2);
       #else
-      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 305, __pyx_L1_error)
+      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 301, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 305, __pyx_L1_error)
+      __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 301, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       #endif
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 305, __pyx_L1_error)
+      __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 301, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_4)->tp_iternext;
@@ -9763,7 +9817,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_2replace_args(CYTHON_UN
       __Pyx_GOTREF(__pyx_t_5);
       index = 1; __pyx_t_2 = __pyx_t_8(__pyx_t_4); if (unlikely(!__pyx_t_2)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_2);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_4), 2) < 0) __PYX_ERR(0, 305, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_4), 2) < 0) __PYX_ERR(0, 301, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       goto __pyx_L6_unpacking_done;
@@ -9771,7 +9825,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_2replace_args(CYTHON_UN
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 305, __pyx_L1_error)
+      __PYX_ERR(0, 301, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_arg, __pyx_t_5);
@@ -9779,14 +9833,14 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_2replace_args(CYTHON_UN
     __Pyx_XDECREF_SET(__pyx_v_val, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "pygama/_pygama.pyx":306
+    /* "pygama/_pygama.pyx":302
  * 
  *     for (arg, val) in iteritems(self.args):
  *       if val in param_dict.keys():             # <<<<<<<<<<<<<<
  *         self.args[arg] = param_dict[val]
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_param_dict, __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 306, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_param_dict, __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 302, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -9799,34 +9853,34 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_2replace_args(CYTHON_UN
       }
     }
     if (__pyx_t_5) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 306, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     } else {
-      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 306, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_9 = (__Pyx_PySequence_ContainsTF(__pyx_v_val, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 306, __pyx_L1_error)
+    __pyx_t_9 = (__Pyx_PySequence_ContainsTF(__pyx_v_val, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 302, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_10 = (__pyx_t_9 != 0);
     if (__pyx_t_10) {
 
-      /* "pygama/_pygama.pyx":307
+      /* "pygama/_pygama.pyx":303
  *     for (arg, val) in iteritems(self.args):
  *       if val in param_dict.keys():
  *         self.args[arg] = param_dict[val]             # <<<<<<<<<<<<<<
  * 
  *   def set_waveform(self, waveform_dict):
  */
-      __pyx_t_1 = PyObject_GetItem(__pyx_v_param_dict, __pyx_v_val); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L1_error)
+      __pyx_t_1 = PyObject_GetItem(__pyx_v_param_dict, __pyx_v_val); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 307, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 303, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      if (unlikely(PyObject_SetItem(__pyx_t_2, __pyx_v_arg, __pyx_t_1) < 0)) __PYX_ERR(0, 307, __pyx_L1_error)
+      if (unlikely(PyObject_SetItem(__pyx_t_2, __pyx_v_arg, __pyx_t_1) < 0)) __PYX_ERR(0, 303, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "pygama/_pygama.pyx":306
+      /* "pygama/_pygama.pyx":302
  * 
  *     for (arg, val) in iteritems(self.args):
  *       if val in param_dict.keys():             # <<<<<<<<<<<<<<
@@ -9835,7 +9889,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_2replace_args(CYTHON_UN
  */
     }
 
-    /* "pygama/_pygama.pyx":305
+    /* "pygama/_pygama.pyx":301
  *     self.args = self.perm_args.copy() #copy we'll actually pass to the function
  * 
  *     for (arg, val) in iteritems(self.args):             # <<<<<<<<<<<<<<
@@ -9845,7 +9899,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_2replace_args(CYTHON_UN
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":301
+  /* "pygama/_pygama.pyx":297
  *     self.output_name = output_waveform
  * 
  *   def replace_args(self, param_dict):             # <<<<<<<<<<<<<<
@@ -9872,7 +9926,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_2replace_args(CYTHON_UN
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":309
+/* "pygama/_pygama.pyx":305
  *         self.args[arg] = param_dict[val]
  * 
  *   def set_waveform(self, waveform_dict):             # <<<<<<<<<<<<<<
@@ -9912,11 +9966,11 @@ static PyObject *__pyx_pw_6pygama_7_pygama_11Transformer_5set_waveform(PyObject 
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_waveform_dict)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("set_waveform", 1, 2, 2, 1); __PYX_ERR(0, 309, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("set_waveform", 1, 2, 2, 1); __PYX_ERR(0, 305, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_waveform") < 0)) __PYX_ERR(0, 309, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_waveform") < 0)) __PYX_ERR(0, 305, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -9929,7 +9983,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_11Transformer_5set_waveform(PyObject 
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("set_waveform", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 309, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("set_waveform", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 305, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pygama._pygama.Transformer.set_waveform", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -9949,22 +10003,22 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_4set_waveform(CYTHON_UN
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("set_waveform", 0);
 
-  /* "pygama/_pygama.pyx":310
+  /* "pygama/_pygama.pyx":306
  * 
  *   def set_waveform(self, waveform_dict):
  *     self.input_wf = waveform_dict[self.input_waveform_name]             # <<<<<<<<<<<<<<
  * 
  *   def process(self):
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_input_waveform_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_input_waveform_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 306, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_GetItem(__pyx_v_waveform_dict, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __pyx_t_2 = PyObject_GetItem(__pyx_v_waveform_dict, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 306, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_input_wf, __pyx_t_2) < 0) __PYX_ERR(0, 310, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_input_wf, __pyx_t_2) < 0) __PYX_ERR(0, 306, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pygama/_pygama.pyx":309
+  /* "pygama/_pygama.pyx":305
  *         self.args[arg] = param_dict[val]
  * 
  *   def set_waveform(self, waveform_dict):             # <<<<<<<<<<<<<<
@@ -9986,7 +10040,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_4set_waveform(CYTHON_UN
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":312
+/* "pygama/_pygama.pyx":308
  *     self.input_wf = waveform_dict[self.input_waveform_name]
  * 
  *   def process(self):             # <<<<<<<<<<<<<<
@@ -10017,7 +10071,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_6process(CYTHON_UNUSED 
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("process", 0);
 
-  /* "pygama/_pygama.pyx":313
+  /* "pygama/_pygama.pyx":309
  * 
  *   def process(self):
  *     return self.function(self.input_wf, **self.args)             # <<<<<<<<<<<<<<
@@ -10025,31 +10079,31 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_6process(CYTHON_UNUSED 
  * class DatabaseLookup():
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_function); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_function); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_input_wf); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_input_wf); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   if (unlikely(__pyx_t_4 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "argument after ** must be a mapping, not NoneType");
-    __PYX_ERR(0, 313, __pyx_L1_error)
+    __PYX_ERR(0, 309, __pyx_L1_error)
   }
   if (likely(PyDict_CheckExact(__pyx_t_4))) {
-    __pyx_t_2 = PyDict_Copy(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 313, __pyx_L1_error)
+    __pyx_t_2 = PyDict_Copy(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 309, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else {
-    __pyx_t_2 = PyObject_CallFunctionObjArgs((PyObject*)&PyDict_Type, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 313, __pyx_L1_error)
+    __pyx_t_2 = PyObject_CallFunctionObjArgs((PyObject*)&PyDict_Type, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 309, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -10058,7 +10112,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_6process(CYTHON_UNUSED 
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "pygama/_pygama.pyx":312
+  /* "pygama/_pygama.pyx":308
  *     self.input_wf = waveform_dict[self.input_waveform_name]
  * 
  *   def process(self):             # <<<<<<<<<<<<<<
@@ -10080,7 +10134,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_11Transformer_6process(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":316
+/* "pygama/_pygama.pyx":312
  * 
  * class DatabaseLookup():
  *   def __init__(self, function, args={}, output_name=None):             # <<<<<<<<<<<<<<
@@ -10095,7 +10149,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14__defaults__(CYTHON_UNUSED PyObject
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("__defaults__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 316, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__Pyx_CyFunction_Defaults(__pyx_defaults5, __pyx_self)->__pyx_arg_args);
   __Pyx_GIVEREF(__Pyx_CyFunction_Defaults(__pyx_defaults5, __pyx_self)->__pyx_arg_args);
@@ -10103,7 +10157,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14__defaults__(CYTHON_UNUSED PyObject
   __Pyx_INCREF(((PyObject *)Py_None));
   __Pyx_GIVEREF(((PyObject *)Py_None));
   PyTuple_SET_ITEM(__pyx_t_1, 1, ((PyObject *)Py_None));
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 316, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
@@ -10168,7 +10222,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_14DatabaseLookup_1__init__(PyObject *
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_function)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 4, 1); __PYX_ERR(0, 316, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 4, 1); __PYX_ERR(0, 312, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -10184,7 +10238,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_14DatabaseLookup_1__init__(PyObject *
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 316, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 312, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -10205,7 +10259,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_14DatabaseLookup_1__init__(PyObject *
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 316, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 312, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pygama._pygama.DatabaseLookup.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -10223,34 +10277,34 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup___init__(CYTHON_UNUS
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "pygama/_pygama.pyx":317
+  /* "pygama/_pygama.pyx":313
  * class DatabaseLookup():
  *   def __init__(self, function, args={}, output_name=None):
  *     self.function = function             # <<<<<<<<<<<<<<
  *     self.perm_args = args
  *     self.output_name = output_name
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_function, __pyx_v_function) < 0) __PYX_ERR(0, 317, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_function, __pyx_v_function) < 0) __PYX_ERR(0, 313, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":318
+  /* "pygama/_pygama.pyx":314
  *   def __init__(self, function, args={}, output_name=None):
  *     self.function = function
  *     self.perm_args = args             # <<<<<<<<<<<<<<
  *     self.output_name = output_name
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_perm_args, __pyx_v_args) < 0) __PYX_ERR(0, 318, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_perm_args, __pyx_v_args) < 0) __PYX_ERR(0, 314, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":319
+  /* "pygama/_pygama.pyx":315
  *     self.function = function
  *     self.perm_args = args
  *     self.output_name = output_name             # <<<<<<<<<<<<<<
  * 
  *   def replace_args(self, param_dict):
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_output_name, __pyx_v_output_name) < 0) __PYX_ERR(0, 319, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_output_name, __pyx_v_output_name) < 0) __PYX_ERR(0, 315, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":316
+  /* "pygama/_pygama.pyx":312
  * 
  * class DatabaseLookup():
  *   def __init__(self, function, args={}, output_name=None):             # <<<<<<<<<<<<<<
@@ -10270,7 +10324,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup___init__(CYTHON_UNUS
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":321
+/* "pygama/_pygama.pyx":317
  *     self.output_name = output_name
  * 
  *   def replace_args(self, param_dict):             # <<<<<<<<<<<<<<
@@ -10310,11 +10364,11 @@ static PyObject *__pyx_pw_6pygama_7_pygama_14DatabaseLookup_3replace_args(PyObje
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_param_dict)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("replace_args", 1, 2, 2, 1); __PYX_ERR(0, 321, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("replace_args", 1, 2, 2, 1); __PYX_ERR(0, 317, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "replace_args") < 0)) __PYX_ERR(0, 321, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "replace_args") < 0)) __PYX_ERR(0, 317, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -10327,7 +10381,7 @@ static PyObject *__pyx_pw_6pygama_7_pygama_14DatabaseLookup_3replace_args(PyObje
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("replace_args", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 321, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("replace_args", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 317, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pygama._pygama.DatabaseLookup.replace_args", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -10357,16 +10411,16 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON
   int __pyx_t_10;
   __Pyx_RefNannySetupContext("replace_args", 0);
 
-  /* "pygama/_pygama.pyx":323
+  /* "pygama/_pygama.pyx":319
  *   def replace_args(self, param_dict):
  *     #check args list for string vals which match keys in param dict
  *     self.args = self.perm_args.copy() #copy we'll actually pass to the function             # <<<<<<<<<<<<<<
  * 
  *     for (arg, val) in iteritems(self.args):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_perm_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_perm_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_copy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_copy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -10380,26 +10434,26 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON
     }
   }
   if (__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 319, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 319, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_args, __pyx_t_1) < 0) __PYX_ERR(0, 323, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_args, __pyx_t_1) < 0) __PYX_ERR(0, 319, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pygama/_pygama.pyx":325
+  /* "pygama/_pygama.pyx":321
  *     self.args = self.perm_args.copy() #copy we'll actually pass to the function
  * 
  *     for (arg, val) in iteritems(self.args):             # <<<<<<<<<<<<<<
  *       if val in param_dict.keys():
  *         self.args[arg] = param_dict[val]
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_iteritems); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 325, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_iteritems); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 325, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -10412,14 +10466,14 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_2};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -10428,20 +10482,20 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_2};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else
     #endif
     {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 325, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 321, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
       __Pyx_GIVEREF(__pyx_t_2);
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
@@ -10451,9 +10505,9 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON
     __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3); __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
   } else {
-    __pyx_t_6 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 325, __pyx_L1_error)
+    __pyx_t_6 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 321, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 325, __pyx_L1_error)
+    __pyx_t_7 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 321, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -10461,17 +10515,17 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON
       if (likely(PyList_CheckExact(__pyx_t_3))) {
         if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 325, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 321, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_6 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 325, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 321, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -10481,7 +10535,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 325, __pyx_L1_error)
+          else __PYX_ERR(0, 321, __pyx_L1_error)
         }
         break;
       }
@@ -10497,7 +10551,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 325, __pyx_L1_error)
+        __PYX_ERR(0, 321, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -10510,15 +10564,15 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON
       __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_2);
       #else
-      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 325, __pyx_L1_error)
+      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 321, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 325, __pyx_L1_error)
+      __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 321, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       #endif
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 325, __pyx_L1_error)
+      __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 321, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_4)->tp_iternext;
@@ -10526,7 +10580,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON
       __Pyx_GOTREF(__pyx_t_5);
       index = 1; __pyx_t_2 = __pyx_t_8(__pyx_t_4); if (unlikely(!__pyx_t_2)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_2);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_4), 2) < 0) __PYX_ERR(0, 325, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_4), 2) < 0) __PYX_ERR(0, 321, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       goto __pyx_L6_unpacking_done;
@@ -10534,7 +10588,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 325, __pyx_L1_error)
+      __PYX_ERR(0, 321, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_arg, __pyx_t_5);
@@ -10542,14 +10596,14 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON
     __Pyx_XDECREF_SET(__pyx_v_val, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "pygama/_pygama.pyx":326
+    /* "pygama/_pygama.pyx":322
  * 
  *     for (arg, val) in iteritems(self.args):
  *       if val in param_dict.keys():             # <<<<<<<<<<<<<<
  *         self.args[arg] = param_dict[val]
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_param_dict, __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 326, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_param_dict, __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 322, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -10562,34 +10616,34 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON
       }
     }
     if (__pyx_t_5) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 326, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 322, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     } else {
-      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 326, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 322, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_9 = (__Pyx_PySequence_ContainsTF(__pyx_v_val, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 326, __pyx_L1_error)
+    __pyx_t_9 = (__Pyx_PySequence_ContainsTF(__pyx_v_val, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 322, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_10 = (__pyx_t_9 != 0);
     if (__pyx_t_10) {
 
-      /* "pygama/_pygama.pyx":327
+      /* "pygama/_pygama.pyx":323
  *     for (arg, val) in iteritems(self.args):
  *       if val in param_dict.keys():
  *         self.args[arg] = param_dict[val]             # <<<<<<<<<<<<<<
  * 
  *   def process(self):
  */
-      __pyx_t_1 = PyObject_GetItem(__pyx_v_param_dict, __pyx_v_val); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 327, __pyx_L1_error)
+      __pyx_t_1 = PyObject_GetItem(__pyx_v_param_dict, __pyx_v_val); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 327, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 323, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      if (unlikely(PyObject_SetItem(__pyx_t_2, __pyx_v_arg, __pyx_t_1) < 0)) __PYX_ERR(0, 327, __pyx_L1_error)
+      if (unlikely(PyObject_SetItem(__pyx_t_2, __pyx_v_arg, __pyx_t_1) < 0)) __PYX_ERR(0, 323, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "pygama/_pygama.pyx":326
+      /* "pygama/_pygama.pyx":322
  * 
  *     for (arg, val) in iteritems(self.args):
  *       if val in param_dict.keys():             # <<<<<<<<<<<<<<
@@ -10598,7 +10652,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON
  */
     }
 
-    /* "pygama/_pygama.pyx":325
+    /* "pygama/_pygama.pyx":321
  *     self.args = self.perm_args.copy() #copy we'll actually pass to the function
  * 
  *     for (arg, val) in iteritems(self.args):             # <<<<<<<<<<<<<<
@@ -10608,7 +10662,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":321
+  /* "pygama/_pygama.pyx":317
  *     self.output_name = output_name
  * 
  *   def replace_args(self, param_dict):             # <<<<<<<<<<<<<<
@@ -10635,7 +10689,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_2replace_args(CYTHON
   return __pyx_r;
 }
 
-/* "pygama/_pygama.pyx":329
+/* "pygama/_pygama.pyx":325
  *         self.args[arg] = param_dict[val]
  * 
  *   def process(self):             # <<<<<<<<<<<<<<
@@ -10665,32 +10719,32 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_4process(CYTHON_UNUS
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("process", 0);
 
-  /* "pygama/_pygama.pyx":330
+  /* "pygama/_pygama.pyx":326
  * 
  *   def process(self):
  *     return self.function(**self.args)             # <<<<<<<<<<<<<<
  * 
- * # ######################################################################################
+ * class Tier0Passer():
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_function); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 330, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_function); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 326, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 330, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_args); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 326, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (unlikely(__pyx_t_3 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "argument after ** must be a mapping, not NoneType");
-    __PYX_ERR(0, 330, __pyx_L1_error)
+    __PYX_ERR(0, 326, __pyx_L1_error)
   }
   if (likely(PyDict_CheckExact(__pyx_t_3))) {
-    __pyx_t_2 = PyDict_Copy(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 330, __pyx_L1_error)
+    __pyx_t_2 = PyDict_Copy(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 326, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_2 = PyObject_CallFunctionObjArgs((PyObject*)&PyDict_Type, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 330, __pyx_L1_error)
+    __pyx_t_2 = PyObject_CallFunctionObjArgs((PyObject*)&PyDict_Type, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 326, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 330, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 326, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -10698,7 +10752,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_4process(CYTHON_UNUS
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "pygama/_pygama.pyx":329
+  /* "pygama/_pygama.pyx":325
  *         self.args[arg] = param_dict[val]
  * 
  *   def process(self):             # <<<<<<<<<<<<<<
@@ -10712,6 +10766,327 @@ static PyObject *__pyx_pf_6pygama_7_pygama_14DatabaseLookup_4process(CYTHON_UNUS
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_AddTraceback("pygama._pygama.DatabaseLookup.process", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "pygama/_pygama.pyx":329
+ * 
+ * class Tier0Passer():
+ *   def __init__(self, t0_name, output_name=None):             # <<<<<<<<<<<<<<
+ *     self.t0_name = t0_name
+ *     if output_name is None: output_name = t0_name
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6pygama_7_pygama_11Tier0Passer_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_6pygama_7_pygama_11Tier0Passer_1__init__ = {"__init__", (PyCFunction)__pyx_pw_6pygama_7_pygama_11Tier0Passer_1__init__, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6pygama_7_pygama_11Tier0Passer_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_t0_name = 0;
+  PyObject *__pyx_v_output_name = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__init__ (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_t0_name,&__pyx_n_s_output_name,0};
+    PyObject* values[3] = {0,0,0};
+    values[2] = ((PyObject *)((PyObject *)Py_None));
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_self)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_t0_name)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, 1); __PYX_ERR(0, 329, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  2:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_output_name);
+          if (value) { values[2] = value; kw_args--; }
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 329, __pyx_L3_error)
+      }
+    } else {
+      switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_t0_name = values[1];
+    __pyx_v_output_name = values[2];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 329, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("pygama._pygama.Tier0Passer.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_6pygama_7_pygama_11Tier0Passer___init__(__pyx_self, __pyx_v_self, __pyx_v_t0_name, __pyx_v_output_name);
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6pygama_7_pygama_11Tier0Passer___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_t0_name, PyObject *__pyx_v_output_name) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  int __pyx_t_2;
+  __Pyx_RefNannySetupContext("__init__", 0);
+  __Pyx_INCREF(__pyx_v_output_name);
+
+  /* "pygama/_pygama.pyx":330
+ * class Tier0Passer():
+ *   def __init__(self, t0_name, output_name=None):
+ *     self.t0_name = t0_name             # <<<<<<<<<<<<<<
+ *     if output_name is None: output_name = t0_name
+ *     self.output_name = output_name
+ */
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_t0_name, __pyx_v_t0_name) < 0) __PYX_ERR(0, 330, __pyx_L1_error)
+
+  /* "pygama/_pygama.pyx":331
+ *   def __init__(self, t0_name, output_name=None):
+ *     self.t0_name = t0_name
+ *     if output_name is None: output_name = t0_name             # <<<<<<<<<<<<<<
+ *     self.output_name = output_name
+ * 
+ */
+  __pyx_t_1 = (__pyx_v_output_name == Py_None);
+  __pyx_t_2 = (__pyx_t_1 != 0);
+  if (__pyx_t_2) {
+    __Pyx_INCREF(__pyx_v_t0_name);
+    __Pyx_DECREF_SET(__pyx_v_output_name, __pyx_v_t0_name);
+  }
+
+  /* "pygama/_pygama.pyx":332
+ *     self.t0_name = t0_name
+ *     if output_name is None: output_name = t0_name
+ *     self.output_name = output_name             # <<<<<<<<<<<<<<
+ * 
+ *   def replace_args(self, param_dict):
+ */
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_output_name, __pyx_v_output_name) < 0) __PYX_ERR(0, 332, __pyx_L1_error)
+
+  /* "pygama/_pygama.pyx":329
+ * 
+ * class Tier0Passer():
+ *   def __init__(self, t0_name, output_name=None):             # <<<<<<<<<<<<<<
+ *     self.t0_name = t0_name
+ *     if output_name is None: output_name = t0_name
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_AddTraceback("pygama._pygama.Tier0Passer.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_output_name);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "pygama/_pygama.pyx":334
+ *     self.output_name = output_name
+ * 
+ *   def replace_args(self, param_dict):             # <<<<<<<<<<<<<<
+ *     self.t0_value = param_dict[self.t0_name]
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6pygama_7_pygama_11Tier0Passer_3replace_args(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_6pygama_7_pygama_11Tier0Passer_3replace_args = {"replace_args", (PyCFunction)__pyx_pw_6pygama_7_pygama_11Tier0Passer_3replace_args, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6pygama_7_pygama_11Tier0Passer_3replace_args(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_param_dict = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("replace_args (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_param_dict,0};
+    PyObject* values[2] = {0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_self)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_param_dict)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("replace_args", 1, 2, 2, 1); __PYX_ERR(0, 334, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "replace_args") < 0)) __PYX_ERR(0, 334, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_param_dict = values[1];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("replace_args", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 334, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("pygama._pygama.Tier0Passer.replace_args", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_6pygama_7_pygama_11Tier0Passer_2replace_args(__pyx_self, __pyx_v_self, __pyx_v_param_dict);
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6pygama_7_pygama_11Tier0Passer_2replace_args(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_param_dict) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  __Pyx_RefNannySetupContext("replace_args", 0);
+
+  /* "pygama/_pygama.pyx":335
+ * 
+ *   def replace_args(self, param_dict):
+ *     self.t0_value = param_dict[self.t0_name]             # <<<<<<<<<<<<<<
+ * 
+ *   def process(self):
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_t0_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 335, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyObject_GetItem(__pyx_v_param_dict, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 335, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_t0_value, __pyx_t_2) < 0) __PYX_ERR(0, 335, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "pygama/_pygama.pyx":334
+ *     self.output_name = output_name
+ * 
+ *   def replace_args(self, param_dict):             # <<<<<<<<<<<<<<
+ *     self.t0_value = param_dict[self.t0_name]
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("pygama._pygama.Tier0Passer.replace_args", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "pygama/_pygama.pyx":337
+ *     self.t0_value = param_dict[self.t0_name]
+ * 
+ *   def process(self):             # <<<<<<<<<<<<<<
+ *     return self.t0_value
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6pygama_7_pygama_11Tier0Passer_5process(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
+static PyMethodDef __pyx_mdef_6pygama_7_pygama_11Tier0Passer_5process = {"process", (PyCFunction)__pyx_pw_6pygama_7_pygama_11Tier0Passer_5process, METH_O, 0};
+static PyObject *__pyx_pw_6pygama_7_pygama_11Tier0Passer_5process(PyObject *__pyx_self, PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("process (wrapper)", 0);
+  __pyx_r = __pyx_pf_6pygama_7_pygama_11Tier0Passer_4process(__pyx_self, ((PyObject *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6pygama_7_pygama_11Tier0Passer_4process(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("process", 0);
+
+  /* "pygama/_pygama.pyx":338
+ * 
+ *   def process(self):
+ *     return self.t0_value             # <<<<<<<<<<<<<<
+ * 
+ * # ######################################################################################
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_t0_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 338, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "pygama/_pygama.pyx":337
+ *     self.t0_value = param_dict[self.t0_name]
+ * 
+ *   def process(self):             # <<<<<<<<<<<<<<
+ *     return self.t0_value
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("pygama._pygama.Tier0Passer.process", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -27572,6 +27947,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_Run, __pyx_k_Run, sizeof(__pyx_k_Run), 0, 0, 1, 1},
   {&__pyx_n_s_RuntimeError, __pyx_k_RuntimeError, sizeof(__pyx_k_RuntimeError), 0, 0, 1, 1},
   {&__pyx_kp_b_T, __pyx_k_T, sizeof(__pyx_k_T), 0, 0, 0, 0},
+  {&__pyx_n_s_Tier0Passer, __pyx_k_Tier0Passer, sizeof(__pyx_k_Tier0Passer), 0, 0, 1, 1},
+  {&__pyx_n_s_Tier0Passer___init, __pyx_k_Tier0Passer___init, sizeof(__pyx_k_Tier0Passer___init), 0, 0, 1, 1},
+  {&__pyx_n_s_Tier0Passer_process, __pyx_k_Tier0Passer_process, sizeof(__pyx_k_Tier0Passer_process), 0, 0, 1, 1},
+  {&__pyx_n_s_Tier0Passer_replace_args, __pyx_k_Tier0Passer_replace_args, sizeof(__pyx_k_Tier0Passer_replace_args), 0, 0, 1, 1},
   {&__pyx_n_s_TierOneProcessorList, __pyx_k_TierOneProcessorList, sizeof(__pyx_k_TierOneProcessorList), 0, 0, 1, 1},
   {&__pyx_n_s_TierOneProcessorList_AddCalculat, __pyx_k_TierOneProcessorList_AddCalculat, sizeof(__pyx_k_TierOneProcessorList_AddCalculat), 0, 0, 1, 1},
   {&__pyx_n_s_TierOneProcessorList_AddDatabase, __pyx_k_TierOneProcessorList_AddDatabase, sizeof(__pyx_k_TierOneProcessorList_AddDatabase), 0, 0, 1, 1},
@@ -27790,7 +28169,9 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_stringsource, __pyx_k_stringsource, sizeof(__pyx_k_stringsource), 0, 0, 1, 0},
   {&__pyx_n_s_struct, __pyx_k_struct, sizeof(__pyx_k_struct), 0, 0, 1, 1},
   {&__pyx_n_s_t0_list, __pyx_k_t0_list, sizeof(__pyx_k_t0_list), 0, 0, 1, 1},
+  {&__pyx_n_s_t0_name, __pyx_k_t0_name, sizeof(__pyx_k_t0_name), 0, 0, 1, 1},
   {&__pyx_n_s_t0_row, __pyx_k_t0_row, sizeof(__pyx_k_t0_row), 0, 0, 1, 1},
+  {&__pyx_n_s_t0_value, __pyx_k_t0_value, sizeof(__pyx_k_t0_value), 0, 0, 1, 1},
   {&__pyx_n_s_t1, __pyx_k_t1, sizeof(__pyx_k_t1), 0, 0, 1, 1},
   {&__pyx_n_s_t1_file_name, __pyx_k_t1_file_name, sizeof(__pyx_k_t1_file_name), 0, 0, 1, 1},
   {&__pyx_n_s_t2, __pyx_k_t2, sizeof(__pyx_k_t2), 0, 0, 1, 1},
@@ -27823,7 +28204,7 @@ static int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_exit = __Pyx_GetBuiltinName(__pyx_n_s_exit); if (!__pyx_builtin_exit) __PYX_ERR(0, 50, __pyx_L1_error)
   __pyx_builtin_filter = __Pyx_GetBuiltinName(__pyx_n_s_filter); if (!__pyx_builtin_filter) __PYX_ERR(0, 178, __pyx_L1_error)
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(0, 185, __pyx_L1_error)
-  __pyx_builtin_AttributeError = __Pyx_GetBuiltinName(__pyx_n_s_AttributeError); if (!__pyx_builtin_AttributeError) __PYX_ERR(0, 241, __pyx_L1_error)
+  __pyx_builtin_AttributeError = __Pyx_GetBuiltinName(__pyx_n_s_AttributeError); if (!__pyx_builtin_AttributeError) __PYX_ERR(0, 239, __pyx_L1_error)
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(1, 235, __pyx_L1_error)
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(1, 248, __pyx_L1_error)
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(1, 823, __pyx_L1_error)
@@ -28244,212 +28625,251 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__46);
   __pyx_codeobj__47 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__46, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_init, 213, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__47)) __PYX_ERR(0, 213, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":220
- *     self.t0_list = []
+  /* "pygama/_pygama.pyx":221
+ *     self.t0_list = ["channel", "energy", "timestamp"]
  * 
  *   def Reset(self, waveform):             # <<<<<<<<<<<<<<
  *     self.param_dict = {}
  *     # print("TierOneProcessorList.reset() not implemented")
  */
-  __pyx_tuple__48 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_waveform); if (unlikely(!__pyx_tuple__48)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_tuple__48 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_waveform); if (unlikely(!__pyx_tuple__48)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__48);
   __Pyx_GIVEREF(__pyx_tuple__48);
-  __pyx_codeobj__49 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__48, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_Reset, 220, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__49)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_codeobj__49 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__48, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_Reset, 221, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__49)) __PYX_ERR(0, 221, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":226
+  /* "pygama/_pygama.pyx":227
  *     self.waveform_dict = {"waveform":waveform}
  * 
  *   def Process(self, t0_row):             # <<<<<<<<<<<<<<
- *     for name in self.t0_list:
- *       self.param_dict[name] = t0_row[name]
+ *     for processor in self.list:
+ *       #Parse out the t0 fields
  */
-  __pyx_tuple__50 = PyTuple_Pack(8, __pyx_n_s_self, __pyx_n_s_t0_row, __pyx_n_s_name, __pyx_n_s_processor, __pyx_n_s_output, __pyx_n_s_calc, __pyx_n_s_i, __pyx_n_s_out); if (unlikely(!__pyx_tuple__50)) __PYX_ERR(0, 226, __pyx_L1_error)
+  __pyx_tuple__50 = PyTuple_Pack(8, __pyx_n_s_self, __pyx_n_s_t0_row, __pyx_n_s_processor, __pyx_n_s_name, __pyx_n_s_output, __pyx_n_s_calc, __pyx_n_s_i, __pyx_n_s_out); if (unlikely(!__pyx_tuple__50)) __PYX_ERR(0, 227, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__50);
   __Pyx_GIVEREF(__pyx_tuple__50);
-  __pyx_codeobj__51 = (PyObject*)__Pyx_PyCode_New(2, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__50, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_Process, 226, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__51)) __PYX_ERR(0, 226, __pyx_L1_error)
+  __pyx_codeobj__51 = (PyObject*)__Pyx_PyCode_New(2, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__50, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_Process, 227, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__51)) __PYX_ERR(0, 227, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":257
+  /* "pygama/_pygama.pyx":255
  *     return self.param_dict
  * 
  *   def AddTransform(self, function, args={}, input_waveform="waveform", output_waveform=None):             # <<<<<<<<<<<<<<
  *     self.list.append( Transformer(function, args, input_waveform, output_waveform) )
  * 
  */
-  __pyx_tuple__52 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_function, __pyx_n_s_args, __pyx_n_s_input_waveform, __pyx_n_s_output_waveform); if (unlikely(!__pyx_tuple__52)) __PYX_ERR(0, 257, __pyx_L1_error)
+  __pyx_tuple__52 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_function, __pyx_n_s_args, __pyx_n_s_input_waveform, __pyx_n_s_output_waveform); if (unlikely(!__pyx_tuple__52)) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__52);
   __Pyx_GIVEREF(__pyx_tuple__52);
-  __pyx_codeobj__53 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__52, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_AddTransform, 257, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__53)) __PYX_ERR(0, 257, __pyx_L1_error)
+  __pyx_codeobj__53 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__52, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_AddTransform, 255, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__53)) __PYX_ERR(0, 255, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":260
+  /* "pygama/_pygama.pyx":258
  *     self.list.append( Transformer(function, args, input_waveform, output_waveform) )
  * 
  *   def AddCalculator(self, function, args={}, input_waveform="waveform",  output_name=None):             # <<<<<<<<<<<<<<
  *     self.list.append( Calculator(function, args, input_waveform, output_name) )
  * 
  */
-  __pyx_tuple__54 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_function, __pyx_n_s_args, __pyx_n_s_input_waveform, __pyx_n_s_output_name); if (unlikely(!__pyx_tuple__54)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __pyx_tuple__54 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_function, __pyx_n_s_args, __pyx_n_s_input_waveform, __pyx_n_s_output_name); if (unlikely(!__pyx_tuple__54)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__54);
   __Pyx_GIVEREF(__pyx_tuple__54);
-  __pyx_codeobj__55 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__54, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_AddCalculator, 260, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__55)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __pyx_codeobj__55 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__54, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_AddCalculator, 258, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__55)) __PYX_ERR(0, 258, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":263
+  /* "pygama/_pygama.pyx":261
  *     self.list.append( Calculator(function, args, input_waveform, output_name) )
  * 
  *   def AddDatabaseLookup(self, function, args={}, output_name=None):             # <<<<<<<<<<<<<<
  *     self.list.append( DatabaseLookup(function, args, output_name) )
  * 
  */
-  __pyx_tuple__56 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_function, __pyx_n_s_args, __pyx_n_s_output_name); if (unlikely(!__pyx_tuple__56)) __PYX_ERR(0, 263, __pyx_L1_error)
+  __pyx_tuple__56 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_function, __pyx_n_s_args, __pyx_n_s_output_name); if (unlikely(!__pyx_tuple__56)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__56);
   __Pyx_GIVEREF(__pyx_tuple__56);
-  __pyx_codeobj__57 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__56, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_AddDatabaseLookup, 263, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__57)) __PYX_ERR(0, 263, __pyx_L1_error)
+  __pyx_codeobj__57 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__56, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_AddDatabaseLookup, 261, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__57)) __PYX_ERR(0, 261, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":266
+  /* "pygama/_pygama.pyx":264
  *     self.list.append( DatabaseLookup(function, args, output_name) )
  * 
  *   def AddFromTier0(self, name, output_name=None):             # <<<<<<<<<<<<<<
- *     if output_name is None: output_name = name
- *     self.t0_list.append(name)
+ *     self.list.append( Tier0Passer(name, output_name) )
+ * 
  */
-  __pyx_tuple__58 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_name, __pyx_n_s_output_name); if (unlikely(!__pyx_tuple__58)) __PYX_ERR(0, 266, __pyx_L1_error)
+  __pyx_tuple__58 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_name, __pyx_n_s_output_name); if (unlikely(!__pyx_tuple__58)) __PYX_ERR(0, 264, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__58);
   __Pyx_GIVEREF(__pyx_tuple__58);
-  __pyx_codeobj__59 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__58, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_AddFromTier0, 266, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__59)) __PYX_ERR(0, 266, __pyx_L1_error)
-  __pyx_tuple__60 = PyTuple_Pack(1, ((PyObject *)Py_None)); if (unlikely(!__pyx_tuple__60)) __PYX_ERR(0, 266, __pyx_L1_error)
+  __pyx_codeobj__59 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__58, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_AddFromTier0, 264, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__59)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_tuple__60 = PyTuple_Pack(1, ((PyObject *)Py_None)); if (unlikely(!__pyx_tuple__60)) __PYX_ERR(0, 264, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__60);
   __Pyx_GIVEREF(__pyx_tuple__60);
 
-  /* "pygama/_pygama.pyx":274
+  /* "pygama/_pygama.pyx":270
  * 
  * class Calculator():
  *   def __init__(self, function, args={}, input_waveform="waveform",  output_name=None):             # <<<<<<<<<<<<<<
  *     self.function = function
  *     self.perm_args = args
  */
-  __pyx_tuple__61 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_function, __pyx_n_s_args, __pyx_n_s_input_waveform, __pyx_n_s_output_name); if (unlikely(!__pyx_tuple__61)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_tuple__61 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_function, __pyx_n_s_args, __pyx_n_s_input_waveform, __pyx_n_s_output_name); if (unlikely(!__pyx_tuple__61)) __PYX_ERR(0, 270, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__61);
   __Pyx_GIVEREF(__pyx_tuple__61);
-  __pyx_codeobj__62 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__61, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_init, 274, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__62)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_codeobj__62 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__61, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_init, 270, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__62)) __PYX_ERR(0, 270, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":280
+  /* "pygama/_pygama.pyx":276
  *     self.output_name = output_name
  * 
  *   def replace_args(self, param_dict):             # <<<<<<<<<<<<<<
  *     #check args list for string vals which match keys in param dict
  *     self.args = self.perm_args.copy() #copy we'll actually pass to the function
  */
-  __pyx_tuple__63 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_param_dict, __pyx_n_s_arg, __pyx_n_s_val); if (unlikely(!__pyx_tuple__63)) __PYX_ERR(0, 280, __pyx_L1_error)
+  __pyx_tuple__63 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_param_dict, __pyx_n_s_arg, __pyx_n_s_val); if (unlikely(!__pyx_tuple__63)) __PYX_ERR(0, 276, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__63);
   __Pyx_GIVEREF(__pyx_tuple__63);
-  __pyx_codeobj__64 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__63, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_replace_args, 280, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__64)) __PYX_ERR(0, 280, __pyx_L1_error)
+  __pyx_codeobj__64 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__63, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_replace_args, 276, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__64)) __PYX_ERR(0, 276, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":288
+  /* "pygama/_pygama.pyx":284
  *         self.args[arg] = param_dict[val]
  * 
  *   def set_waveform(self, waveform_dict):             # <<<<<<<<<<<<<<
  *     self.input_wf = waveform_dict[self.input_waveform_name]
  * 
  */
-  __pyx_tuple__65 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_waveform_dict); if (unlikely(!__pyx_tuple__65)) __PYX_ERR(0, 288, __pyx_L1_error)
+  __pyx_tuple__65 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_waveform_dict); if (unlikely(!__pyx_tuple__65)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__65);
   __Pyx_GIVEREF(__pyx_tuple__65);
-  __pyx_codeobj__66 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__65, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_set_waveform, 288, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__66)) __PYX_ERR(0, 288, __pyx_L1_error)
+  __pyx_codeobj__66 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__65, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_set_waveform, 284, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__66)) __PYX_ERR(0, 284, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":291
+  /* "pygama/_pygama.pyx":287
  *     self.input_wf = waveform_dict[self.input_waveform_name]
  * 
  *   def process(self):             # <<<<<<<<<<<<<<
  *     return self.function(self.input_wf, **self.args)
  * 
  */
-  __pyx_tuple__67 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__67)) __PYX_ERR(0, 291, __pyx_L1_error)
+  __pyx_tuple__67 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__67)) __PYX_ERR(0, 287, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__67);
   __Pyx_GIVEREF(__pyx_tuple__67);
-  __pyx_codeobj__68 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__67, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_process, 291, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__68)) __PYX_ERR(0, 291, __pyx_L1_error)
+  __pyx_codeobj__68 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__67, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_process, 287, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__68)) __PYX_ERR(0, 287, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":295
+  /* "pygama/_pygama.pyx":291
  * 
  * class Transformer():
  *   def __init__(self, function, args={}, input_waveform="waveform",  output_waveform=None):             # <<<<<<<<<<<<<<
  *     self.function = function
  *     self.perm_args = args
  */
-  __pyx_tuple__69 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_function, __pyx_n_s_args, __pyx_n_s_input_waveform, __pyx_n_s_output_waveform); if (unlikely(!__pyx_tuple__69)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_tuple__69 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_function, __pyx_n_s_args, __pyx_n_s_input_waveform, __pyx_n_s_output_waveform); if (unlikely(!__pyx_tuple__69)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__69);
   __Pyx_GIVEREF(__pyx_tuple__69);
-  __pyx_codeobj__70 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__69, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_init, 295, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__70)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_codeobj__70 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__69, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_init, 291, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__70)) __PYX_ERR(0, 291, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":301
+  /* "pygama/_pygama.pyx":297
  *     self.output_name = output_waveform
  * 
  *   def replace_args(self, param_dict):             # <<<<<<<<<<<<<<
  *     #check args list for string vals which match keys in param dict
  *     self.args = self.perm_args.copy() #copy we'll actually pass to the function
  */
-  __pyx_tuple__71 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_param_dict, __pyx_n_s_arg, __pyx_n_s_val); if (unlikely(!__pyx_tuple__71)) __PYX_ERR(0, 301, __pyx_L1_error)
+  __pyx_tuple__71 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_param_dict, __pyx_n_s_arg, __pyx_n_s_val); if (unlikely(!__pyx_tuple__71)) __PYX_ERR(0, 297, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__71);
   __Pyx_GIVEREF(__pyx_tuple__71);
-  __pyx_codeobj__72 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__71, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_replace_args, 301, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__72)) __PYX_ERR(0, 301, __pyx_L1_error)
+  __pyx_codeobj__72 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__71, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_replace_args, 297, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__72)) __PYX_ERR(0, 297, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":309
+  /* "pygama/_pygama.pyx":305
  *         self.args[arg] = param_dict[val]
  * 
  *   def set_waveform(self, waveform_dict):             # <<<<<<<<<<<<<<
  *     self.input_wf = waveform_dict[self.input_waveform_name]
  * 
  */
-  __pyx_tuple__73 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_waveform_dict); if (unlikely(!__pyx_tuple__73)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __pyx_tuple__73 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_waveform_dict); if (unlikely(!__pyx_tuple__73)) __PYX_ERR(0, 305, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__73);
   __Pyx_GIVEREF(__pyx_tuple__73);
-  __pyx_codeobj__74 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__73, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_set_waveform, 309, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__74)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __pyx_codeobj__74 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__73, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_set_waveform, 305, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__74)) __PYX_ERR(0, 305, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":312
+  /* "pygama/_pygama.pyx":308
  *     self.input_wf = waveform_dict[self.input_waveform_name]
  * 
  *   def process(self):             # <<<<<<<<<<<<<<
  *     return self.function(self.input_wf, **self.args)
  * 
  */
-  __pyx_tuple__75 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__75)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __pyx_tuple__75 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__75)) __PYX_ERR(0, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__75);
   __Pyx_GIVEREF(__pyx_tuple__75);
-  __pyx_codeobj__76 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__75, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_process, 312, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__76)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __pyx_codeobj__76 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__75, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_process, 308, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__76)) __PYX_ERR(0, 308, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":316
+  /* "pygama/_pygama.pyx":312
  * 
  * class DatabaseLookup():
  *   def __init__(self, function, args={}, output_name=None):             # <<<<<<<<<<<<<<
  *     self.function = function
  *     self.perm_args = args
  */
-  __pyx_tuple__77 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_function, __pyx_n_s_args, __pyx_n_s_output_name); if (unlikely(!__pyx_tuple__77)) __PYX_ERR(0, 316, __pyx_L1_error)
+  __pyx_tuple__77 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_function, __pyx_n_s_args, __pyx_n_s_output_name); if (unlikely(!__pyx_tuple__77)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__77);
   __Pyx_GIVEREF(__pyx_tuple__77);
-  __pyx_codeobj__78 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__77, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_init, 316, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__78)) __PYX_ERR(0, 316, __pyx_L1_error)
+  __pyx_codeobj__78 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__77, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_init, 312, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__78)) __PYX_ERR(0, 312, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":321
+  /* "pygama/_pygama.pyx":317
  *     self.output_name = output_name
  * 
  *   def replace_args(self, param_dict):             # <<<<<<<<<<<<<<
  *     #check args list for string vals which match keys in param dict
  *     self.args = self.perm_args.copy() #copy we'll actually pass to the function
  */
-  __pyx_tuple__79 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_param_dict, __pyx_n_s_arg, __pyx_n_s_val); if (unlikely(!__pyx_tuple__79)) __PYX_ERR(0, 321, __pyx_L1_error)
+  __pyx_tuple__79 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_param_dict, __pyx_n_s_arg, __pyx_n_s_val); if (unlikely(!__pyx_tuple__79)) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__79);
   __Pyx_GIVEREF(__pyx_tuple__79);
-  __pyx_codeobj__80 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__79, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_replace_args, 321, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__80)) __PYX_ERR(0, 321, __pyx_L1_error)
+  __pyx_codeobj__80 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__79, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_replace_args, 317, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__80)) __PYX_ERR(0, 317, __pyx_L1_error)
 
-  /* "pygama/_pygama.pyx":329
+  /* "pygama/_pygama.pyx":325
  *         self.args[arg] = param_dict[val]
  * 
  *   def process(self):             # <<<<<<<<<<<<<<
  *     return self.function(**self.args)
  * 
  */
-  __pyx_tuple__81 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__81)) __PYX_ERR(0, 329, __pyx_L1_error)
+  __pyx_tuple__81 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__81)) __PYX_ERR(0, 325, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__81);
   __Pyx_GIVEREF(__pyx_tuple__81);
-  __pyx_codeobj__82 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__81, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_process, 329, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__82)) __PYX_ERR(0, 329, __pyx_L1_error)
+  __pyx_codeobj__82 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__81, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_process, 325, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__82)) __PYX_ERR(0, 325, __pyx_L1_error)
+
+  /* "pygama/_pygama.pyx":329
+ * 
+ * class Tier0Passer():
+ *   def __init__(self, t0_name, output_name=None):             # <<<<<<<<<<<<<<
+ *     self.t0_name = t0_name
+ *     if output_name is None: output_name = t0_name
+ */
+  __pyx_tuple__83 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_t0_name, __pyx_n_s_output_name); if (unlikely(!__pyx_tuple__83)) __PYX_ERR(0, 329, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__83);
+  __Pyx_GIVEREF(__pyx_tuple__83);
+  __pyx_codeobj__84 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__83, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_init, 329, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__84)) __PYX_ERR(0, 329, __pyx_L1_error)
+  __pyx_tuple__85 = PyTuple_Pack(1, ((PyObject *)Py_None)); if (unlikely(!__pyx_tuple__85)) __PYX_ERR(0, 329, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__85);
+  __Pyx_GIVEREF(__pyx_tuple__85);
+
+  /* "pygama/_pygama.pyx":334
+ *     self.output_name = output_name
+ * 
+ *   def replace_args(self, param_dict):             # <<<<<<<<<<<<<<
+ *     self.t0_value = param_dict[self.t0_name]
+ * 
+ */
+  __pyx_tuple__86 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_param_dict); if (unlikely(!__pyx_tuple__86)) __PYX_ERR(0, 334, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__86);
+  __Pyx_GIVEREF(__pyx_tuple__86);
+  __pyx_codeobj__87 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__86, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_replace_args, 334, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__87)) __PYX_ERR(0, 334, __pyx_L1_error)
+
+  /* "pygama/_pygama.pyx":337
+ *     self.t0_value = param_dict[self.t0_name]
+ * 
+ *   def process(self):             # <<<<<<<<<<<<<<
+ *     return self.t0_value
+ * 
+ */
+  __pyx_tuple__88 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__88)) __PYX_ERR(0, 337, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__88);
+  __Pyx_GIVEREF(__pyx_tuple__88);
+  __pyx_codeobj__89 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__88, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pygama__pygama_pyx, __pyx_n_s_process, 337, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__89)) __PYX_ERR(0, 337, __pyx_L1_error)
 
   /* "View.MemoryView":284
  *         return self.name
@@ -28458,9 +28878,9 @@ static int __Pyx_InitCachedConstants(void) {
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
  */
-  __pyx_tuple__83 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct_or_indirect); if (unlikely(!__pyx_tuple__83)) __PYX_ERR(2, 284, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__83);
-  __Pyx_GIVEREF(__pyx_tuple__83);
+  __pyx_tuple__90 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct_or_indirect); if (unlikely(!__pyx_tuple__90)) __PYX_ERR(2, 284, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__90);
+  __Pyx_GIVEREF(__pyx_tuple__90);
 
   /* "View.MemoryView":285
  * 
@@ -28469,9 +28889,9 @@ static int __Pyx_InitCachedConstants(void) {
  * cdef indirect = Enum("<strided and indirect>")
  * 
  */
-  __pyx_tuple__84 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct); if (unlikely(!__pyx_tuple__84)) __PYX_ERR(2, 285, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__84);
-  __Pyx_GIVEREF(__pyx_tuple__84);
+  __pyx_tuple__91 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct); if (unlikely(!__pyx_tuple__91)) __PYX_ERR(2, 285, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__91);
+  __Pyx_GIVEREF(__pyx_tuple__91);
 
   /* "View.MemoryView":286
  * cdef generic = Enum("<strided and direct or indirect>")
@@ -28480,9 +28900,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__85 = PyTuple_Pack(1, __pyx_kp_s_strided_and_indirect); if (unlikely(!__pyx_tuple__85)) __PYX_ERR(2, 286, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__85);
-  __Pyx_GIVEREF(__pyx_tuple__85);
+  __pyx_tuple__92 = PyTuple_Pack(1, __pyx_kp_s_strided_and_indirect); if (unlikely(!__pyx_tuple__92)) __PYX_ERR(2, 286, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__92);
+  __Pyx_GIVEREF(__pyx_tuple__92);
 
   /* "View.MemoryView":289
  * 
@@ -28491,9 +28911,9 @@ static int __Pyx_InitCachedConstants(void) {
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
  * 
  */
-  __pyx_tuple__86 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_direct); if (unlikely(!__pyx_tuple__86)) __PYX_ERR(2, 289, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__86);
-  __Pyx_GIVEREF(__pyx_tuple__86);
+  __pyx_tuple__93 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_direct); if (unlikely(!__pyx_tuple__93)) __PYX_ERR(2, 289, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__93);
+  __Pyx_GIVEREF(__pyx_tuple__93);
 
   /* "View.MemoryView":290
  * 
@@ -28502,19 +28922,19 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__87 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_indirect); if (unlikely(!__pyx_tuple__87)) __PYX_ERR(2, 290, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__87);
-  __Pyx_GIVEREF(__pyx_tuple__87);
+  __pyx_tuple__94 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_indirect); if (unlikely(!__pyx_tuple__94)) __PYX_ERR(2, 290, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__94);
+  __Pyx_GIVEREF(__pyx_tuple__94);
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_Enum(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     if __pyx_checksum != 0xb068931:
  *         from pickle import PickleError as __pyx_PickleError
  */
-  __pyx_tuple__88 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__88)) __PYX_ERR(2, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__88);
-  __Pyx_GIVEREF(__pyx_tuple__88);
-  __pyx_codeobj__89 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__88, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Enum, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__89)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_tuple__95 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__95)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__95);
+  __Pyx_GIVEREF(__pyx_tuple__95);
+  __pyx_codeobj__96 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__95, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Enum, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__96)) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -28943,98 +29363,98 @@ static int __pyx_pymod_exec__pygama(PyObject *__pyx_pyinit_module)
   if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_init, __pyx_t_3) < 0) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":220
- *     self.t0_list = []
+  /* "pygama/_pygama.pyx":221
+ *     self.t0_list = ["channel", "energy", "timestamp"]
  * 
  *   def Reset(self, waveform):             # <<<<<<<<<<<<<<
  *     self.param_dict = {}
  *     # print("TierOneProcessorList.reset() not implemented")
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_20TierOneProcessorList_3Reset, 0, __pyx_n_s_TierOneProcessorList_Reset, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__49)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_20TierOneProcessorList_3Reset, 0, __pyx_n_s_TierOneProcessorList_Reset, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__49)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_Reset, __pyx_t_3) < 0) __PYX_ERR(0, 220, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_Reset, __pyx_t_3) < 0) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":226
+  /* "pygama/_pygama.pyx":227
  *     self.waveform_dict = {"waveform":waveform}
  * 
  *   def Process(self, t0_row):             # <<<<<<<<<<<<<<
- *     for name in self.t0_list:
- *       self.param_dict[name] = t0_row[name]
+ *     for processor in self.list:
+ *       #Parse out the t0 fields
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_20TierOneProcessorList_5Process, 0, __pyx_n_s_TierOneProcessorList_Process, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__51)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 226, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_20TierOneProcessorList_5Process, 0, __pyx_n_s_TierOneProcessorList_Process, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__51)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 227, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_Process, __pyx_t_3) < 0) __PYX_ERR(0, 226, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_Process, __pyx_t_3) < 0) __PYX_ERR(0, 227, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":257
+  /* "pygama/_pygama.pyx":255
  *     return self.param_dict
  * 
  *   def AddTransform(self, function, args={}, input_waveform="waveform", output_waveform=None):             # <<<<<<<<<<<<<<
  *     self.list.append( Transformer(function, args, input_waveform, output_waveform) )
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_20TierOneProcessorList_7AddTransform, 0, __pyx_n_s_TierOneProcessorList_AddTransfor, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__53)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 257, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_20TierOneProcessorList_7AddTransform, 0, __pyx_n_s_TierOneProcessorList_AddTransfor, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__53)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_3, sizeof(__pyx_defaults), 1)) __PYX_ERR(0, 257, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 257, __pyx_L1_error)
+  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_3, sizeof(__pyx_defaults), 1)) __PYX_ERR(0, 255, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_CyFunction_Defaults(__pyx_defaults, __pyx_t_3)->__pyx_arg_args = __pyx_t_1;
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
   __Pyx_CyFunction_SetDefaultsGetter(__pyx_t_3, __pyx_pf_6pygama_7_pygama_4__defaults__);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_AddTransform, __pyx_t_3) < 0) __PYX_ERR(0, 257, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_AddTransform, __pyx_t_3) < 0) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":260
+  /* "pygama/_pygama.pyx":258
  *     self.list.append( Transformer(function, args, input_waveform, output_waveform) )
  * 
  *   def AddCalculator(self, function, args={}, input_waveform="waveform",  output_name=None):             # <<<<<<<<<<<<<<
  *     self.list.append( Calculator(function, args, input_waveform, output_name) )
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_20TierOneProcessorList_9AddCalculator, 0, __pyx_n_s_TierOneProcessorList_AddCalculat, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__55)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_20TierOneProcessorList_9AddCalculator, 0, __pyx_n_s_TierOneProcessorList_AddCalculat, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__55)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_3, sizeof(__pyx_defaults1), 1)) __PYX_ERR(0, 260, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 260, __pyx_L1_error)
+  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_3, sizeof(__pyx_defaults1), 1)) __PYX_ERR(0, 258, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_CyFunction_Defaults(__pyx_defaults1, __pyx_t_3)->__pyx_arg_args = __pyx_t_1;
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
   __Pyx_CyFunction_SetDefaultsGetter(__pyx_t_3, __pyx_pf_6pygama_7_pygama_6__defaults__);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_AddCalculator, __pyx_t_3) < 0) __PYX_ERR(0, 260, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_AddCalculator, __pyx_t_3) < 0) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":263
+  /* "pygama/_pygama.pyx":261
  *     self.list.append( Calculator(function, args, input_waveform, output_name) )
  * 
  *   def AddDatabaseLookup(self, function, args={}, output_name=None):             # <<<<<<<<<<<<<<
  *     self.list.append( DatabaseLookup(function, args, output_name) )
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_20TierOneProcessorList_11AddDatabaseLookup, 0, __pyx_n_s_TierOneProcessorList_AddDatabase, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__57)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 263, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_20TierOneProcessorList_11AddDatabaseLookup, 0, __pyx_n_s_TierOneProcessorList_AddDatabase, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__57)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_3, sizeof(__pyx_defaults2), 1)) __PYX_ERR(0, 263, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 263, __pyx_L1_error)
+  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_3, sizeof(__pyx_defaults2), 1)) __PYX_ERR(0, 261, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_CyFunction_Defaults(__pyx_defaults2, __pyx_t_3)->__pyx_arg_args = __pyx_t_1;
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
   __Pyx_CyFunction_SetDefaultsGetter(__pyx_t_3, __pyx_pf_6pygama_7_pygama_8__defaults__);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_AddDatabaseLookup, __pyx_t_3) < 0) __PYX_ERR(0, 263, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_AddDatabaseLookup, __pyx_t_3) < 0) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":266
+  /* "pygama/_pygama.pyx":264
  *     self.list.append( DatabaseLookup(function, args, output_name) )
  * 
  *   def AddFromTier0(self, name, output_name=None):             # <<<<<<<<<<<<<<
- *     if output_name is None: output_name = name
- *     self.t0_list.append(name)
+ *     self.list.append( Tier0Passer(name, output_name) )
+ * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_20TierOneProcessorList_13AddFromTier0, 0, __pyx_n_s_TierOneProcessorList_AddFromTier, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__59)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 266, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_20TierOneProcessorList_13AddFromTier0, 0, __pyx_n_s_TierOneProcessorList_AddFromTier, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__59)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 264, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__60);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_AddFromTier0, __pyx_t_3) < 0) __PYX_ERR(0, 266, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_AddFromTier0, __pyx_t_3) < 0) __PYX_ERR(0, 264, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "pygama/_pygama.pyx":208
@@ -29050,225 +29470,285 @@ static int __pyx_pymod_exec__pygama(PyObject *__pyx_pyinit_module)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pygama/_pygama.pyx":273
+  /* "pygama/_pygama.pyx":269
  * #Classes that wrap functional implementations of calculators or transformers
  * 
  * class Calculator():             # <<<<<<<<<<<<<<
  *   def __init__(self, function, args={}, input_waveform="waveform",  output_name=None):
  *     self.function = function
  */
-  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_Calculator, __pyx_n_s_Calculator, (PyObject *) NULL, __pyx_n_s_pygama__pygama, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 273, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_Calculator, __pyx_n_s_Calculator, (PyObject *) NULL, __pyx_n_s_pygama__pygama, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 269, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "pygama/_pygama.pyx":274
+  /* "pygama/_pygama.pyx":270
  * 
  * class Calculator():
  *   def __init__(self, function, args={}, input_waveform="waveform",  output_name=None):             # <<<<<<<<<<<<<<
  *     self.function = function
  *     self.perm_args = args
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_10Calculator_1__init__, 0, __pyx_n_s_Calculator___init, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__62)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_10Calculator_1__init__, 0, __pyx_n_s_Calculator___init, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__62)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 270, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_3, sizeof(__pyx_defaults3), 1)) __PYX_ERR(0, 274, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 274, __pyx_L1_error)
+  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_3, sizeof(__pyx_defaults3), 1)) __PYX_ERR(0, 270, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 270, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_CyFunction_Defaults(__pyx_defaults3, __pyx_t_3)->__pyx_arg_args = __pyx_t_1;
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
   __Pyx_CyFunction_SetDefaultsGetter(__pyx_t_3, __pyx_pf_6pygama_7_pygama_10__defaults__);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_init, __pyx_t_3) < 0) __PYX_ERR(0, 274, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_init, __pyx_t_3) < 0) __PYX_ERR(0, 270, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":280
+  /* "pygama/_pygama.pyx":276
  *     self.output_name = output_name
  * 
  *   def replace_args(self, param_dict):             # <<<<<<<<<<<<<<
  *     #check args list for string vals which match keys in param dict
  *     self.args = self.perm_args.copy() #copy we'll actually pass to the function
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_10Calculator_3replace_args, 0, __pyx_n_s_Calculator_replace_args, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__64)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 280, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_10Calculator_3replace_args, 0, __pyx_n_s_Calculator_replace_args, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__64)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 276, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_replace_args, __pyx_t_3) < 0) __PYX_ERR(0, 280, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_replace_args, __pyx_t_3) < 0) __PYX_ERR(0, 276, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":288
+  /* "pygama/_pygama.pyx":284
  *         self.args[arg] = param_dict[val]
  * 
  *   def set_waveform(self, waveform_dict):             # <<<<<<<<<<<<<<
  *     self.input_wf = waveform_dict[self.input_waveform_name]
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_10Calculator_5set_waveform, 0, __pyx_n_s_Calculator_set_waveform, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__66)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 288, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_10Calculator_5set_waveform, 0, __pyx_n_s_Calculator_set_waveform, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__66)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_set_waveform, __pyx_t_3) < 0) __PYX_ERR(0, 288, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_set_waveform, __pyx_t_3) < 0) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":291
+  /* "pygama/_pygama.pyx":287
  *     self.input_wf = waveform_dict[self.input_waveform_name]
  * 
  *   def process(self):             # <<<<<<<<<<<<<<
  *     return self.function(self.input_wf, **self.args)
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_10Calculator_7process, 0, __pyx_n_s_Calculator_process, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__68)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 291, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_10Calculator_7process, 0, __pyx_n_s_Calculator_process, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__68)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 287, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_process, __pyx_t_3) < 0) __PYX_ERR(0, 291, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_process, __pyx_t_3) < 0) __PYX_ERR(0, 287, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":273
+  /* "pygama/_pygama.pyx":269
  * #Classes that wrap functional implementations of calculators or transformers
  * 
  * class Calculator():             # <<<<<<<<<<<<<<
  *   def __init__(self, function, args={}, input_waveform="waveform",  output_name=None):
  *     self.function = function
  */
-  __pyx_t_3 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_Calculator, __pyx_empty_tuple, __pyx_t_2, NULL, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 273, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_Calculator, __pyx_empty_tuple, __pyx_t_2, NULL, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 269, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Calculator, __pyx_t_3) < 0) __PYX_ERR(0, 273, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Calculator, __pyx_t_3) < 0) __PYX_ERR(0, 269, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pygama/_pygama.pyx":294
+  /* "pygama/_pygama.pyx":290
  *     return self.function(self.input_wf, **self.args)
  * 
  * class Transformer():             # <<<<<<<<<<<<<<
  *   def __init__(self, function, args={}, input_waveform="waveform",  output_waveform=None):
  *     self.function = function
  */
-  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_Transformer, __pyx_n_s_Transformer, (PyObject *) NULL, __pyx_n_s_pygama__pygama, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_Transformer, __pyx_n_s_Transformer, (PyObject *) NULL, __pyx_n_s_pygama__pygama, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 290, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "pygama/_pygama.pyx":295
+  /* "pygama/_pygama.pyx":291
  * 
  * class Transformer():
  *   def __init__(self, function, args={}, input_waveform="waveform",  output_waveform=None):             # <<<<<<<<<<<<<<
  *     self.function = function
  *     self.perm_args = args
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_11Transformer_1__init__, 0, __pyx_n_s_Transformer___init, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__70)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_11Transformer_1__init__, 0, __pyx_n_s_Transformer___init, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__70)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_3, sizeof(__pyx_defaults4), 1)) __PYX_ERR(0, 295, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
+  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_3, sizeof(__pyx_defaults4), 1)) __PYX_ERR(0, 291, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_CyFunction_Defaults(__pyx_defaults4, __pyx_t_3)->__pyx_arg_args = __pyx_t_1;
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
   __Pyx_CyFunction_SetDefaultsGetter(__pyx_t_3, __pyx_pf_6pygama_7_pygama_12__defaults__);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_init, __pyx_t_3) < 0) __PYX_ERR(0, 295, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_init, __pyx_t_3) < 0) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":301
+  /* "pygama/_pygama.pyx":297
  *     self.output_name = output_waveform
  * 
  *   def replace_args(self, param_dict):             # <<<<<<<<<<<<<<
  *     #check args list for string vals which match keys in param dict
  *     self.args = self.perm_args.copy() #copy we'll actually pass to the function
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_11Transformer_3replace_args, 0, __pyx_n_s_Transformer_replace_args, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__72)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 301, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_11Transformer_3replace_args, 0, __pyx_n_s_Transformer_replace_args, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__72)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 297, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_replace_args, __pyx_t_3) < 0) __PYX_ERR(0, 301, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_replace_args, __pyx_t_3) < 0) __PYX_ERR(0, 297, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":309
+  /* "pygama/_pygama.pyx":305
  *         self.args[arg] = param_dict[val]
  * 
  *   def set_waveform(self, waveform_dict):             # <<<<<<<<<<<<<<
  *     self.input_wf = waveform_dict[self.input_waveform_name]
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_11Transformer_5set_waveform, 0, __pyx_n_s_Transformer_set_waveform, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__74)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_11Transformer_5set_waveform, 0, __pyx_n_s_Transformer_set_waveform, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__74)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 305, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_set_waveform, __pyx_t_3) < 0) __PYX_ERR(0, 309, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_set_waveform, __pyx_t_3) < 0) __PYX_ERR(0, 305, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":312
+  /* "pygama/_pygama.pyx":308
  *     self.input_wf = waveform_dict[self.input_waveform_name]
  * 
  *   def process(self):             # <<<<<<<<<<<<<<
  *     return self.function(self.input_wf, **self.args)
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_11Transformer_7process, 0, __pyx_n_s_Transformer_process, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__76)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_11Transformer_7process, 0, __pyx_n_s_Transformer_process, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__76)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_process, __pyx_t_3) < 0) __PYX_ERR(0, 312, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_process, __pyx_t_3) < 0) __PYX_ERR(0, 308, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":294
+  /* "pygama/_pygama.pyx":290
  *     return self.function(self.input_wf, **self.args)
  * 
  * class Transformer():             # <<<<<<<<<<<<<<
  *   def __init__(self, function, args={}, input_waveform="waveform",  output_waveform=None):
  *     self.function = function
  */
-  __pyx_t_3 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_Transformer, __pyx_empty_tuple, __pyx_t_2, NULL, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_Transformer, __pyx_empty_tuple, __pyx_t_2, NULL, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 290, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Transformer, __pyx_t_3) < 0) __PYX_ERR(0, 294, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Transformer, __pyx_t_3) < 0) __PYX_ERR(0, 290, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pygama/_pygama.pyx":315
+  /* "pygama/_pygama.pyx":311
  *     return self.function(self.input_wf, **self.args)
  * 
  * class DatabaseLookup():             # <<<<<<<<<<<<<<
  *   def __init__(self, function, args={}, output_name=None):
  *     self.function = function
  */
-  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_DatabaseLookup, __pyx_n_s_DatabaseLookup, (PyObject *) NULL, __pyx_n_s_pygama__pygama, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 315, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_DatabaseLookup, __pyx_n_s_DatabaseLookup, (PyObject *) NULL, __pyx_n_s_pygama__pygama, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 311, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "pygama/_pygama.pyx":316
+  /* "pygama/_pygama.pyx":312
  * 
  * class DatabaseLookup():
  *   def __init__(self, function, args={}, output_name=None):             # <<<<<<<<<<<<<<
  *     self.function = function
  *     self.perm_args = args
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_14DatabaseLookup_1__init__, 0, __pyx_n_s_DatabaseLookup___init, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__78)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 316, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_14DatabaseLookup_1__init__, 0, __pyx_n_s_DatabaseLookup___init, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__78)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_3, sizeof(__pyx_defaults5), 1)) __PYX_ERR(0, 316, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 316, __pyx_L1_error)
+  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_3, sizeof(__pyx_defaults5), 1)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_CyFunction_Defaults(__pyx_defaults5, __pyx_t_3)->__pyx_arg_args = __pyx_t_1;
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
   __Pyx_CyFunction_SetDefaultsGetter(__pyx_t_3, __pyx_pf_6pygama_7_pygama_14__defaults__);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_init, __pyx_t_3) < 0) __PYX_ERR(0, 316, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_init, __pyx_t_3) < 0) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":321
+  /* "pygama/_pygama.pyx":317
  *     self.output_name = output_name
  * 
  *   def replace_args(self, param_dict):             # <<<<<<<<<<<<<<
  *     #check args list for string vals which match keys in param dict
  *     self.args = self.perm_args.copy() #copy we'll actually pass to the function
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_14DatabaseLookup_3replace_args, 0, __pyx_n_s_DatabaseLookup_replace_args, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__80)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 321, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_14DatabaseLookup_3replace_args, 0, __pyx_n_s_DatabaseLookup_replace_args, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__80)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_replace_args, __pyx_t_3) < 0) __PYX_ERR(0, 321, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_replace_args, __pyx_t_3) < 0) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":329
+  /* "pygama/_pygama.pyx":325
  *         self.args[arg] = param_dict[val]
  * 
  *   def process(self):             # <<<<<<<<<<<<<<
  *     return self.function(**self.args)
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_14DatabaseLookup_5process, 0, __pyx_n_s_DatabaseLookup_process, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__82)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 329, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_14DatabaseLookup_5process, 0, __pyx_n_s_DatabaseLookup_process, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__82)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 325, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_process, __pyx_t_3) < 0) __PYX_ERR(0, 329, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_process, __pyx_t_3) < 0) __PYX_ERR(0, 325, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pygama/_pygama.pyx":315
+  /* "pygama/_pygama.pyx":311
  *     return self.function(self.input_wf, **self.args)
  * 
  * class DatabaseLookup():             # <<<<<<<<<<<<<<
  *   def __init__(self, function, args={}, output_name=None):
  *     self.function = function
  */
-  __pyx_t_3 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_DatabaseLookup, __pyx_empty_tuple, __pyx_t_2, NULL, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 315, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_DatabaseLookup, __pyx_empty_tuple, __pyx_t_2, NULL, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 311, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DatabaseLookup, __pyx_t_3) < 0) __PYX_ERR(0, 315, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DatabaseLookup, __pyx_t_3) < 0) __PYX_ERR(0, 311, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "pygama/_pygama.pyx":328
+ *     return self.function(**self.args)
+ * 
+ * class Tier0Passer():             # <<<<<<<<<<<<<<
+ *   def __init__(self, t0_name, output_name=None):
+ *     self.t0_name = t0_name
+ */
+  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_Tier0Passer, __pyx_n_s_Tier0Passer, (PyObject *) NULL, __pyx_n_s_pygama__pygama, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+
+  /* "pygama/_pygama.pyx":329
+ * 
+ * class Tier0Passer():
+ *   def __init__(self, t0_name, output_name=None):             # <<<<<<<<<<<<<<
+ *     self.t0_name = t0_name
+ *     if output_name is None: output_name = t0_name
+ */
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_11Tier0Passer_1__init__, 0, __pyx_n_s_Tier0Passer___init, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__84)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 329, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__85);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_init, __pyx_t_3) < 0) __PYX_ERR(0, 329, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "pygama/_pygama.pyx":334
+ *     self.output_name = output_name
+ * 
+ *   def replace_args(self, param_dict):             # <<<<<<<<<<<<<<
+ *     self.t0_value = param_dict[self.t0_name]
+ * 
+ */
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_11Tier0Passer_3replace_args, 0, __pyx_n_s_Tier0Passer_replace_args, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__87)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 334, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_replace_args, __pyx_t_3) < 0) __PYX_ERR(0, 334, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "pygama/_pygama.pyx":337
+ *     self.t0_value = param_dict[self.t0_name]
+ * 
+ *   def process(self):             # <<<<<<<<<<<<<<
+ *     return self.t0_value
+ * 
+ */
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6pygama_7_pygama_11Tier0Passer_5process, 0, __pyx_n_s_Tier0Passer_process, NULL, __pyx_n_s_pygama__pygama, __pyx_d, ((PyObject *)__pyx_codeobj__89)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 337, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_process, __pyx_t_3) < 0) __PYX_ERR(0, 337, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "pygama/_pygama.pyx":328
+ *     return self.function(**self.args)
+ * 
+ * class Tier0Passer():             # <<<<<<<<<<<<<<
+ *   def __init__(self, t0_name, output_name=None):
+ *     self.t0_name = t0_name
+ */
+  __pyx_t_3 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_Tier0Passer, __pyx_empty_tuple, __pyx_t_2, NULL, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Tier0Passer, __pyx_t_3) < 0) __PYX_ERR(0, 328, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
@@ -29302,7 +29782,7 @@ static int __pyx_pymod_exec__pygama(PyObject *__pyx_pyinit_module)
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__83, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 284, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__90, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XGOTREF(generic);
   __Pyx_DECREF_SET(generic, __pyx_t_2);
@@ -29316,7 +29796,7 @@ static int __pyx_pymod_exec__pygama(PyObject *__pyx_pyinit_module)
  * cdef indirect = Enum("<strided and indirect>")
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__84, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 285, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__91, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 285, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XGOTREF(strided);
   __Pyx_DECREF_SET(strided, __pyx_t_2);
@@ -29330,7 +29810,7 @@ static int __pyx_pymod_exec__pygama(PyObject *__pyx_pyinit_module)
  * 
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__85, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 286, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__92, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XGOTREF(indirect);
   __Pyx_DECREF_SET(indirect, __pyx_t_2);
@@ -29344,7 +29824,7 @@ static int __pyx_pymod_exec__pygama(PyObject *__pyx_pyinit_module)
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__86, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 289, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__93, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 289, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XGOTREF(contiguous);
   __Pyx_DECREF_SET(contiguous, __pyx_t_2);
@@ -29358,7 +29838,7 @@ static int __pyx_pymod_exec__pygama(PyObject *__pyx_pyinit_module)
  * 
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__87, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 290, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__94, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 290, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XGOTREF(indirect_contiguous);
   __Pyx_DECREF_SET(indirect_contiguous, __pyx_t_2);

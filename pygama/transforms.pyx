@@ -13,6 +13,9 @@ warnings.filterwarnings(action="ignore", module="scipy", message="^internal gels
 def remove_baseline(waveform, bl_0=0, bl_1=0):
     return (waveform - (bl_0 + bl_1*np.arange(len(waveform))))
 
+def center(waveform, center_index, n_samples_before, n_samples_after):
+  return waveform[center_index - n_samples_before : center_index+ n_samples_before]
+
 def savgol_filter(waveform, window_length=47, order=2):
   return signal.savgol_filter(waveform, window_length, order)
 

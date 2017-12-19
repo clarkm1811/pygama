@@ -1,6 +1,10 @@
 import numpy as np
 from .peak_fitting import *
 from .utils import get_bin_centers
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gs
+from scipy.signal import argrelmax
+from scipy.ndimage.filters import gaussian_filter1d
 
 #return a histogram around the most prominent peak in a spectrum of a given percentage of width
 def get_most_prominent_peak(energySeries, peakEnergy, hist_width=20):
@@ -18,7 +22,29 @@ def get_most_prominent_peak(energySeries, peakEnergy, hist_width=20):
     bin_centers = get_bin_centers(bin_edges)
     # plt.histogram(e_vals, bins="auto")
 
-    tl08_energy = bin_centers[np.argmax(hist)] #rough energy, in adc
+    num_peaks = 10
+    #find the n most prominent peaks
+    peaks_diff = gaussian_filter1d(hist, sigma=1, order=1)
+    peak_idxs = argrelmax(peaks_diff, order=5)[0]
+
+    peak_vals = peaks_diff[peak_idxs]
+    sort_idxs = np.argsort(peak_vals)
+    peak_idxs_max = peak_idxs[sort_idxs[-num_peaks:]]
+
+    #OK, assume the 2614 peak is the highest-energy of these
+    peak_energies = bin_centers[peak_idxs_max]
+
+    max_e_peak_idx = peak_idxs_max[np.argmax(peak_energies)]
+    tl08_energy = bin_centers[max_e_peak_idx]
+
+    # plt.figure()
+    # plt.plot(bin_centers, hist, ls="steps")
+    # for peak_idx in peak_idxs_max:
+    #     # print(peak_idx)
+    #     plt.axvline(bin_centers[peak_idx], color="r")
+    # inpu = input("q to quit...")
+    # if inpu == "q": exit()
+
     rough_adc_per_kev = (tl08_energy /peakEnergy ) #rough guess at adc per keV
 
     #pick a narrower range around the peak, at hist_width percent of energy
@@ -55,7 +81,7 @@ def calibrate_tl208(energy_series, peak_energies, plotFigure=None):
     ###############################################
 
     #only look for hi energy peaks
-    energy_hi = energy_series[ energy_series > 0.5*max_adc ]
+    energy_hi = energy_series[ energy_series > 0.1*max_adc ]
     hist, bin_centers = get_most_prominent_peak(energy_hi, 2614.533)
     guess_e, guess_sigma, guess_area = get_gaussian_guess(hist, bin_centers)
 
@@ -92,7 +118,22 @@ def calibrate_tl208(energy_series, peak_energies, plotFigure=None):
                                                              energy_in_adc +window_width_in_adc + bin_size/rough_kev_per_adc,
                                                          bin_size/rough_kev_per_adc))
         bin_centers = get_bin_centers(bins)
-        guess_e, guess_sigma, guess_area = get_gaussian_guess(peak_hist, bin_centers)
+        # plt.figure()
+        # plt.plot(bin_centers,peak_hist,  color="k", ls="steps")
+        # inpu = input("q to quit...")
+        # if inpu == "q": exit()
+
+        try:
+            guess_e, guess_sigma, guess_area = get_gaussian_guess(peak_hist, bin_centers)
+        except IndexError:
+            print("\n\nIt looks like there may not be a peak at {} keV".format(energy))
+            print("Here is a plot of the area I'm searching for a peak...")
+            plt.ion()
+            plt.figure()
+            plt.plot(bin_centers,peak_hist,  color="k", ls="steps")
+            input("-->press any key to continue...")
+            exit()
+
 
         bounds = ([0.9*guess_e, 0.5*guess_sigma, 0, 0,0,0, 0],
                    [1.1*guess_e, 2*guess_sigma, 0.1, 0.75, 10/rough_kev_per_adc, 10, 5*guess_area])
@@ -108,8 +149,7 @@ def calibrate_tl208(energy_series, peak_energies, plotFigure=None):
     linear_cal = np.polyfit(centers, peak_energies, deg=1)
 
     if plotFigure is not None:
-        import matplotlib.pyplot as plt
-        import matplotlib.gridspec as gs
+
 
         plt.figure(plotFigure.number)
         plt.clf()
