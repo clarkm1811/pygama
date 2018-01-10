@@ -30,9 +30,8 @@ def pz_correct(waveform, rc_1=70, rc_2=0, rc1_frac=1, digFreq=100E6):
     #reversing num and den does the inverse transform (ie, PZ corrects)
     return signal.lfilter(den, num, waveform)
 
-def trap_filter(waveform, rampTime=400, flatTime=200, decayTime=0.):
+def trap_filter(waveform, rampTime=400, flatTime=200, decayTime=0., baseline = 0.):
     """ Apply a trap filter to a waveform. """
-    baseline = 0.
     decayConstant = 0.
     norm = rampTime
     if decayTime != 0:
@@ -70,6 +69,16 @@ def trap_filter(waveform, rampTime=400, flatTime=200, decayTime=0.):
     trapOutput[:len(waveform) - (2*rampTime+flatTime)] = trapOutput[2*rampTime+flatTime:]/norm
     trapOutput.resize( (len(waveform) - (2*rampTime+flatTime)))
     return trapOutput
+
+def notch_filter(waveform, notch_freq, qual_factor = 10, f_dig = 1E8, ):
+    nyquist = 0.5*f_dig
+    w0 = notch_freq/nyquist
+
+    #"quality factor" which determines width of notch
+    Q = qual_factor
+
+    num, den = signal.iirnotch(w0, Q)
+    return signal.lfilter(num, den, waveform)
 
 def asym_trap_filter(waveform,ramp=200,flat=100,fall=40,padAfter=False):
     """ Computes an asymmetric trapezoidal filter """

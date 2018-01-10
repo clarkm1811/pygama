@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.optimize import minimize, curve_fit
 from scipy.special import erfc
+from scipy.stats import crystalball
 
 #unbinned max likelihood fit to data with given likelihood func
 def fit_unbinned(likelihood_func, data, start_guess, min_method="L-BFGS-B", bounds=None):
@@ -57,6 +58,15 @@ def radford_peak(x,*p):
     le_tail = a * htail * erfc( (x-mu)/(sigma*np.sqrt(2)) +
               sigma/(tau*np.sqrt(2))) *np.exp( (x-mu)/tau) / ( 2*tau*np.exp( -(sigma/(np.sqrt(2)*tau))**2 ) )
     return (1-htail)*gauss(x, mu, sigma, a) + bg_term + step + le_tail
+
+# power-law tail plus gaussian https://en.wikipedia.org/wiki/Crystal_Ball_function
+def xtalball(x, *p):
+    if len(p) == 5:
+        mu,sigma,A,beta,m = p
+    else:
+        print("Incorrect usage of crystal ball function!  params: mu, sigma, area, beta, m.  You input: {}".format(p))
+        exit(0)
+    return A*crystalball.pdf(x,beta,m, loc=mu, scale=sigma)
 
 #Given a hist, gives guesses for mu, sigma, and amplitude
 def get_gaussian_guess(hist, bin_centers):

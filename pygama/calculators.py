@@ -35,24 +35,34 @@ def t0_estimate(waveform, baseline=0):
     return maxidx - t0_from_max
 
 #Estimate arbitrary timepoint before max
-def calc_timepoint(waveform, percentage=0.5, baseline=0, do_interp=False):
+def calc_timepoint(waveform, percentage=0.5, baseline=0, do_interp=False, doNorm=True):
     '''
     percentage: if less than zero, will return timepoint on falling edge
     do_interp: linear linerpolation of the timepoint...
     '''
-    if percentage > 0:
-        first_over = np.argmax( waveform >= (percentage*(np.amax(waveform) - baseline) + baseline) )
-        if do_interp and first_over > 0:
-            val = np.interp(percentage, ( waveform[first_over-1],   waveform[first_over] ), (first_over-1, first_over))
-        else: val = first_over
+    wf_norm = (np.copy(waveform) - baseline)
+    if doNorm: wf_norm /= np.amax(wf_norm)
+
+    def get_tp(perc):
+        if perc > 0:
+            first_over = np.argmax( wf_norm >= perc )
+            if do_interp and first_over > 0:
+                val = np.interp(perc, ( wf_norm[first_over-1],   wf_norm[first_over] ), (first_over-1, first_over))
+            else: val = first_over
+        else:
+            perc = np.abs(perc)
+            above_thresh = wf_norm >= perc
+            last_over = len(wf_norm)-1 - np.argmax(above_thresh[::-1])
+            if do_interp and last_over < len(wf_norm)-1:
+                val = np.interp(perc, ( wf_norm[last_over],   wf_norm[last_over+1] ), (last_over, last_over+1))
+            else: val = last_over
+        return val
+
+    if not getattr(percentage, '__iter__', False):
+        return get_tp(percentage)
     else:
-        percentage = np.abs(percentage)
-        above_thresh = waveform >= (percentage*(np.amax(waveform) - baseline) + baseline)
-        last_over = len(waveform)-1 - np.argmax(above_thresh[::-1])
-        if do_interp and last_over < len(waveform)-1:
-            val = np.interp(percentage, ( waveform[last_over],   waveform[last_over+1] ), (last_over, last_over+1))
-        else: val = last_over
-    return val
+        vfunc = np.vectorize(get_tp)
+        return vfunc(percentage)
 
 
 #Calculate maximum of trapezoid -- no pride here

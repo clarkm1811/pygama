@@ -3,7 +3,7 @@ from .peak_fitting import *
 from .utils import get_bin_centers
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gs
-from scipy.signal import argrelmax
+from scipy.signal import argrelextrema
 from scipy.ndimage.filters import gaussian_filter1d
 
 #return a histogram around the most prominent peak in a spectrum of a given percentage of width
@@ -25,22 +25,30 @@ def get_most_prominent_peak(energySeries, peakEnergy, hist_width=20):
     num_peaks = 10
     #find the n most prominent peaks
     peaks_diff = gaussian_filter1d(hist, sigma=1, order=1)
-    peak_idxs = argrelmax(peaks_diff, order=5)[0]
+    peak_idxs = argrelextrema(peaks_diff, np.greater_equal, order=5)[0]
 
     peak_vals = peaks_diff[peak_idxs]
     sort_idxs = np.argsort(peak_vals)
     peak_idxs_max = peak_idxs[sort_idxs[-num_peaks:]]
 
+    # print(peak_vals)
+    # print(sort_idxs)
+    # print(peak_idxs_max)
+
     #OK, assume the 2614 peak is the highest-energy of these
     peak_energies = bin_centers[peak_idxs_max]
-
     max_e_peak_idx = peak_idxs_max[np.argmax(peak_energies)]
     tl08_energy = bin_centers[max_e_peak_idx]
 
     # plt.figure()
+    # plt.subplot(121)
     # plt.plot(bin_centers, hist, ls="steps")
+    # plt.subplot(122)
+    # plt.plot(bin_centers, peaks_diff, ls="steps")
     # for peak_idx in peak_idxs_max:
-    #     # print(peak_idx)
+    #     plt.subplot(121)
+    #     plt.axvline(bin_centers[peak_idx], color="r")
+    #     plt.subplot(122)
     #     plt.axvline(bin_centers[peak_idx], color="r")
     # inpu = input("q to quit...")
     # if inpu == "q": exit()
@@ -129,8 +137,11 @@ def calibrate_tl208(energy_series, peak_energies, plotFigure=None):
             print("\n\nIt looks like there may not be a peak at {} keV".format(energy))
             print("Here is a plot of the area I'm searching for a peak...")
             plt.ion()
-            plt.figure()
+            plt.figure(figsize=(12,6))
+            plt.subplot(121)
             plt.plot(bin_centers,peak_hist,  color="k", ls="steps")
+            plt.subplot(122)
+            plt.hist(energy_series*rough_kev_per_adc, bins=2700, histtype="step" )
             input("-->press any key to continue...")
             exit()
 

@@ -7,7 +7,7 @@ from .transforms import *
 from multiprocessing import Pool, cpu_count
 from functools import partial
 
-def process_tier_0(datadir, runList, verbose=True, output_dir=None, min_signal_thresh=0):
+def process_tier_0(datadir, runList, verbose=True, output_dir=None, min_signal_thresh=0, chanList=None):
 
     for run in runList:
         #Find a file in the directory with the ""
@@ -21,7 +21,7 @@ def process_tier_0(datadir, runList, verbose=True, output_dir=None, min_signal_t
         filename = filenameList[0]
         filepath = os.path.join(datadir, filename)
 
-        ProcessTier0(filepath, verbose=verbose, output_dir=output_dir, min_signal_thresh=min_signal_thresh)
+        ProcessTier0(filepath, verbose=verbose, output_dir=output_dir, min_signal_thresh=min_signal_thresh, chanList=chanList)
 
 def process_tier_1(datadir, runList, processor_list=None, verbose=True, output_dir=None, num_threads=1):
     if processor_list is None:

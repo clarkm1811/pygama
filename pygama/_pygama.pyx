@@ -1,31 +1,23 @@
 from david_decoder cimport *
-
 from libc.stdio cimport *
 from libc.string cimport *
 from libc.stdint cimport *
-
 from cython.view cimport array as cvarray
 cimport numpy as np
+
 import numpy as np
-# import matplotlib.pyplot as plt
 import os, re
-
 import pandas as pd
-
 from future.utils import iteritems
 
 from ._header_parser import *
 from .utils import update_progress
 
-WF_LEN = 2018
-
 #Silence harmless warning about saving numpy array to hdf5
 import warnings
 warnings.filterwarnings(action="ignore", module="pandas", message="^\nyour performance")
 
-update_freq = 2000
-
-def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=False, output_dir=None, min_signal_thresh=0):
+def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=False, output_dir=None, min_signal_thresh=0, chanList=None):
   '''
   Reads in "raw," or "tier 0," Orca data and saves to a hdf5 format using pandas
     filename: path to an orca data file
@@ -33,8 +25,12 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
     n_max: maximum number of events to process (useful for debugging)
     verbose: spits out a progressbar to let you know how the processing is going
     min_signal_thresh: multiple of noise std required for wf_max to be above to save a signal
+    output_dir: where to stash the t1 file
+    min_signal_thresh: multiplier on noise ampliude required to process a signal: helps avoid processing a ton of noise
+    chanList: list of channels to process
   '''
 
+  WF_LEN = 2018
   cdef FILE       *f_in
   cdef int file_size
 
@@ -48,8 +44,8 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
   if f_in == NULL:
     print("Couldn't file the file %s" % filename)
     exit(0)
-  #figure out the total size
 
+  #figure out the total size
   fseek(f_in, 0L, SEEK_END);
   file_size = ftell(f_in);
   rewind(f_in);
@@ -68,12 +64,16 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
   df_channels.set_index("channel", drop=False, inplace=True)
   active_channels = df_channels["channel"].values
 
+  if chanList is not None:
+    good_channels = np.ones((len(active_channels)))
+    for i, (index, row) in enumerate(df_channels.iterrows()):
+      if row.channel not in chanList:
+        good_channels[i] = 0
+    df_channels = df_channels[good_channels==1]
+
   cdef np.ndarray[int16_t, ndim=1, mode="c"] narr = np.zeros((WF_LEN), dtype='int16')
   cdef int16_t* sig_ptr
   cdef int16_t [:] sig_arr
-
-  n=0
-  res = 0
   cdef uint64_t timestamp
   cdef uint32_t energy
   cdef uint32_t evtdat[20000];
@@ -81,19 +81,16 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
   cdef int card
   cdef int crate;
   cdef uint16_t board_id;
-
-  appended_data = []
-  print("Beginning Tier 0 processing of file {}...".format(filename))
-
+  n=0
+  res = 0
   board_id_map = {}
+  appended_data = []
 
-  # import matplotlib.pyplot as plt
-  # plt.ion()
-  # plt.figure()
+  print("Beginning Tier 0 processing of file {}...".format(filename))
 
   while (res >=0 and n < n_max):
     #
-    if verbose and n%100==0: update_progress( float(ftell(f_in))/ file_size)
+    if verbose and n%1000==0: update_progress( float(ftell(f_in))/ file_size)
 
     res = get_next_event(f_in, evtdat, dataIdRun, dataIdG, &card, &crate, &board_id)
     sig_ptr = parse_event_data(evtdat, &timestamp, &energy, &channel)
@@ -104,11 +101,11 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
     if crate_card_chan not in active_channels:
       print("Data read for channel {}: not an active channel".format(crate_card_chan))
       continue
+    if chanList is not None and crate_card_chan not in chanList:
+      continue
 
     if not board_id_map.has_key(crate_card_chan):
       board_id_map[crate_card_chan] = board_id
-      if crate_card_chan == 642:
-        print("created board_id_map with {}, id {}".format(crate_card_chan,board_id_map[crate_card_chan]))
     else:
       if not board_id_map[crate_card_chan] == board_id:
         print ("WARNING: previously channel {} had board serial id {}, now it has id {}".format(crate_card_chan, board_id_map[crate_card_chan], board_id))
@@ -125,15 +122,6 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
       noise_std = np.std(sig_arr[:100])
       bl_mean = np.mean(sig_arr[:100])
       if (np.amax(sig_arr) - bl_mean) < min_signal_thresh*noise_std: continue
-
-        # if (np.amax(sig_arr) - bl_mean) < 5*noise_std: continue
-        # color = "r"
-        # # continue
-        # plt.clf()
-        # plt.plot(np.copy(sig_arr), color=color)
-        # inp = input("Channel {}.  q to quit else to continue...".format(crate_card_chan))
-        # if inp == "q": exit()
-
 
     data = {
       "energy": energy,
@@ -154,9 +142,11 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
   t1_file_name = os.path.join(output_dir, output_file_string+'_run{}.h5'.format(runNumber))
   if verbose: print("Writing {} to tier1 file {}...".format(filename, t1_file_name))
 
-  df_channels['board_id'] = df_channels['channel'].map(board_id_map)
+  board_ids = df_channels['channel'].map(board_id_map)
+  df_channels = df_channels.assign(board_id=board_ids)
+  # print(df_channels.head())
 
-  df_data.to_hdf(t1_file_name, key="data", mode='w', data_columns=['energy', 'channel', 'timestamp'],)
+  df_data.to_hdf(t1_file_name, key="data", mode='w', data_columns=['energy', 'channel', 'timestamp'], complevel=9)
   df_channels.to_hdf(t1_file_name,   key="channel_info", mode='a', data_columns=True,)
 
   return df_data
@@ -183,7 +173,6 @@ def ProcessTier1(filename,  processorList, output_file_string="t2", verbose=Fals
   print("Beginning Tier 1 processing of file {}...".format(filename))
 
   for i, (index, row) in enumerate(df.iterrows()):
-    # print("im alive")
     if verbose and i%100==0: update_progress( float(i)/ len(df.index))
 
     #convert the stored waveform (which is int16) to a float, throw it to the processorList
@@ -191,7 +180,7 @@ def ProcessTier1(filename,  processorList, output_file_string="t2", verbose=Fals
 
     paramDict = processorList.Process(row)
     appended_data.append(paramDict)
-    # print(row["channel"],  paramDict["channel"])
+
   if verbose: update_progress(1)
   verbose=True
   if verbose: print("Creating dataframe for file {}...".format(filename))
@@ -278,7 +267,9 @@ class Calculator():
     self.args = self.perm_args.copy() #copy we'll actually pass to the function
 
     for (arg, val) in iteritems(self.args):
-      if val in param_dict.keys():
+      if getattr(val, '__iter__', False):
+        self.args[arg] = val
+      elif val in param_dict.keys():
         self.args[arg] = param_dict[val]
 
   def set_waveform(self, waveform_dict):
@@ -336,11 +327,3 @@ class Tier0Passer():
 
   def process(self):
     return self.t0_value
-
-# ######################################################################################
-#
-# class NonlinearityCorrectionMap():
-#   def __init__(self):
-#     pass
-#
-#   def load_from_file(self, filename):
