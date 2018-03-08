@@ -218,7 +218,6 @@ class TierOneProcessorList():
       #Parse out the t0 fields
       for name in self.t0_list: self.param_dict[name] = t0_row[name]
 
-
       processor.replace_args(self.param_dict)
 
       #TODO: what if output is None??

@@ -1,9 +1,7 @@
 import numpy as np
 import pandas as pd
 from scipy.ndimage.filters import gaussian_filter1d
-from scipy import signal
-
-
+from scipy import signal, interpolate
 
 #Finds the maximum current ("A").  Current is calculated by convolution with a first-deriv. of Gaussian
 def current_max(waveform, sigma=1):
@@ -23,16 +21,20 @@ def is_saturated(waveform, bit_precision=14):
     return True if np.amax(waveform) >= 0.5*2**bit_precision - 1 else False
 
 #Estimate t0
-def t0_estimate(waveform, baseline=0):
-    #find max to walk back from:
-    maxidx = np.argmax(waveform)
+def t0_estimate(waveform, baseline=0, median_kernel_size=51):
 
-    #find first index below or equal to baseline value walking back from the max
-    t0_from_max = np.argmax(waveform[maxidx::-1] <= baseline)
-    if t0_from_max == 0:
-        # print("warning: t0_from_max is zero")
-        return 0
-    return maxidx - t0_from_max
+    wf_med = signal.medfilt(waveform, kernel_size=median_kernel_size)
+    med_diff = gaussian_filter1d(wf_med, sigma=1, order=1)
+
+    tp05 = calc_timepoint(waveform, percentage=0.005, baseline=0, do_interp=False, doNorm=False)
+    tp05_rel = np.int(tp05+1)
+    thresh = 5E-5
+    last_under = tp05_rel - np.argmax(med_diff[tp05_rel::-1]<=thresh)
+
+    t0 = np.interp(thresh, ( med_diff[last_under],   med_diff[last_under+1] ), (last_under, last_under+1))
+
+    return t0
+
 
 #Estimate arbitrary timepoint before max
 def calc_timepoint(waveform, percentage=0.5, baseline=0, do_interp=False, doNorm=True):
@@ -54,7 +56,7 @@ def calc_timepoint(waveform, percentage=0.5, baseline=0, do_interp=False, doNorm
             above_thresh = wf_norm >= perc
             last_over = len(wf_norm)-1 - np.argmax(above_thresh[::-1])
             if do_interp and last_over < len(wf_norm)-1:
-                val = np.interp(perc, ( wf_norm[last_over],   wf_norm[last_over+1] ), (last_over, last_over+1))
+                val = np.interp(perc, (  wf_norm[last_over+1], wf_norm[last_over] ), (last_over+1, last_over))
             else: val = last_over
         return val
 
