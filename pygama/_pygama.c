@@ -2274,7 +2274,6 @@ static __Pyx_TypeInfo __Pyx_TypeInfo_nn_int16_t = { "int16_t", NULL, sizeof(int1
 int __pyx_module_is_main_pygama___pygama = 0;
 
 /* Implementation of 'pygama._pygama' */
-static PyObject *__pyx_builtin_exit;
 static PyObject *__pyx_builtin_enumerate;
 static PyObject *__pyx_builtin_filter;
 static PyObject *__pyx_builtin_AttributeError;
@@ -2323,6 +2322,7 @@ static const char __pyx_k_out[] = "out";
 static const char __pyx_k_res[] = "res";
 static const char __pyx_k_row[] = "row";
 static const char __pyx_k_std[] = "std";
+static const char __pyx_k_sys[] = "sys";
 static const char __pyx_k_val[] = "val";
 static const char __pyx_k_amax[] = "amax";
 static const char __pyx_k_args[] = "args";
@@ -2871,6 +2871,7 @@ static PyObject *__pyx_kp_s_strided_and_direct_or_indirect;
 static PyObject *__pyx_kp_s_strided_and_indirect;
 static PyObject *__pyx_kp_s_stringsource;
 static PyObject *__pyx_n_s_struct;
+static PyObject *__pyx_n_s_sys;
 static PyObject *__pyx_n_s_t0_list;
 static PyObject *__pyx_n_s_t0_name;
 static PyObject *__pyx_n_s_t0_row;
@@ -3538,7 +3539,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_ProcessTier0(CYTHON_UNUSED PyObject *
  *   f_in = fopen(filename.encode('utf-8'), "r")
  *   if f_in == NULL:             # <<<<<<<<<<<<<<
  *     print("Couldn't file the file %s" % filename)
- *     exit(0)
+ *     sys.exit(0)
  */
   __pyx_t_5 = ((__pyx_v_f_in == NULL) != 0);
   if (__pyx_t_5) {
@@ -3547,7 +3548,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_ProcessTier0(CYTHON_UNUSED PyObject *
  *   f_in = fopen(filename.encode('utf-8'), "r")
  *   if f_in == NULL:
  *     print("Couldn't file the file %s" % filename)             # <<<<<<<<<<<<<<
- *     exit(0)
+ *     sys.exit(0)
  * 
  */
     __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_Couldn_t_file_the_file_s, __pyx_v_filename); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 45, __pyx_L1_error)
@@ -3558,12 +3559,18 @@ static PyObject *__pyx_pf_6pygama_7_pygama_ProcessTier0(CYTHON_UNUSED PyObject *
     /* "pygama/_pygama.pyx":46
  *   if f_in == NULL:
  *     print("Couldn't file the file %s" % filename)
- *     exit(0)             # <<<<<<<<<<<<<<
+ *     sys.exit(0)             # <<<<<<<<<<<<<<
  * 
  *   #figure out the total size
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_exit, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 46, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_sys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 46, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_exit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 46, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
     /* "pygama/_pygama.pyx":44
@@ -3571,7 +3578,7 @@ static PyObject *__pyx_pf_6pygama_7_pygama_ProcessTier0(CYTHON_UNUSED PyObject *
  *   f_in = fopen(filename.encode('utf-8'), "r")
  *   if f_in == NULL:             # <<<<<<<<<<<<<<
  *     print("Couldn't file the file %s" % filename)
- *     exit(0)
+ *     sys.exit(0)
  */
   }
 
@@ -28493,6 +28500,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_strided_and_indirect, __pyx_k_strided_and_indirect, sizeof(__pyx_k_strided_and_indirect), 0, 0, 1, 0},
   {&__pyx_kp_s_stringsource, __pyx_k_stringsource, sizeof(__pyx_k_stringsource), 0, 0, 1, 0},
   {&__pyx_n_s_struct, __pyx_k_struct, sizeof(__pyx_k_struct), 0, 0, 1, 1},
+  {&__pyx_n_s_sys, __pyx_k_sys, sizeof(__pyx_k_sys), 0, 0, 1, 1},
   {&__pyx_n_s_t0_list, __pyx_k_t0_list, sizeof(__pyx_k_t0_list), 0, 0, 1, 1},
   {&__pyx_n_s_t0_name, __pyx_k_t0_name, sizeof(__pyx_k_t0_name), 0, 0, 1, 1},
   {&__pyx_n_s_t0_row, __pyx_k_t0_row, sizeof(__pyx_k_t0_row), 0, 0, 1, 1},
@@ -28525,7 +28533,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_exit = __Pyx_GetBuiltinName(__pyx_n_s_exit); if (!__pyx_builtin_exit) __PYX_ERR(0, 46, __pyx_L1_error)
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(0, 69, __pyx_L1_error)
   __pyx_builtin_filter = __Pyx_GetBuiltinName(__pyx_n_s_filter); if (!__pyx_builtin_filter) __PYX_ERR(0, 168, __pyx_L1_error)
   __pyx_builtin_AttributeError = __Pyx_GetBuiltinName(__pyx_n_s_AttributeError); if (!__pyx_builtin_AttributeError) __PYX_ERR(0, 227, __pyx_L1_error)
@@ -28561,7 +28568,7 @@ static int __Pyx_InitCachedConstants(void) {
   /* "pygama/_pygama.pyx":46
  *   if f_in == NULL:
  *     print("Couldn't file the file %s" % filename)
- *     exit(0)             # <<<<<<<<<<<<<<
+ *     sys.exit(0)             # <<<<<<<<<<<<<<
  * 
  *   #figure out the total size
  */
@@ -29483,7 +29490,7 @@ static int __pyx_pymod_exec__pygama(PyObject *__pyx_pyinit_module)
  * cimport numpy as np
  * 
  * import numpy as np             # <<<<<<<<<<<<<<
- * import os, re
+ * import os, re, sys
  * import pandas as pd
  */
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 8, __pyx_L1_error)
@@ -29494,7 +29501,7 @@ static int __pyx_pymod_exec__pygama(PyObject *__pyx_pyinit_module)
   /* "pygama/_pygama.pyx":9
  * 
  * import numpy as np
- * import os, re             # <<<<<<<<<<<<<<
+ * import os, re, sys             # <<<<<<<<<<<<<<
  * import pandas as pd
  * from future.utils import iteritems
  */
@@ -29506,10 +29513,14 @@ static int __pyx_pymod_exec__pygama(PyObject *__pyx_pyinit_module)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_re, __pyx_t_1) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_sys, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_sys, __pyx_t_1) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "pygama/_pygama.pyx":10
  * import numpy as np
- * import os, re
+ * import os, re, sys
  * import pandas as pd             # <<<<<<<<<<<<<<
  * from future.utils import iteritems
  * 
@@ -29520,7 +29531,7 @@ static int __pyx_pymod_exec__pygama(PyObject *__pyx_pyinit_module)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "pygama/_pygama.pyx":11
- * import os, re
+ * import os, re, sys
  * import pandas as pd
  * from future.utils import iteritems             # <<<<<<<<<<<<<<
  * 

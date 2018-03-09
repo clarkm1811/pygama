@@ -6,7 +6,7 @@ from cython.view cimport array as cvarray
 cimport numpy as np
 
 import numpy as np
-import os, re
+import os, re, sys
 import pandas as pd
 from future.utils import iteritems
 
@@ -43,7 +43,7 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
   f_in = fopen(filename.encode('utf-8'), "r")
   if f_in == NULL:
     print("Couldn't file the file %s" % filename)
-    exit(0)
+    sys.exit(0)
 
   #figure out the total size
   fseek(f_in, 0L, SEEK_END);
