@@ -13,20 +13,16 @@ import data_loader as dl
 import warnings
 warnings.filterwarnings(action="ignore", module="pandas", message="^\nyour performance")
 
-def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=False, output_dir=None, min_signal_thresh=0, chanList=None):
+def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=False, output_dir=None, decoders=None):
   '''
   Reads in "raw," or "tier 0," Orca data and saves to a hdf5 format using pandas
     filename: path to an orca data file
     output_file_string: output file name will be <output_file_string>_run<runNumber>.h5
     n_max: maximum number of events to process (useful for debugging)
     verbose: spits out a progressbar to let you know how the processing is going
-    min_signal_thresh: multiple of noise std required for wf_max to be above to save a signal
     output_dir: where to stash the t1 file
-    min_signal_thresh: multiplier on noise ampliude required to process a signal: helps avoid processing a ton of noise
-    chanList: list of channels to process
   '''
 
-  WF_LEN = 2018
   SEEK_END = 2
 
   directory = os.path.dirname(filename)
@@ -54,39 +50,44 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
   # skip the header
   f_in.seek(reclen*4)   # reclen is in number of longs, and we want to skip a number of bytes
 
-  # pull out important header info for event processing
-  dataIdRun = get_data_id(headerDict, "ORRunModel", "Run")
-  dataIdG   = get_data_id(headerDict, "ORGretina4M", "Gretina4M")
+  # pull out the run number
   runNumber = get_run_number(headerDict)
+  print("Run number: {}".format(runNumber))
+
+  #TODO: This is all pretty hard to read & comprehend easily.  Can we clean it up?
 
   id_dict = flip_data_ids(headerDict)
+  print("The Data IDs present in this file (header) are:")
+  for id in id_dict:
+    print("    {}: {}".format(id, id_dict[id]))
 
-  print("The Data IDs present in this file (header) are: ")
-  print("   ",id_dict,"\n")
+  #find unique decoders actually used in the data
+  used_decoder_names =  set([id_dict[id][0] for id in id_dict])
 
-  # The decoders variable is a list of all the decoders that exist in pygama
-  decoders = dl.Data_Loader.get_decoders()
-  name_to_id  = dict()
-  for key in id_dict.keys():
-      val = id_dict[key][0]
-      name_to_id[val] = key
+  if decoders is None:
+    # The decoders variable is a list of all the decoders that exist in pygama
+    decoders = dl.Data_Loader.get_decoders()
+    decoder_names = [d.name for d in decoders]
 
-  # This gives us a list of all the names/ids in our file which we can decode
-  decodable_ids = []
-  decodable_names = []
-  for value in decoders:
-      try:
-          decodable_ids.append(name_to_id[value])
-          decodable_names.append(value)
-      except KeyError as e:
-          print("There exists a decoder for the",value, ", but no instances of it produced data in this run...")
+    print("Warning: No decoder implemented for the following data takers: ")
+    for d in used_decoder_names:
+      if d not in decoder_names:
+        print("  {}".format(d))
 
-  print("The available decoders relavent to this file are: ")
-  for d in decodable_names:
-      print("   ",d, " (ID: ",name_to_id[d],")")
+  #kill unnecessary decoders
+  for d in decoders:
+    if d.name not in used_decoder_names: decoders.remove(d)
 
-  print("Additionally, the data ID for the run object is : ", dataIdRun)
-  print("Run number: ",runNumber)
+  decoder_names = [d.name for d in decoders]
+
+  #Build a map from data id to decoder
+  id_to_decoder = {}
+  for id in id_dict:
+    try:
+      id_to_decoder[id] = decoders[decoder_names.index(id_dict[id][0])]
+    except ValueError:
+      #if there isn't a decover available, we already warned everyone
+      pass
 
   #read all header info into a single, channel-keyed data frame for saving
   headerinfo = get_header_dataframe_info(headerDict)
@@ -94,41 +95,29 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
   df_channels.set_index("channel", drop=False, inplace=True)
   active_channels = df_channels["channel"].values
 
-  print("Active channels:",active_channels)
-  if chanList is not None:
-    good_channels = np.ones((len(active_channels)))
-    for i, (index, row) in enumerate(df_channels.iterrows()):
-      if row.channel not in chanList:
-        good_channels[i] = 0
-    df_channels = df_channels[good_channels==1]
+  # print("Active channels:",active_channels)
+  # if chanList is not None:
+  #   good_channels = np.ones((len(active_channels)))
+  #   for i, (index, row) in enumerate(df_channels.iterrows()):
+  #     if row.channel not in chanList:
+  #       good_channels[i] = 0
+  #   df_channels = df_channels[good_channels==1]
 
   #keep track of warnings we've raised for missing decoders
-  no_decoder_dict = {}
-
-  timestamp = 0
-  energy = 0
-  event_data = np.zeros((20000), dtype='uint32')
-  channel = 0
-  card = 0
-  crate = 0
-  board_id = 0
-
-  n = 0            #
+  unrecognized_data_ids = []
   board_id_map = {}
-  appended_data = []
-
-  wf_data = np.zeros(WF_LEN, dtype=np.int16)
+  appended_data_map = {}
 
   print("Beginning Tier 0 processing of file {}...".format(filename))
-
+  n = 0 #number of events decoded
   while (n < n_max and f_in.tell() < file_size):# and f_in.tell() < file_size):
-      n = n+1
+      n += 1
+
       if verbose and n%1000==0:
           update_progress( float(f_in.tell()) / file_size )
 
       try:
-          # print("\nLoading event %d:" % (n))
-          event_data, card, crate, data_id = dl.Data_Loader.get_next_event(f_in, dataIdRun, dataIdG)
+          event_data, card, crate, data_id = dl.Data_Loader.get_next_event(f_in)
       except EOFError:
           break
       except Exception as e:
@@ -136,87 +125,47 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
           # print(e)
           break
 
-      if(data_id not in decodable_ids):
-          try:
-              anId = id_dict[data_id]
-              if anId[0] not in no_decoder_dict:
-                print("No decoder for {} ({}) device. Skipping...".format(anId[0], anId[1]))
-                no_decoder_dict[anId[0]] = 1
-              else:
-                no_decoder_dict[anId[0]] += 1
-          except:
-              print("Data ID of {} wasn't in the header dictionary, hopefully it wasn't important".format(data_id))
-              pass
+      try:
+          decoder = id_to_decoder[data_id]
+      except KeyError:
+          if data_id not in id_dict and data_id not in unrecognized_data_ids:
+            unrecognized_data_ids.append(data_id)
           continue
 
-      # print("Decoding event %d:" % (n))
+      decoder.decode_event(event_data)
 
-      # Set up my decoders
-      g4 = dl.Gretina4m_Decoder()
-      mjd = dl.MJDPreamp_Decoder()
-      hv = dl.ISegHV_Decoder()
-
-      if(id_dict[data_id][0] == hv.get_name()):
-          # print("Decoding HV...")
-          hv.decode_event(event_data)
-          continue
-
-      if(id_dict[data_id][0] == mjd.get_name()):
-          # print("Decoding MJD Preamp...")
-          mjd.decode_event(event_data)
-          continue
-
-      if(id_dict[data_id][0] == g4.get_name()):
-          # print("Decoding gretina")
-          timestamp,energy,channel,wf_data = g4.decode_event(event_data)
-
-      #TODO: this is totally mysterious to me.  why bitshift 9??
-      # SJM: it would be 8, but I think for MJD, crate numbers are 1-indexed
-      crate_card_chan = (crate << 9) + (card << 4) + (channel)
-
-      if crate_card_chan not in active_channels:
-          # print("Data read for channel %d: not an active channel" % crate_card_chan)
-          continue
-      if chanList is not None and crate_card_chan not in chanList:
-          continue
-
-      if crate_card_chan not in board_id_map:
-          board_id_map[crate_card_chan] = board_id
-      else:
-          if not board_id_map[crate_card_chan] == board_id:
-              print("WARNING: previously channel %d had board serial id %d, now it has id %d" % (crate_card_chan, board_id_map[crate_card_chan], board_id))
-
-      #TODO: it feels like the wf can be probabilistically too early or too late in the record?
-      #for now, just trim 4 off each side to make length 2010 wfs?
-      # SJM: This needs to happen in a tier1 processing, but not here
-      wf_arr = np.array(wf_data,dtype=np.uint16)
-      # sig_arr = sig_arr[4:-4]
-
-      data = g4.format_data(energy,timestamp,crate_card_chan,wf_arr)
-
-      # if len(wf_arr) != 966:
-      #     print("weird...",len(wf_arr))
-
-      # numpy.isnan(wf_arr).any()
-
-      appended_data.append(data)
+          # if data_dict["channel"] not in active_channels:
+          #   # print("Data read for channel %d: not an active channel" % crate_card_chan)
+          #   continue
+          # if chanList is not None and crate_card_chan not in chanList:
+          #   continue
+          #
+          # if crate_card_chan not in board_id_map:
+          #    board_id_map[crate_card_chan] = board_id
+          # else:
+          #    if not board_id_map[crate_card_chan] == board_id:
+          #        print("WARNING: previously channel %d had board serial id %d, now it has id %d" % (crate_card_chan, board_id_map[crate_card_chan], board_id))
 
   f_in.close()
   if verbose: update_progress(1)
-  verbose=True
-  if verbose: print("\nCreating dataframe for file {}...".format(filename))
-  df_data = pd.DataFrame.from_dict(appended_data)
+
+  print("\nGarbage Report!:")
+  print("Found the following data IDs which were not present in the header:")
+  for id in unrecognized_data_ids:
+    print ("  {}".format(id))
+  print("hopefully they weren't important!\n")
+
+
   t1_file_name = os.path.join(output_dir, output_file_string+'_run{}.h5'.format(runNumber))
+
   if verbose: print("Writing {} to tier1 file {}...".format(filename, t1_file_name))
+  [d.to_file(t1_file_name) for d in decoders]
 
-  board_ids = df_channels['channel'].map(board_id_map)
-  df_channels = df_channels.assign(board_id=board_ids)
-  # print(df_channels.head())
+  # board_ids = df_channels['channel'].map(board_id_map)
+  # df_channels = df_channels.assign(board_id=board_ids)
 
-  df_data.to_hdf(t1_file_name, key="data", mode='w', data_columns=['energy', 'channel', 'timestamp'], complevel=9)
-  df_channels.to_hdf(t1_file_name,   key="channel_info", mode='a', data_columns=True,)
-
-  return df_data
+  # df_data.to_hdf(t1_file_name, key="data", mode='w', data_columns=['energy', 'channel', 'timestamp'], complevel=9)
+  # df_channels.to_hdf(t1_file_name,   key="channel_info", mode='a', data_columns=True,)
 
 def ProcessTier1(filename,  processorList, output_file_string="t2", verbose=False, output_dir=None):
   '''

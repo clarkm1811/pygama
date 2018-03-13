@@ -1,12 +1,10 @@
 from abc import ABCMeta, abstractmethod
-import struct
 import numpy as np
-import sys
-import matplotlib.pyplot as plt
+import pandas as pd
 
 class Data_Loader(metaclass=ABCMeta):
     def __init__(self):
-        pass
+        self.decoded_values = []
 
     @abstractmethod
     def decode_event(self,event_data_bytes):
@@ -16,7 +14,7 @@ class Data_Loader(metaclass=ABCMeta):
     # def decode_header(self):
     #     pass
 
-    def get_next_event(f_in, dataIdRun, dataIdG):
+    def get_next_event(f_in):
         """
         Gets the next event, and some basic information about it \n
         Takes the file pointer as input \n
@@ -30,7 +28,7 @@ class Data_Loader(metaclass=ABCMeta):
 
         # The read is set up to do two 32-bit integers, rather than bytes or shorts
         # This matches the bitwise arithmetic used elsewhere best, and is easy to implement
-        # Using a 
+        # Using a
 
         head = np.zeros(2)
         data_id = None
@@ -45,7 +43,7 @@ class Data_Loader(metaclass=ABCMeta):
         except Exception as e:
             print(e)
             raise Exception("Failed to read in the event orca header.")
-        
+
         # Assuming we're getting an array of bytes:
         # record_length   = (head[0] + (head[1]<<8) + ((head[2]&0x3)<<16))
         # data_id         = (head[2] >> 2) + (head[3]<<8)
@@ -53,7 +51,7 @@ class Data_Loader(metaclass=ABCMeta):
         # crate           = (head[6]>>5) + head[7]&0x1
         # reserved        = (head[4] + (head[5]<<8))
 
-        # Using an array of uint32 
+        # Using an array of uint32
         record_length   = (head[0] & 0x3FFFF)
         data_id         = (head[0] >> 18)
         slot            = (head[1] >> 16) & 0x1f
@@ -71,7 +69,7 @@ class Data_Loader(metaclass=ABCMeta):
             print("  No more data...\n")
             print(e)
             raise EOFError
-        
+
         return event_data, slot, crate, data_id
 
     def get_decoders():
@@ -79,22 +77,29 @@ class Data_Loader(metaclass=ABCMeta):
             Looks through all the data takers that exist in this Data_Loader class and see which ones exist.
         """
 
-        names = []
+        decoders = []
         for sub in Data_Loader.__subclasses__():
             for subsub in sub.__subclasses__():
                 try:
                     a = subsub()
-                    n = a.get_name()
+                    # n = a.name
                     # print("name: ",n)
-                    names.append(n)
+                    decoders.append(a)
                 except Exception as e:
                     print(e)
                     pass
 
-        return names
+        return decoders
+
+    def to_file(self, file_name):
+        df_data = pd.DataFrame.from_dict(self.decoded_values)
+        df_data.to_hdf(file_name, key=self.name, mode='w')
 
 
 class Digitizer(Data_Loader):
+    def __init__(self):
+        super().__init__()
+
     def decode_event(self,event_data_bytes):
         pass
 
@@ -102,29 +107,38 @@ class Digitizer(Data_Loader):
     #     pass
 
 class Poller(Data_Loader):
+    def __init__(self):
+        super().__init__()
+
     def decode_event(self,event_data_bytes):
         pass
 
 class Gretina4m_Decoder(Digitizer):
+    '''
+    min_signal_thresh: multiplier on noise ampliude required to process a signal: helps avoid processing a ton of noise
+    chanList: list of channels to process
+    '''
     def __init__(self):
-        self.values = dict()
-        self.event_header_length = 30
-        self.wf_length = 2018
+        super().__init__()
 
         self.name = 'ORGretina4M'
 
+        self.event_header_length = 30
+        self.wf_length = 2018
+
+        self.active_channels = []
+
+
         return
 
-    def get_name(self):
-        return self.name
-    
-    def decode_event(self,event_data_bytes):
+
+    def decode_event(self,event_data_bytes, crate=0, card=0):
         # parse_event_data(evtdat, &timestamp, &energy, &channel)
-        """ 
+        """
             Parse the header for an individual event
             Expects that event_data looks like an array of 16-bit short words, so hopefully it is
-        """        
-        
+        """
+
         event_data = np.fromstring(event_data_bytes,dtype=np.uint16)
 
         # this is for a uint32
@@ -137,28 +151,31 @@ class Gretina4m_Decoder(Digitizer):
 
         # this is for a uint16
         channel = event_data[2] & 0xf
-        board_id =(event_data[2]&0xFFF0)>>4     # unused
+        board_id =(event_data[2]&0xFFF0)>>4
         timestamp = event_data[4] + (event_data[5]<<16) + (event_data[6]<<32)
         energy = event_data[7] + ((event_data[8]&0x7FFF)<<16)
         wf_data = event_data[self.event_header_length:]#(self.event_header_length+self.wf_length)*2]
 
-        self.values["channel"] = channel
-        self.values["timestamp"] = timestamp
-        self.values["energy"] = energy
-        self.values["waveform"] = wf_data
+        crate_card_chan = (crate << 9) + (card << 4) + (channel)
 
-        return timestamp, energy, channel, wf_data
 
-    def format_data(self,energy,timestamp,crate_card_chan,wf_arr):
+        data_dict = self.format_data(energy,timestamp, crate_card_chan, wf_data, board_id)
+        self.decoded_values.append(data_dict)
+
+        return data_dict
+
+
+    def format_data(self,energy,timestamp,crate_card_chan,wf_arr, board_id):
         """
-        Format the values that we get from this card into a panda-friendly format.
+        Format the values that we get from this card into a pandas-friendly format.
         """
 
         data = {
             "energy": energy,
             "timestamp": timestamp,
             "channel": crate_card_chan,
-            "waveform": [np.copy(wf_arr)]
+            "board_id":board_id,
+            "waveform": [np.array(wf_arr, dtype=np.uint16)]
         }
         return data
 
@@ -167,14 +184,14 @@ class Gretina4m_Decoder(Digitizer):
             Runs a fake waveform through the decoder.
         """
         event_data_bytes = bytes.fromhex("00000a00aaaaaaaad1000000e178f14429009b9de2510b20eb43290003000000fefffffffafff9fffcfff5fffbfffafffdfffdff0300fbfff9fffafffefff9fff5fffffffefffbfff6fff6fffeff0300fdfff9fffdfff7fff8fffcfff5fff8fffafffcfffcfffefffefffafff4fff9fffbfff8fffafffbff0400f8fff8fff9fff7fff9fffdff0000fbff0400fbfff6fffcfffefffefff7fff8fffdfff9fffafffefffafff9fffcff01000000fdfff8fff9fffafffeff00000200f9fff8fffcfffbff0000f9fff8fffcff0000fbfffcfffbfffeffffffffff0200fffffafff5fff7fff7fffeff0200fefff8fffdfffcfff6fff8fffcfffdff")
-        
+
         wf = self.decode_event(event_data_bytes)
 
         print(self.values["channel"])
         print(self.values["timestamp"])
         print(self.values["energy"])
         print(self.values["waveform"])
-        
+
         return
 
     def parse_event_data(self,data):
@@ -183,37 +200,27 @@ class Gretina4m_Decoder(Digitizer):
 
 class SIS3302_Decoder(Digitizer):
     def __init__(self):
-        self.values = dict()
+        super().__init__()
         self.event_header_length = 1
 
         self.name = 'ORSIS3302'
         return
 
-    def get_name(self):
-        return self.name
-
     def decode_event(self,event_data_bytes):
         pass
-
-
-
-
 
 
 # Polled devices
 
 class MJDPreamp_Decoder(Poller):
     def __init__(self):
-        self.values = dict()
+        super().__init__()
         self.event_header_length = -1
 
         self.name = 'MJDPreAmpModel'
-        
+
         return
-    
-    def get_name(self):
-        return self.name
-    
+
     def decode_event(self,event_data_bytes,verbose=False):
         """
             Decodes the data from a MJDPreamp Object.
@@ -221,7 +228,7 @@ class MJDPreamp_Decoder(Poller):
                 adc_val     : A list of floating point voltage values for each channel
                 timestamp   : An integer unix timestamp
                 enabled     : A list of 0 or 1 values indicating which channels are enabled
-                    
+
             Data Format:
             0 xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  unix time of measurement
             1 xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  enabled adc mask
@@ -255,19 +262,23 @@ class MJDPreamp_Decoder(Poller):
         if(verbose):
             print(adc_val)
 
-        return adc_val,timestamp,enabled
-        
+        data_dict={}
+        data_dict["adc"] = adc_val
+        data_dict["timestamp"] = timestamp
+        data_dict["enabled"] = enabled
+
+        self.decoded_values.append(data_dict)
+
+        return data_dict
+
 
 class ISegHV_Decoder(Poller):
     def __init__(self):
-        self.values = dict()
+        super().__init__()
         self.event_header_length = -1
         self.name = 'ORiSegHVCard'
 
         return
-    
-    def get_name(self):
-        return self.name
 
     def decode_event(self,event_data_bytes,verbose=False):
         """
@@ -325,14 +336,17 @@ class ISegHV_Decoder(Poller):
             voltage[i] = event_data_float[3+(2*i)]
             current[i] = event_data_float[4+(2*i)]
 
-        if(verbose):    
+        if(verbose):
             print("HV voltages: ",voltage)
             print("HV currents: ",current)
 
         # self.values["channel"] = channel
-        self.values["timestamp"] = timestamp
-        self.values["voltage"] = voltage
-        self.values["current"] = current
-        self.values["enabled"] = enabled
+        data_dict={}
+        data_dict["timestamp"] = timestamp
+        data_dict["voltage"] = voltage
+        data_dict["current"] = current
+        data_dict["enabled"] = enabled
 
-        return voltage, current, timestamp, enabled
+        self.decoded_values.append(data_dict)
+
+        return data_dict
