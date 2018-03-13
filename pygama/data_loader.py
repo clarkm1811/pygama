@@ -60,16 +60,9 @@ class Data_Loader(metaclass=ABCMeta):
         crate           = (head[1] >> 21) & 0xf
         reserved        = (head[1] &0xFFFF)
 
-        # print(head)
-        # print("event length: ",record_length)
-        # print("data id: ",data_id)
-        # print("slot: ", slot)
-        # print("crate: ", crate)
-        # print("reserved value: ", reserved)
-
-        # if (crate < 0 or crate > NCRATES or slot  < 0 or slot > 20):
-        #     print("ERROR: Illegal VME crate or slot number %d %d\n" %( crate, slot))
-        #     raise Exception("Encountered an invalid value of the crate or slot number...")
+        if (crate < 0 or crate > NCRATES or slot  < 0 or slot > 20):
+            print("ERROR: Illegal VME crate or slot number %d %d\n" %( crate, slot))
+            raise Exception("Encountered an invalid value of the crate or slot number...")
 
         # /* ========== read in the rest of the event data ========== */
         try:
@@ -85,13 +78,10 @@ class Data_Loader(metaclass=ABCMeta):
         """
             Looks through all the data takers that exist in this Data_Loader class and see which ones exist.
         """
-        # a = Data_Loader()
-        # subs = a.__subclasses__()
+
         names = []
         for sub in Data_Loader.__subclasses__():
-            # print(sub.__name__)
             for subsub in sub.__subclasses__():
-                # print(subsub.__name__)
                 try:
                     a = subsub()
                     n = a.get_name()
@@ -102,126 +92,6 @@ class Data_Loader(metaclass=ABCMeta):
                     pass
 
         return names
-    
-    def get_decodable_ids(decoders,name_to_id):
-        decodable_ids = []
-        for value in decoders:
-            print(value)        
-            try:
-                decodable_ids.append(name_to_id[value])
-                decodable_names.append(value)
-            except KeyError as e:
-                print("No instances of ",value, " produced data in this run...")
-
-        return decodable_ids
-
-    def get_next_event_old(f_in, dataIdRun, dataIdG):
-        """
-            Gets the next event, and some basic information about it \n
-            Takes the file pointer as input \n
-            Outputs: \n
-                result: Was it successful in getting the next event? Maybe this could be handled with exceptions instead... \n
-                event_data: a byte array of the data produced by the card (could be header + data) \n
-                slot: \n
-                crate: \n
-                data_id: This is the idenitifier for the type of data-taker this is \n
-                board_id: This is\n
-        """
-        # int get_next_event(FILE *f_in,  unsigned int*evtdat, int dataIdRun, int dataIdG, int* slotout, int* crateout, unsigned short* board_id_out ){
-        head = np.zeros(2)
-        data_id = None
-        board_id = 0
-        board_type, evlen, current_runNumber = [0,0,0]
-        slot, crate = [0,0]
-        NCRATES = 10
-
-        try:
-            head = f_in.read(2)
-        except:
-            # print("Failed to read in the event orca header. Quitting...")
-            print(head)
-            raise Exception("Failed top read in the event orca header.")
-            # sys.exit()
-
-        # if (f_in.read(len(head)) != 1):
-        #     return -1
-
-        # board_type = head[1] >> 2
-        # evlen = (head[0] & 0xffff) + (head[1]&0x3)<<16
-        # data_id = (head[2] & 0xffff)
-
-        # if(head[3] != 0):
-        #     print("That should have a zero in the top of word 3...")
-
-        board_type = head[0] >> 18
-        evlen = (head[0] & 0x3ffff)
-        board_id = (head[1] & 0xffff)
-
-        # print(head)
-        # print("Board type: ", board_type)
-        # print("event length: ",evlen)
-        # print("data id: ",data_id)
-        # print("data ID G: ", dataIdG)
-        # print("data ID Run: ", dataIdRun)
-
-        if (data_id == dataIdRun):
-            try:
-                event_data = f_in.read(1)
-            # if (fread(evtdat, 8, 1, f_in) != 1):
-                status = -1
-            except:
-                raise Exception("Failed to read in a word of the run type data?")
-                status = 0
-
-            # if (head[1] & 0x21):
-            #     #// printf("------- START Run %d at %d\n", evtdat[0], evtdat[1]);
-            #     current_runNumber = evtdat[0]
-            # return 0
-
-        # if (board_type != dataIdG):
-        #     if (evlen > 10000):
-        #         print("\n >>>> ERROR: Event length too long??\n")
-        #         print(" >>>> This file is probably corrupted, ending scan!\n")
-        #         status = -1
-            
-        #     f_in.seek(4*(evlen-2))#, SEEK_CUR)
-        #     status = 0
-
-        slot  = (head[1] >> 16) & 0x1f
-        crate = (head[1] >> 21) & 0xf
-
-        print("slot: ", slot)
-        print("crate: ", crate)
-        # slotout = slot
-        # crateout = crate
-        # board_id_out = board_id
-
-        if (crate < 0 or crate > NCRATES or slot  < 0 or slot > 20):
-            print("ERROR: Illegal VME crate or slot number %d %d\n" %( crate, slot))
-            raise Exception("Encountered an invalid value of the crate or slot number...")
-
-            # if (len(f_in.read(evtdat, sizeof(int), evlen-2, f_in) != evlen-2):
-            #     return -1
-            status = -1
-        
-
-        # /* ========== read in the rest of the event data ========== */
-        # if ( != evlen-2):
-        try:
-            event_data = f_in.read(evlen*2-2)
-
-        except :
-            print("  No more data...\n")
-            raise EOFError
-            status = -1
-        
-
-        # // ++out_evts;
-        # // if (++totevts % 2000 == 0) {
-        # //   printf(" %8d evts in, %d out\n", totevts, out_evts); fflush(stdout);
-        # // }
-        # status = 1
-        return event_data, slot, crate, board_id, data_id
 
 
 class Digitizer(Data_Loader):
@@ -230,6 +100,10 @@ class Digitizer(Data_Loader):
 
     # def decode_header():
     #     pass
+
+class Poller(Data_Loader):
+    def decode_event(self,event_data_bytes):
+        pass
 
 class Gretina4m_Decoder(Digitizer):
     def __init__(self):
@@ -267,41 +141,12 @@ class Gretina4m_Decoder(Digitizer):
         timestamp = event_data[4] + (event_data[5]<<16) + (event_data[6]<<32)
         energy = event_data[7] + ((event_data[8]&0x7FFF)<<16)
         wf_data = event_data[self.event_header_length:]#(self.event_header_length+self.wf_length)*2]
-        
-
-        # print(len(wf_data))
-        # print(len(event_data))
-
-        # plt.plot(wf_data)
-        # plt.show()
-
-        
-        # sys.exit()
-
-        # d = []
-        # for v in event_data[:self.event_header_length*2]:
-        #     d.append(hex(v))
-        # print(d)
-
-        # print(event_data[0])
-        # print(event_data[1])
-        
-        # channel = event_data[4] & 0xf
-        # timestamp = ((event_data[8]) + event_data[9]<<8  + event_data[10]<<16 + event_data[11]<<24 + event_data[12]<<32 + event_data[13]<<40)
-        # energy = (event_data[14] + event_data[15]<<8 + event_data[16]<<16)
-
-        # wf_data = event_data[self.event_header_length*4:self.event_header_length*4+self.wf_length*4]
 
         self.values["channel"] = channel
         self.values["timestamp"] = timestamp
         self.values["energy"] = energy
         self.values["waveform"] = wf_data
 
-        # print(self.values)
-        # print("   channel: %lu, energy: %lu, time: %lu" % (channel, energy, timestamp))
-        # print(channel)
-        # print(timestamp)
-        # print(energy)
         return timestamp, energy, channel, wf_data
 
     def format_data(self,energy,timestamp,crate_card_chan,wf_arr):
@@ -350,3 +195,144 @@ class SIS3302_Decoder(Digitizer):
     def decode_event(self,event_data_bytes):
         pass
 
+
+
+
+
+
+# Polled devices
+
+class MJDPreamp_Decoder(Poller):
+    def __init__(self):
+        self.values = dict()
+        self.event_header_length = -1
+
+        self.name = 'MJDPreAmpModel'
+        
+        return
+    
+    def get_name(self):
+        return self.name
+    
+    def decode_event(self,event_data_bytes,verbose=False):
+        """
+            Decodes the data from a MJDPreamp Object.
+            Returns:
+                adc_val     : A list of floating point voltage values for each channel
+                timestamp   : An integer unix timestamp
+                enabled     : A list of 0 or 1 values indicating which channels are enabled
+                    
+            Data Format:
+            0 xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  unix time of measurement
+            1 xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  enabled adc mask
+            2 xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  adc chan 0 encoded as a float
+            3 xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  adc chan 1 encoded as a float
+            ....
+            ....
+            17 xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  adc chan 15 encoded as a float
+
+        """
+
+        event_data_uint = np.fromstring(event_data_bytes,dtype=np.uint32)
+        event_data_float = np.fromstring(event_data_bytes,dtype=np.float32)
+
+        timestamp = event_data_uint[0]
+        enabled = np.zeros(16)
+        adc_val = np.zeros(16)
+
+        for i,val in enumerate(enabled):
+            enabled[i] = (event_data_uint[1]>>(i) & 0x1)
+
+            if(verbose):
+                if(enabled[i] != 0):
+                    print("Channel %d is enabled" % (i))
+                else:
+                    print("Channel %d is disabled" % (i))
+
+        for i,val in enumerate(adc_val):
+            adc_val[i] = event_data_float[2+i]
+
+        if(verbose):
+            print(adc_val)
+
+        return adc_val,timestamp,enabled
+        
+
+class ISegHV_Decoder(Poller):
+    def __init__(self):
+        self.values = dict()
+        self.event_header_length = -1
+        self.name = 'ORiSegHVCard'
+
+        return
+    
+    def get_name(self):
+        return self.name
+
+    def decode_event(self,event_data_bytes,verbose=False):
+        """
+            Decodes an iSeg HV Card event
+
+            xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx
+            ^^^^ ^^^^ ^^^^ ^^----------------------- Data ID (from header)
+            -----------------^^ ^^^^ ^^^^ ^^^^ ^^^^- length
+            xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx
+            ----------^^^^-------------------------- Crate number
+            ---------------^^^^--------------------- Card number
+
+        0    xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx -ON Mask
+        1    xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx -Spare
+        2    xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  time in seconds since Jan 1, 1970
+        3    xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  actual Voltage encoded as a float (chan 0)
+        4    xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  actual Current encoded as a float (chan 0)
+        5    xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  actual Voltage encoded as a float (chan 1)
+        6    xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  actual Current encoded as a float (chan 1)
+        7    xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  actual Voltage encoded as a float (chan 2)
+        8    xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  actual Current encoded as a float (chan 2)
+        9    xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  actual Voltage encoded as a float (chan 3)
+        10   xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  actual Current encoded as a float (chan 3)
+        11   xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  actual Voltage encoded as a float (chan 4)
+        12   xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  actual Current encoded as a float (chan 4)
+        13   xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  actual Voltage encoded as a float (chan 5)
+        14   xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  actual Current encoded as a float (chan 5)
+        15   xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  actual Voltage encoded as a float (chan 6)
+        16   xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  actual Current encoded as a float (chan 6)
+        17   xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  actual Voltage encoded as a float (chan 7)
+        18   xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx  actual Current encoded as a float (chan 7)
+        """
+
+        event_data_int = np.fromstring(event_data_bytes,dtype=np.uint32)
+        event_data_float = np.fromstring(event_data_bytes,dtype=np.float32)
+
+        # print(event_data_int)
+        # print(event_data_float)
+
+        enabled = np.zeros(8)     #enabled channels
+        voltage = np.zeros(8)
+        current = np.zeros(8)
+        timestamp = event_data_int[2]
+
+        for i,j in enumerate(enabled):
+            enabled[i] = (event_data_int[0]>>(4*i) & 0xF)
+
+            if(verbose):
+                if(enabled[i] != 0):
+                    print("Channel %d is enabled" % (i))
+                else:
+                    print("Channel %d is disabled" % (i))
+
+        for i,j in enumerate(voltage):
+            voltage[i] = event_data_float[3+(2*i)]
+            current[i] = event_data_float[4+(2*i)]
+
+        if(verbose):    
+            print("HV voltages: ",voltage)
+            print("HV currents: ",current)
+
+        # self.values["channel"] = channel
+        self.values["timestamp"] = timestamp
+        self.values["voltage"] = voltage
+        self.values["current"] = current
+        self.values["enabled"] = enabled
+
+        return voltage, current, timestamp, enabled

@@ -118,8 +118,8 @@ def main():
     
     while (n < n_max and f_in.tell() < file_size):# and f_in.tell() < file_size):
         n = n+1
-        if verbose and n%1000==0:
-            update_progress( float(f_in.tell()) / file_size )
+        # if verbose and n%1000==0:
+        #     update_progress( float(f_in.tell()) / file_size )
 
         try:
             # print("\nLoading event %d:" % (n))
@@ -134,16 +134,32 @@ def main():
         if(data_id not in decodable_ids):
             try: 
                 anId = id_dict[data_id]
-                # print("This event was from a", anId[0], "(",anId[1] ,") device, which we don't have a decoder for, so we'll skip it...")
+                print("No decoder for", anId[0], "(",anId[1] ,") device. Skipping...")
             except:
-                # print("This event has a data ID of ",data_id, "which wasn't in the header dictionary, hopefully it wasn't important")
+                print("Data ID of ",data_id, " wasn't in the header dictionary, hopefully it wasn't important")
                 pass
             continue
         
         # print("Decoding event %d:" % (n))
-        # 
+        
+        # Set up my decoders
         g4 = dl.Gretina4m_Decoder()
-        timestamp,energy,channel,wf_data = g4.decode_event(event_data)
+        mjd = dl.MJDPreamp_Decoder()
+        hv = dl.ISegHV_Decoder()
+
+        if(id_dict[data_id][0] == hv.get_name()):
+            print("Decoding HV...")
+            hv.decode_event(event_data)
+            continue
+            
+        if(id_dict[data_id][0] == mjd.get_name()):
+            print("Decoding MJD Preamp...")
+            mjd.decode_event(event_data)
+            continue
+
+        if(id_dict[data_id][0] == g4.get_name()):
+            # print("Decoding gretina")
+            timestamp,energy,channel,wf_data = g4.decode_event(event_data)
 
         #TODO: this is totally mysterious to me.  why bitshift 9??
         # SJM: it would be 8, but I think for MJD, crate numbers are 1-indexed
