@@ -16,25 +16,13 @@ except ImportError:
 
 if __name__ == "__main__":
 
-    # The root of the siggen repo.
-    basedir = os.path.dirname(os.path.abspath(__file__))
-
-
-    # Set up the C++-extension.
-    include_dirs = [
-        "pygama",
-        os.path.join(basedir, "c")
-    ]
-
     try:
         import numpy as np
-        include_dirs += [np.get_include(),]
+        include_dirs = [np.get_include(),]
     except ImportError:
         do_cython = False
 
-    src = [os.path.join(basedir, "c", fn) for fn in [
-        "siginspect.c",
-    ]]
+    src = []
     ext = ".pyx" if do_cython else ".c"
     src += [
         os.path.join("pygama", "_pygama"+ext)
