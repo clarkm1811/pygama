@@ -2,6 +2,15 @@ import plistlib
 import sys
 
 def parse_header(xmlfile):
+    """
+        Opens the given file for binary read ('rb'), then grabs the first 8 bytes as variable ba
+        The first 4 bytes (1 long) of an orca data file are the total length in longs of the record
+        The next 4 bytes (1 long) is the length of the header in bytes
+
+        The header is then read in
+
+        These two lengths are 
+    """
     with open(xmlfile, 'rb') as xmlfile_handle:
         #read the first word:
         ba = bytearray(xmlfile_handle.read(8))
@@ -17,7 +26,7 @@ def parse_header(xmlfile):
         i = from_bytes(ba[:4], big_endian=big_endian)
         j = from_bytes(ba[4:], big_endian=big_endian)
 
-        #read in the next that-many bytes
+        #read in the next that-many bytes that occupy the plist header
         ba = bytearray(xmlfile_handle.read(j))
 
         #convert to string
@@ -53,6 +62,30 @@ def get_data_id(headerDict, class_name, super_name):
     id_int = headerDict["dataDescription"][class_name][super_name]["dataId"]
 
     return id_int >> 18
+
+def flip_data_ids(headerDict):
+    """
+        Returns an inverted dictionary such that:
+        Could be extended somehow to give you all the supers associated with a given class name (maybe like)
+            flipped[dataId] = [class_key, [super1, super2, ...]]
+    """
+    flipped = dict()
+    # headerDict["dataDescription"][class_name][super_name]["dataId"]
+    for class_key in headerDict["dataDescription"].keys():
+        super_keys_list = []
+        for super_key in headerDict["dataDescription"][class_key].keys():
+            super_keys_list.append(super_key)
+            ID_val = (headerDict["dataDescription"][class_key][super_key]["dataId"])>>18
+            flipped[ID_val] = [class_key,super_keys_list]
+
+
+    # this one just gives a single super             flipped[dataId] = [class_key, super_key]
+    # for class_key in headerDict["dataDescription"].keys():
+    #     super_keys_list = headerDict["dataDescription"][class_key].keys()
+    #     ID_val = (headerDict["dataDescription"][class_key][super_keys_list[0]]["dataId"])>>18
+    #     flipped[ID_val] = [class_key,super_keys_list]
+
+    return flipped
 
 def get_header_dataframe_info(headerDict):
     #key by card-crate-channel
