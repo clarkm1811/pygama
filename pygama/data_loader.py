@@ -93,7 +93,7 @@ class Data_Loader(metaclass=ABCMeta):
 
     def to_file(self, file_name):
         df_data = pd.DataFrame.from_dict(self.decoded_values)
-        df_data.to_hdf(file_name, key=self.name, mode='w')
+        df_data.to_hdf(file_name, key=self.name, mode='a')
 
 
 class Digitizer(Data_Loader):
@@ -175,7 +175,7 @@ class Gretina4m_Decoder(Digitizer):
             "timestamp": timestamp,
             "channel": crate_card_chan,
             "board_id":board_id,
-            "waveform": [np.array(wf_arr, dtype=np.uint16)]
+            "waveform": [np.array(wf_arr, dtype=np.int16)]
         }
         return data
 
