@@ -120,7 +120,7 @@ class Gretina4m_Decoder(Digitizer):
     def __init__(self):
         super().__init__()
 
-        self.name = 'ORGretina4M'
+        self.name = 'ORGretina4MWaveformDecoder' #ORGretina4M'
 
         self.event_header_length = 30
         self.wf_length = 2018
@@ -404,7 +404,7 @@ class MJDPreamp_Decoder(Poller):
         super().__init__()
         self.event_header_length = -1
 
-        self.name = 'MJDPreAmpModel'
+        self.name = 'ORMJDPreAmpDecoderForAdc' #MJDPreAmpModel'
 
         return
 
@@ -468,7 +468,7 @@ class ISegHV_Decoder(Poller):
     def __init__(self):
         super().__init__()
         self.event_header_length = -1
-        self.name = 'ORiSegHVCard'
+        self.name = 'ORiSegHVCardDecoderForHV' #ORiSegHVCard'
 
         return
 
