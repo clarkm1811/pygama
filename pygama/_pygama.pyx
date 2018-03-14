@@ -29,7 +29,15 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
   output_dir = os.getcwd() if output_dir is None else output_dir
 
   #parse the header (in python)
+
   reclen, reclen2, headerDict = parse_header(filename)
+
+  #TODO: do something useful with parsing out the MJ model
+  # detector_info = StringIO( headerDict["ObjectInfo"]["MajoranaModel"]["DetectorGeometry"] )
+  # df = pd.read_csv(detector_info, index_col=0, na_values="--")
+  # df = df.dropna()
+  # print (df)
+  # exit()
 
   print("Header parsed.")
   print("   %d longs (in plist header)" % reclen)
@@ -109,43 +117,42 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
   appended_data_map = {}
 
   print("Beginning Tier 0 processing of file {}...".format(filename))
-  n = 0 #number of events decoded
-  while (n < n_max and f_in.tell() < file_size):# and f_in.tell() < file_size):
-      n += 1
+  event_number = 0 #number of events decoded
+  while (event_number < n_max and f_in.tell() < file_size):# and f_in.tell() < file_size):
+    event_number +=1
+    if verbose and event_number%1000==0:
+        update_progress( float(f_in.tell()) / file_size )
 
-      if verbose and n%1000==0:
-          update_progress( float(f_in.tell()) / file_size )
+    try:
+        event_data, card, crate, data_id = dl.Data_Loader.get_next_event(f_in)
+    except EOFError:
+        break
+    # except ValueError:
+    #     continue
+    except Exception as e:
+        print("Failed to get the next event... (Exception: {})".format(e))
+        break
 
-      try:
-          event_data, card, crate, data_id = dl.Data_Loader.get_next_event(f_in)
-      except EOFError:
-          break
-      # except ValueError:
-      #     continue
-      except Exception as e:
-          print("Failed to get the next event... (Exception: {})".format(e))
-          break
+    try:
+        decoder = id_to_decoder[data_id]
+    except KeyError:
+        if data_id not in id_dict and data_id not in unrecognized_data_ids:
+          unrecognized_data_ids.append(data_id)
+        continue
 
-      try:
-          decoder = id_to_decoder[data_id]
-      except KeyError:
-          if data_id not in id_dict and data_id not in unrecognized_data_ids:
-            unrecognized_data_ids.append(data_id)
-          continue
+    decoder.decode_event(event_data, event_number, crate, card)
 
-      decoder.decode_event(event_data)
-
-          # if data_dict["channel"] not in active_channels:
-          #   # print("Data read for channel %d: not an active channel" % crate_card_chan)
-          #   continue
-          # if chanList is not None and crate_card_chan not in chanList:
-          #   continue
-          #
-          # if crate_card_chan not in board_id_map:
-          #    board_id_map[crate_card_chan] = board_id
-          # else:
-          #    if not board_id_map[crate_card_chan] == board_id:
-          #        print("WARNING: previously channel %d had board serial id %d, now it has id %d" % (crate_card_chan, board_id_map[crate_card_chan], board_id))
+    # if data_dict["channel"] not in active_channels:
+    #   # print("Data read for channel %d: not an active channel" % crate_card_chan)
+    #   continue
+    # if chanList is not None and crate_card_chan not in chanList:
+    #   continue
+    #
+    # if crate_card_chan not in board_id_map:
+    #    board_id_map[crate_card_chan] = board_id
+    # else:
+    #    if not board_id_map[crate_card_chan] == board_id:
+    #        print("WARNING: previously channel %d had board serial id %d, now it has id %d" % (crate_card_chan, board_id_map[crate_card_chan], board_id))
 
   f_in.close()
   if verbose: update_progress(1)
@@ -159,6 +166,11 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
 
 
   t1_file_name = os.path.join(output_dir, output_file_string+'_run{}.h5'.format(runNumber))
+
+
+  if os.path.isfile(t1_file_name):
+    if verbose: print("Over-writing tier1 file {}...".format(t1_file_name))
+    os.remove(t1_file_name)
 
   if verbose: print("Writing {} to tier1 file {}...".format(filename, t1_file_name))
   [d.to_file(t1_file_name) for d in decoders]

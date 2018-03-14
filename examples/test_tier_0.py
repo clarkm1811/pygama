@@ -18,9 +18,20 @@ def plot_baselines():
     df_preamp =  pd.read_hdf("t1_run35366.h5", key="MJDPreAmpModel")
 
     #plot the
-    baselines = np.zeros((16, len(df_preamp)))
-    timestamps = np.zeros((len(df_preamp)))
+
+
+
     for i, (index, row) in enumerate(df_preamp.iterrows()):
+        crate = row.crate
+        card = row.card
+
+        crate_card = (crate << 9) + (card << 4)
+
+        try:
+            baselines[crate_card][:,i] = row.adc
+        except KeyError:
+            baselines[crate_card] = np.zeros((16, ((df_preamp.card == card) & (df_preamp.crate == crate)   )))
+
         baselines[:,i] = row.adc
         enabled_mask = row.enabled.astype(np.bool)
 
@@ -29,7 +40,7 @@ def plot_baselines():
         timestamps[i] = row.timestamp
     plt.figure()
 
-    timestamps = [ dt.datetime.fromtimestamp(t) for t in timestamps]
+    # timestamps = [ dt.datetime.fromtimestamp(t) for t in timestamps]
 
     for i in range(baselines.shape[0]):
         plt.plot(timestamps, baselines[i,:], marker='+', ls=":", label="Channel {}".format(i))

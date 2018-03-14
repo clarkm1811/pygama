@@ -1,13 +1,14 @@
 from abc import ABCMeta, abstractmethod
 import numpy as np
 import pandas as pd
+import sys
 
 class Data_Loader(metaclass=ABCMeta):
     def __init__(self):
         self.decoded_values = []
 
     @abstractmethod
-    def decode_event(self,event_data_bytes):
+    def decode_event(self,event_data_bytes, event_number):
         pass
 
     # @abstractmethod
@@ -30,7 +31,7 @@ class Data_Loader(metaclass=ABCMeta):
         # This matches the bitwise arithmetic used elsewhere best, and is easy to implement
         # Using a
 
-        NCRATES = 10
+        # NCRATES = 10
 
         try:
             head = np.fromstring(f_in.read(8),dtype=np.uint32)     # event header is 8 bytes (2 longs)
@@ -94,7 +95,7 @@ class Digitizer(Data_Loader):
     def __init__(self):
         super().__init__()
 
-    def decode_event(self,event_data_bytes):
+    def decode_event(self,event_data_bytes, event_number):
         pass
 
     # def decode_header():
@@ -104,7 +105,7 @@ class Poller(Data_Loader):
     def __init__(self):
         super().__init__()
 
-    def decode_event(self,event_data_bytes):
+    def decode_event(self,event_data_bytes, event_number):
         pass
 
 class Gretina4m_Decoder(Digitizer):
@@ -126,7 +127,7 @@ class Gretina4m_Decoder(Digitizer):
         return
 
 
-    def decode_event(self,event_data_bytes, crate=0, card=0):
+    def decode_event(self,event_data_bytes, event_number, crate=0, card=0):
         # parse_event_data(evtdat, &timestamp, &energy, &channel)
         """
             Parse the header for an individual event
@@ -154,6 +155,7 @@ class Gretina4m_Decoder(Digitizer):
 
 
         data_dict = self.format_data(energy,timestamp, crate_card_chan, wf_data, board_id)
+        data_dict["event_number"] = event_number
         self.decoded_values.append(data_dict)
 
         return data_dict
@@ -215,7 +217,7 @@ class MJDPreamp_Decoder(Poller):
 
         return
 
-    def decode_event(self,event_data_bytes,verbose=False):
+    def decode_event(self,event_data_bytes,event_number, crate=0, card=0, verbose=False):
         """
             Decodes the data from a MJDPreamp Object.
             Returns:
@@ -260,6 +262,9 @@ class MJDPreamp_Decoder(Poller):
         data_dict["adc"] = adc_val
         data_dict["timestamp"] = timestamp
         data_dict["enabled"] = enabled
+        data_dict["crate"] = crate
+        data_dict["card"] = card
+        data_dict["event_number"] = event_number
 
         self.decoded_values.append(data_dict)
 
@@ -274,7 +279,7 @@ class ISegHV_Decoder(Poller):
 
         return
 
-    def decode_event(self,event_data_bytes,verbose=False):
+    def decode_event(self,event_data_bytes,crate=0, card=0, verbose=False):
         """
             Decodes an iSeg HV Card event
 
@@ -340,6 +345,9 @@ class ISegHV_Decoder(Poller):
         data_dict["voltage"] = voltage
         data_dict["current"] = current
         data_dict["enabled"] = enabled
+        data_dict["crate"] = crate
+        data_dict["card"] = card
+        data_dict["event_number"] = event_number
 
         self.decoded_values.append(data_dict)
 

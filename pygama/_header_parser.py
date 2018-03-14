@@ -9,7 +9,7 @@ def parse_header(xmlfile):
 
         The header is then read in
 
-        These two lengths are 
+        These two lengths are
     """
     with open(xmlfile, 'rb') as xmlfile_handle:
         #read the first word:
