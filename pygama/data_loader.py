@@ -408,7 +408,7 @@ class MJDPreamp_Decoder(Poller):
 
         return
 
-    def decode_event(self,event_data_bytes,event_number, crate=0, card=0, verbose=False):
+    def decode_event(self,event_data_bytes,event_number, verbose=False):
         """
             Decodes the data from a MJDPreamp Object.
             Returns:
@@ -432,7 +432,8 @@ class MJDPreamp_Decoder(Poller):
         event_data_uint = np.fromstring(event_data_bytes,dtype=np.uint32)
         event_data_float = np.fromstring(event_data_bytes,dtype=np.float32)
 
-        timestamp = event_data_uint[0]
+        device_id = (event_data_uint[0]&0xFFF)
+        timestamp = event_data_uint[1]
         enabled = np.zeros(16)
         adc_val = np.zeros(16)
 
@@ -451,18 +452,24 @@ class MJDPreamp_Decoder(Poller):
         if(verbose):
             print(adc_val)
 
-        data_dict={}
-        data_dict["adc"] = adc_val
-        data_dict["timestamp"] = timestamp
-        data_dict["enabled"] = enabled
-        data_dict["crate"] = crate
-        data_dict["card"] = card
-        data_dict["event_number"] = event_number
-
+        data_dict = self.format_data(adc_val, timestamp, enabled, device_id, event_number)
         self.decoded_values.append(data_dict)
 
         return data_dict
 
+    def format_data(self, adc_val, timestamp, enabled, device_id, event_number):
+        """
+        Format the values that we get from this card into a pandas-friendly format.
+        """
+
+        data = {
+            "adc" : adc_val,
+            "timestamp" : timestamp,
+            "enabled" : enabled,
+            "device_id" : device_id,
+            "event_number" : event_number
+        }
+        return data
 
 class ISegHV_Decoder(Poller):
     def __init__(self):
@@ -537,15 +544,25 @@ class ISegHV_Decoder(Poller):
             print("HV currents: ",current)
 
         # self.values["channel"] = channel
-        data_dict={}
-        data_dict["timestamp"] = timestamp
-        data_dict["voltage"] = voltage
-        data_dict["current"] = current
-        data_dict["enabled"] = enabled
-        data_dict["crate"] = crate
-        data_dict["card"] = card
-        data_dict["event_number"] = event_number
 
+        data_dict = self.format_data(timestamp, voltage, current, enabled, crate, card, event_number)
         self.decoded_values.append(data_dict)
 
         return data_dict
+
+    def format_data(self, timestamp, voltage, current, enabled, crate, card, event_number):
+        """
+        Format the values that we get from this card into a pandas-friendly format.
+        """
+
+        data = {
+            "timestamp" : timestamp,
+            "voltage" : voltage,
+            "current" : current,
+            "enabled" : enabled,
+            "crate" : crate,
+            "card" : card,
+            "event_number" : event_number
+        }
+
+        return data
