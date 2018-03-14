@@ -120,9 +120,10 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
           event_data, card, crate, data_id = dl.Data_Loader.get_next_event(f_in)
       except EOFError:
           break
+      # except ValueError:
+      #     continue
       except Exception as e:
-          print("Failed to get the next event... (Exception: ",e,")")
-          # print(e)
+          print("Failed to get the next event... (Exception: {})".format(e))
           break
 
       try:
@@ -149,11 +150,12 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
   f_in.close()
   if verbose: update_progress(1)
 
-  print("\nGarbage Report!:")
-  print("Found the following data IDs which were not present in the header:")
-  for id in unrecognized_data_ids:
-    print ("  {}".format(id))
-  print("hopefully they weren't important!\n")
+  if len(unrecognized_data_ids) > 0:
+    print("\nGarbage Report!:")
+    print("Found the following data IDs which were not present in the header:")
+    for id in unrecognized_data_ids:
+      print ("  {}".format(id))
+    print("hopefully they weren't important!\n")
 
 
   t1_file_name = os.path.join(output_dir, output_file_string+'_run{}.h5'.format(runNumber))

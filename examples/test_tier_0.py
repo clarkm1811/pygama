@@ -8,13 +8,14 @@ from pygama.processing import process_tier_0
 import pygama.data_loader as dl
 
 def main():
-    # process()
+    process()
     plot_baselines()
+    # plot_waveforms()
 
     plt.show()
 
 def plot_baselines():
-    df_preamp =  pd.read_hdf("t1_run11510.h5", key="MJDPreAmpModel")
+    df_preamp =  pd.read_hdf("t1_run35366.h5", key="MJDPreAmpModel")
 
     #plot the
     baselines = np.zeros((16, len(df_preamp)))
@@ -35,7 +36,7 @@ def plot_baselines():
     plt.legend()
 
 def plot_waveforms():
-    df_gretina = pd.read_hdf("t1_run11510.h5", key="ORGretina4M")
+    df_gretina = pd.read_hdf("t1_run35366.h5", key="ORGretina4M")
 
 
     plt.figure()
@@ -49,7 +50,7 @@ def process():
     mjd_data_dir = os.path.join(os.getenv("DATADIR", "."), "mjd")
     raw_data_dir = os.path.join(mjd_data_dir,"raw")
 
-    runList = [11510]
+    runList = [35366]
 
     mjd = dl.MJDPreamp_Decoder()
     hv = dl.ISegHV_Decoder()

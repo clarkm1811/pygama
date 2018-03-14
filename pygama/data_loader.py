@@ -30,12 +30,6 @@ class Data_Loader(metaclass=ABCMeta):
         # This matches the bitwise arithmetic used elsewhere best, and is easy to implement
         # Using a
 
-        head = np.zeros(2)
-        data_id = None
-        # board_id = 0
-        # current_runNumber = 0
-        slot = 0
-        crate = 0
         NCRATES = 10
 
         try:
@@ -52,15 +46,11 @@ class Data_Loader(metaclass=ABCMeta):
         # reserved        = (head[4] + (head[5]<<8))
 
         # Using an array of uint32
-        record_length   = (head[0] & 0x3FFFF)
-        data_id         = (head[0] >> 18)
-        slot            = (head[1] >> 16) & 0x1f
-        crate           = (head[1] >> 21) & 0xf
-        reserved        = (head[1] &0xFFFF)
-
-        if (crate < 0 or crate > NCRATES or slot  < 0 or slot > 20):
-            print("ERROR: Illegal VME crate or slot number %d %d\n" %( crate, slot))
-            raise Exception("Encountered an invalid value of the crate or slot number...")
+        record_length   =int( (head[0] & 0x3FFFF))
+        data_id         =int( (head[0] >> 18))
+        slot            =int( (head[1] >> 16) & 0x1f)
+        crate           =int( (head[1] >> 21) & 0xf)
+        reserved        =int( (head[1] &0xFFFF))
 
         # /* ========== read in the rest of the event data ========== */
         try:
@@ -69,6 +59,10 @@ class Data_Loader(metaclass=ABCMeta):
             print("  No more data...\n")
             print(e)
             raise EOFError
+
+        # if (crate < 0 or crate > NCRATES or slot  < 0 or slot > 20):
+        #     print("ERROR: Illegal VME crate or slot number {} {} (data ID {})".format(crate, slot,data_id))
+        #     raise ValueError("Encountered an invalid value of the crate or slot number...")
 
         return event_data, slot, crate, data_id
 

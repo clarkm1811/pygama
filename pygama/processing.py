@@ -1,6 +1,6 @@
 import sys, os, glob
 
-from pygama import ProcessTier0,ProcessTier1, TierOneProcessorList
+from ._pygama import ProcessTier0,ProcessTier1, TierOneProcessorList
 from .calculators import *
 from .transforms import *
 
