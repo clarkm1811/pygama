@@ -87,6 +87,25 @@ def flip_data_ids(headerDict):
 
     return flipped
 
+def get_decoder_for_id(headerDict):
+    """
+        Returns a dictionary that goes:
+            dict[dataIdNum] = "decoderName"
+
+            e.g: d[5] = 'ORSIS3302DecoderForEnergy'
+    """
+    d = dict()
+    for class_key in headerDict["dataDescription"].keys():
+        super_keys_list = []
+        for super_key in headerDict["dataDescription"][class_key].keys():
+            super_keys_list.append(super_key)
+            ID_val = (headerDict["dataDescription"][class_key][super_key]["dataId"])>>18
+            decoderName = headerDict["dataDescription"][class_key][super_key]["decoder"]
+            
+            d[ID_val] = decoderName
+
+    return d
+
 def get_header_dataframe_info(headerDict):
     #key by card-crate-channel
     d = []
