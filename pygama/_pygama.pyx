@@ -64,13 +64,15 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
 
   #TODO: This is all pretty hard to read & comprehend easily.  Can we clean it up?
 
-  id_dict = flip_data_ids(headerDict)
+  #id_dict = flip_data_ids(headerDict)
+  id_dict = get_decoder_for_id(headerDict)
+
   print("The Data IDs present in this file (header) are:")
   for id in id_dict:
     print("    {}: {}".format(id, id_dict[id]))
 
   #find unique decoders actually used in the data
-  used_decoder_names =  set([id_dict[id][0] for id in id_dict])
+  used_decoder_names =  set([id_dict[id] for id in id_dict])
 
   if decoders is None:
     # The decoders variable is a list of all the decoders that exist in pygama
@@ -90,18 +92,23 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
 
   #Build a map from data id to decoder
   id_to_decoder = {}
+#  id_to_decoder = id_dict
   for id in id_dict:
     try:
-      id_to_decoder[id] = decoders[decoder_names.index(id_dict[id][0])]
+      id_to_decoder[id] = decoders[decoder_names.index(id_dict[id])]
     except ValueError:
       #if there isn't a decover available, we already warned everyone
       pass
 
+  print("id_to_decoder contains:")
+  print("    ",id_to_decoder)
+
   #read all header info into a single, channel-keyed data frame for saving
-  headerinfo = get_header_dataframe_info(headerDict)
-  df_channels = pd.DataFrame(headerinfo)
-  df_channels.set_index("channel", drop=False, inplace=True)
-  active_channels = df_channels["channel"].values
+
+#  headerinfo = get_header_dataframe_info(headerDict)
+#  df_channels = pd.DataFrame(headerinfo)
+#  df_channels.set_index("channel", drop=False, inplace=True)
+#  active_channels = df_channels["channel"].values
 
   # print("Active channels:",active_channels)
   # if chanList is not None:
@@ -124,7 +131,7 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
         update_progress( float(f_in.tell()) / file_size )
 
     try:
-        event_data, card, crate, data_id = dl.Data_Loader.get_next_event(f_in)
+        event_data, data_id = dl.Data_Loader.get_next_event(f_in)
     except EOFError:
         break
     # except ValueError:
@@ -140,7 +147,7 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
           unrecognized_data_ids.append(data_id)
         continue
 
-    decoder.decode_event(event_data, event_number, crate, card)
+    decoder.decode_event(event_data, event_number)
 
     # if data_dict["channel"] not in active_channels:
     #   # print("Data read for channel %d: not an active channel" % crate_card_chan)
