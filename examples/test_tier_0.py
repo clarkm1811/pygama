@@ -10,33 +10,51 @@ import pygama.data_loader as dl
 def main():
     # process()
     plot_baselines()
-    # plot_waveforms()
+    #plot_waveforms()
 
     plt.show()
 
-def plot_baselines():
+def plot_baselines(draw_non_detectors=True):
     df_preamp =  pd.read_hdf("t1_run35366.h5", key="ORMJDPreAmpDecoderForAdc")
-
     plt.figure()
 
-    for device_num, device_id in enumerate(df_preamp.device_id.unique()):
-        # print(device_id)
-        df_device = df_preamp[df_preamp.device_id == device_id]
+    # I thought it might be faster to get a separate df for each device, but it doesn't seem to be the case...
+    # for an_id in df_preamp.device_id.unique():
+    #     df_device = df_preamp[df_preamp.device_id == an_id]
 
-        baselines = np.zeros((16, len(df_device)))
-        timestamps = np.zeros((len(df_device)))
+    #     for a_ch in df_device.channel.unique():
+    #         ts = df_device.timestamp[df_device.device_id == an_id][df_device.channel == a_ch].tolist()      # timestamp 
+    #         ts_f = [ dt.datetime.fromtimestamp(t) for t in ts]                                              # formatted ts object
+    #         v = df_device.adc[df_device.device_id == an_id][df_device.channel == a_ch].tolist()             # voltage reading
 
-        for i, (index, row) in enumerate(df_device.iterrows()):
-            baselines[:,i] = row.adc
-            enabled_mask = row.enabled.astype(np.bool)
-            baselines[~enabled_mask,i] = np.nan
-            timestamps[i] = row.timestamp
+    #         if df_device.enabled[df_device.device_id == an_id][df_device.channel == a_ch].any():            # check that the channel is enabled before plotting
+    #             detector_name = df_device.name[df_device.device_id == an_id][df_device.channel == a_ch].tolist()[0]
+    #             if detector_name != '':
+    #                 plt.plot(ts_f,v, marker='+',ls=":", label="{} ".format(detector_name))
+    #             else:   # don't add a legent key unless we're looking at a named detector channel
+    #                 plt.plot(ts_f,v, marker='+',ls=":")
 
-        timestamps = [ dt.datetime.fromtimestamp(t) for t in timestamps]
+    for an_id in df_preamp.device_id.unique():        
+        for a_ch in df_preamp.channel.unique():
+            ts = df_preamp.timestamp[df_preamp.device_id == an_id][df_preamp.channel == a_ch].tolist()      # timestamp 
+            ts_f = [ dt.datetime.fromtimestamp(t) for t in ts]                                              # formatted ts object
+            v = df_preamp.adc[df_preamp.device_id == an_id][df_preamp.channel == a_ch].tolist()             # voltage reading
 
-        for i in range(baselines.shape[0]):
-            plt.plot(timestamps, baselines[i,:], marker='+', ls=":", label="Channel {}".format(i))
-    # plt.legend()
+            if df_preamp.enabled[df_preamp.device_id == an_id][df_preamp.channel == a_ch].any():            # check that the channel is enabled before plotting
+                detector_name = df_preamp.name[df_preamp.device_id == an_id][df_preamp.channel == a_ch].any()
+                if detector_name != '':
+                    plt.plot(ts_f,v, marker='+',ls=":", label="{} ".format(detector_name))
+                else:   # don't add a legent key unless we're looking at a named detector channel
+                    if(draw_non_detectors):
+                        plt.plot(ts_f,v, marker='+',ls=":")
+
+    plt.legend()
+    plt.show()
+
+
+
+
+
 
 def plot_waveforms():
     df_gretina = pd.read_hdf("t1_run35366.h5", key="ORGretina4MWaveformDecoder")

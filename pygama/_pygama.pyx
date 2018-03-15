@@ -147,7 +147,7 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
           unrecognized_data_ids.append(data_id)
         continue
 
-    decoder.decode_event(event_data, event_number)
+    decoder.decode_event(event_data, event_number, headerDict )
 
     # if data_dict["channel"] not in active_channels:
     #   # print("Data read for channel %d: not an active channel" % crate_card_chan)

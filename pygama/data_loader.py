@@ -84,7 +84,7 @@ class Data_Loader(metaclass=ABCMeta):
         self.decoded_values = []
 
     @abstractmethod
-    def decode_event(self,event_data_bytes, event_number):
+    def decode_event(self,event_data_bytes, event_number, header_dict):
         pass
 
     # @abstractmethod
@@ -100,7 +100,7 @@ class Digitizer(Data_Loader):
     def __init__(self):
         super().__init__()
 
-    def decode_event(self,event_data_bytes, event_number):
+    def decode_event(self,event_data_bytes, event_number, header_dict):
         pass
 
     # def decode_header():
@@ -110,7 +110,7 @@ class Poller(Data_Loader):
     def __init__(self):
         super().__init__()
 
-    def decode_event(self,event_data_bytes, event_number):
+    def decode_event(self,event_data_bytes, event_number, header_dict):
         pass
 
 class Gretina4m_Decoder(Digitizer):
@@ -132,7 +132,7 @@ class Gretina4m_Decoder(Digitizer):
         return
 
 
-    def decode_event(self,event_data_bytes, event_number):
+    def decode_event(self,event_data_bytes, event_number, header_dict):
         # parse_event_data(evtdat, &timestamp, &energy, &channel)
         """
             Parse the header for an individual event
@@ -213,7 +213,7 @@ class SIS3302_Decoder(Digitizer):
     def get_name(self):
         return self.name
 
-    def decode_event(self,event_data_bytes, event_number, verbose=False):
+    def decode_event(self,event_data_bytes, event_number, header_dict, verbose=False):
         """
         The SIS3302 can produce a waveform from two sources:
             1: ADC raw data buffer: This is a normal digitizer waveform
@@ -409,7 +409,7 @@ class MJDPreamp_Decoder(Poller):
 
         return
 
-    def decode_event(self,event_data_bytes,event_number, verbose=False):
+    def decode_event(self, event_data_bytes, event_number, header_dict, verbose=False):
         """
             Decodes the data from a MJDPreamp Object.
             Returns:
@@ -438,6 +438,8 @@ class MJDPreamp_Decoder(Poller):
         enabled = np.zeros(16)
         adc_val = np.zeros(16)
 
+        detector_names = self.get_detectors_for_preamp(header_dict,device_id)
+
         for i,val in enumerate(enabled):
             enabled[i] = (event_data_uint[2]>>(i) & 0x1)
 
@@ -453,24 +455,83 @@ class MJDPreamp_Decoder(Poller):
         if(verbose):
             print(adc_val)
 
-        data_dict = self.format_data(adc_val, timestamp, enabled, device_id, event_number)
-        self.decoded_values.append(data_dict)
+        data_dict = self.format_data(adc_val, timestamp, enabled, device_id, detector_names, event_number)
+        for d in data_dict:
+            self.decoded_values.append(d)
 
         return data_dict
 
-    def format_data(self, adc_val, timestamp, enabled, device_id, event_number):
+    def format_data(self, adc_val, timestamp, enabled, device_id, detector_names, event_number):
         """
         Format the values that we get from this card into a pandas-friendly format.
         """
+        data = []
 
-        data = {
-            "adc" : adc_val,
-            "timestamp" : timestamp,
-            "enabled" : enabled,
-            "device_id" : device_id, #The first number is just which preamp object it is in the data record, and the second one is which preamp it is in the orca dialog.
-            "event_number" : event_number
-        }
+        # print(detector_names)
+
+        for i,enabled_val in enumerate(enabled):
+            d = {
+                "adc" : adc_val[i-1],
+                "enabled" : enabled_val,
+                "timestamp" : timestamp,
+                "name" : detector_names[i-1],
+                "channel" : i-1,
+                "device_id" : device_id,
+                "event_number" : event_number
+            }
+            data.append(d)
         return data
+    
+    def get_detectors_for_preamp(self,header_dict,an_ID):
+        """
+            Returns a dictionary that goes:
+                dict[preamp_id] = ["detectorName1", "detectorName2"...
+
+                e.g: d[5] = ['P12345A','P12346B','', ... 'B8765']
+        """
+
+        for preampNum in header_dict["ObjectInfo"]["AuxHw"]:
+
+            preamp_ID = preampNum["MJDPreAmp"]["preampID"]
+            if(preamp_ID == an_ID):
+                # channel_names = 
+                #     "0" : headerDict["ObjectInfo"]["AuxHw"][preampNum]["MJDPreAmp"]["detectorName0"],
+                #     "1" : headerDict["ObjectInfo"]["AuxHw"][preampNum]["MJDPreAmp"]["detectorName1"],
+                #     "2" : headerDict["ObjectInfo"]["AuxHw"][preampNum]["MJDPreAmp"]["detectorName2"],
+                #     "3" : headerDict["ObjectInfo"]["AuxHw"][preampNum]["MJDPreAmp"]["detectorName3"],
+                #     "4" : headerDict["ObjectInfo"]["AuxHw"][preampNum]["MJDPreAmp"]["detectorName4"],
+                #     "5" : headerDict["ObjectInfo"]["AuxHw"][preampNum]["MJDPreAmp"]["detectorName5"],
+                #     "6" : headerDict["ObjectInfo"]["AuxHw"][preampNum]["MJDPreAmp"]["detectorName6"],
+                #     "7" : headerDict["ObjectInfo"]["AuxHw"][preampNum]["MJDPreAmp"]["detectorName7"],
+                #     "8" : headerDict["ObjectInfo"]["AuxHw"][preampNum]["MJDPreAmp"]["detectorName8"],
+                #     "9" : headerDict["ObjectInfo"]["AuxHw"][preampNum]["MJDPreAmp"]["detectorName9"],
+                #     "10" : headerDict["ObjectInfo"]["AuxHw"][preampNum]["MJDPreAmp"]["detectorName10"],
+                #     "11" : headerDict["ObjectInfo"]["AuxHw"][preampNum]["MJDPreAmp"]["detectorName11"],
+                #     "12" : headerDict["ObjectInfo"]["AuxHw"][preampNum]["MJDPreAmp"]["detectorName12"],
+                #     "13" : headerDict["ObjectInfo"]["AuxHw"][preampNum]["MJDPreAmp"]["detectorName13"],
+                #     "14" : headerDict["ObjectInfo"]["AuxHw"][preampNum]["MJDPreAmp"]["detectorName14"],
+                #     "15" : headerDict["ObjectInfo"]["AuxHw"][preampNum]["MJDPreAmp"]["detectorName15"],
+                # }
+
+                channel_names = [
+                    preampNum["MJDPreAmp"]["detectorName0"],
+                    preampNum["MJDPreAmp"]["detectorName1"],
+                    preampNum["MJDPreAmp"]["detectorName2"],
+                    preampNum["MJDPreAmp"]["detectorName3"],
+                    preampNum["MJDPreAmp"]["detectorName4"],
+                    "+12V",#preampNum["MJDPreAmp"]["detectorName5"],
+                    "-12V",#preampNum["MJDPreAmp"]["detectorName6"],
+                    "Temp Chip 1",#preampNum["MJDPreAmp"]["detectorName7"],
+                    preampNum["MJDPreAmp"]["detectorName8"],
+                    preampNum["MJDPreAmp"]["detectorName9"],
+                    preampNum["MJDPreAmp"]["detectorName10"],
+                    preampNum["MJDPreAmp"]["detectorName11"],
+                    preampNum["MJDPreAmp"]["detectorName12"],
+                    "+24V",#preampNum["MJDPreAmp"]["detectorName13"],
+                    "-24V",#preampNum["MJDPreAmp"]["detectorName14"],
+                    "Temp Chip 2"#preampNum["MJDPreAmp"]["detectorName15"]
+                ]
+        return channel_names
 
 class ISegHV_Decoder(Poller):
     def __init__(self):
@@ -480,7 +541,7 @@ class ISegHV_Decoder(Poller):
 
         return
 
-    def decode_event(self,event_data_bytes, event_number, verbose=False):
+    def decode_event(self,event_data_bytes, event_number, header_dict, verbose=False):
         """
             Decodes an iSeg HV Card event
 
