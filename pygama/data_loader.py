@@ -5,6 +5,79 @@ import sys
 
 import matplotlib.pyplot as plt
 
+def get_next_event(f_in):
+    """
+    Gets the next event, and some basic information about it \n
+    Takes the file pointer as input \n
+    Outputs: \n
+        event_data: a byte array of the data produced by the card (could be header + data) \n
+        slot: \n
+        crate: \n
+        data_id: This is the identifier for the type of data-taker (i.e. Gretina4M, etc) \n
+    """
+    # number of bytes to read in = 8 (2x 32-bit words, 4 bytes each)
+
+    # The read is set up to do two 32-bit integers, rather than bytes or shorts
+    # This matches the bitwise arithmetic used elsewhere best, and is easy to implement
+    # Using a
+
+    # NCRATES = 10
+
+    try:
+        head = np.fromstring(f_in.read(4),dtype=np.uint32)     # event header is 8 bytes (2 longs)
+    except Exception as e:
+        print(e)
+        raise Exception("Failed to read in the event orca header.")
+
+    # Assuming we're getting an array of bytes:
+    # record_length   = (head[0] + (head[1]<<8) + ((head[2]&0x3)<<16))
+    # data_id         = (head[2] >> 2) + (head[3]<<8)
+    # slot            = (head[6] & 0x1f)
+    # crate           = (head[6]>>5) + head[7]&0x1
+    # reserved        = (head[4] + (head[5]<<8))
+
+    # Using an array of uint32
+    record_length   =int( (head[0] & 0x3FFFF))
+    data_id         =int( (head[0] >> 18))
+    # slot            =int( (head[1] >> 16) & 0x1f)
+    # crate           =int( (head[1] >> 21) & 0xf)
+    # reserved        =int( (head[1] &0xFFFF))
+
+    # /* ========== read in the rest of the event data ========== */
+    try:
+        event_data = f_in.read(record_length*4-4)     # record_length is in longs, read gives bytes
+    except Exception as e:
+        print("  No more data...\n")
+        print(e)
+        raise EOFError
+
+    # if (crate < 0 or crate > NCRATES or slot  < 0 or slot > 20):
+    #     print("ERROR: Illegal VME crate or slot number {} {} (data ID {})".format(crate, slot,data_id))
+    #     raise ValueError("Encountered an invalid value of the crate or slot number...")
+
+    # return event_data, slot, crate, data_id
+    return event_data, data_id
+
+def get_decoders():
+    """
+        Looks through all the data takers that exist in this Data_Loader class and see which ones exist.
+    """
+
+    decoders = []
+    for sub in Data_Loader.__subclasses__():
+        for subsub in sub.__subclasses__():
+            try:
+                a = subsub()
+                # n = a.name
+                # print("name: ",n)
+                decoders.append(a)
+            except Exception as e:
+                print(e)
+                pass
+
+    return decoders
+
+
 
 class Data_Loader(metaclass=ABCMeta):
     def __init__(self):
@@ -17,78 +90,6 @@ class Data_Loader(metaclass=ABCMeta):
     # @abstractmethod
     # def decode_header(self):
     #     pass
-
-    def get_next_event(f_in):
-        """
-        Gets the next event, and some basic information about it \n
-        Takes the file pointer as input \n
-        Outputs: \n
-            event_data: a byte array of the data produced by the card (could be header + data) \n
-            slot: \n
-            crate: \n
-            data_id: This is the identifier for the type of data-taker (i.e. Gretina4M, etc) \n
-        """
-        # number of bytes to read in = 8 (2x 32-bit words, 4 bytes each)
-
-        # The read is set up to do two 32-bit integers, rather than bytes or shorts
-        # This matches the bitwise arithmetic used elsewhere best, and is easy to implement
-        # Using a
-
-        # NCRATES = 10
-
-        try:
-            head = np.fromstring(f_in.read(4),dtype=np.uint32)     # event header is 8 bytes (2 longs)
-        except Exception as e:
-            print(e)
-            raise Exception("Failed to read in the event orca header.")
-
-        # Assuming we're getting an array of bytes:
-        # record_length   = (head[0] + (head[1]<<8) + ((head[2]&0x3)<<16))
-        # data_id         = (head[2] >> 2) + (head[3]<<8)
-        # slot            = (head[6] & 0x1f)
-        # crate           = (head[6]>>5) + head[7]&0x1
-        # reserved        = (head[4] + (head[5]<<8))
-
-        # Using an array of uint32
-        record_length   =int( (head[0] & 0x3FFFF))
-        data_id         =int( (head[0] >> 18))
-        # slot            =int( (head[1] >> 16) & 0x1f)
-        # crate           =int( (head[1] >> 21) & 0xf)
-        # reserved        =int( (head[1] &0xFFFF))
-
-        # /* ========== read in the rest of the event data ========== */
-        try:
-            event_data = f_in.read(record_length*4-4)     # record_length is in longs, read gives bytes
-        except Exception as e:
-            print("  No more data...\n")
-            print(e)
-            raise EOFError
-
-        # if (crate < 0 or crate > NCRATES or slot  < 0 or slot > 20):
-        #     print("ERROR: Illegal VME crate or slot number {} {} (data ID {})".format(crate, slot,data_id))
-        #     raise ValueError("Encountered an invalid value of the crate or slot number...")
-
-        # return event_data, slot, crate, data_id
-        return event_data, data_id
-
-    def get_decoders():
-        """
-            Looks through all the data takers that exist in this Data_Loader class and see which ones exist.
-        """
-
-        decoders = []
-        for sub in Data_Loader.__subclasses__():
-            for subsub in sub.__subclasses__():
-                try:
-                    a = subsub()
-                    # n = a.name
-                    # print("name: ",n)
-                    decoders.append(a)
-                except Exception as e:
-                    print(e)
-                    pass
-
-        return decoders
 
     def to_file(self, file_name):
         df_data = pd.DataFrame.from_dict(self.decoded_values)
@@ -217,9 +218,9 @@ class SIS3302_Decoder(Digitizer):
         The SIS3302 can produce a waveform from two sources:
             1: ADC raw data buffer: This is a normal digitizer waveform
             2: Energy data buffer: Not sure what this is
-        
+
         Additionally, the ADC raw data buffer can take data in a buffer wrap mode, which seems
-        to cyclicly fill a spot on memory, and it requires that you have to re-order the records 
+        to cyclicly fill a spot on memory, and it requires that you have to re-order the records
         afterwards.
 
         The details of how this header is formatted apparently wasn't important enough for the
@@ -261,11 +262,11 @@ class SIS3302_Decoder(Digitizer):
             This code should handle arbitrary sizes of both buffers.
 
             An additional complexity arises if buffer wrap mode is enabled.
-            This apparently means the start of the buffer can be anywhere in the buffer, and 
+            This apparently means the start of the buffer can be anywhere in the buffer, and
             it must be read circularly from that point. Not sure why it is done that way, but
             this should work correctly to disentagle that.
 
-            Finally, there should be a footer of 4 long words at the end: 
+            Finally, there should be a footer of 4 long words at the end:
        -4   xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx-Energy max value
        -3   xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx-Energy value from first value of energy gate
        -2   xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx-This word is said to contain "pileup flag, retrigger flag, and trigger counter" in no specified locations...
@@ -292,7 +293,7 @@ class SIS3302_Decoder(Digitizer):
         adc_raw_data_length     = event_data[1]     # number of long words long, not the number of points
         energy_data_length      = event_data[2]
 
-        event_header_id = (event_data[3]&0xFF)        
+        event_header_id = (event_data[3]&0xFF)
         timestamp = event_data[4] + ((event_data[3]>>16)&0xFFFF)
 
         if(buffer_wrap_mode):
@@ -312,7 +313,7 @@ class SIS3302_Decoder(Digitizer):
 
         else:
             sisHeaderLength = 2
-        
+
         # all lengths here are in long words (32-bytes)
         totalRecordLength = len(event_data_uint)    # entire thing we get handed here
         orcaHeaderLength = 3                        # this is the crate/card/channel/bufferwrap
@@ -357,9 +358,9 @@ class SIS3302_Decoder(Digitizer):
             print("energy max val: ", energy_max_value)
             print("energy first val: ", energy_first_value)
             print("pileup/retrigger word: ", hex(pileup_retrigger_counter_word))
-        
+
         # If there is a waveform, store it
-        if(adc_raw_data_length>0):                
+        if(adc_raw_data_length>0):
             if(buffer_wrap_mode):
                 wf_data_1 = event_data_uint16[adc_raw_data_start_1:adc_raw_data_stop_1]
                 wf_data_2 = event_data_uint16[adc_raw_data_start_2:adc_raw_data_stop_2]
@@ -466,7 +467,7 @@ class MJDPreamp_Decoder(Poller):
             "adc" : adc_val,
             "timestamp" : timestamp,
             "enabled" : enabled,
-            "device_id" : device_id,
+            "device_id" : device_id, #The first number is just which preamp object it is in the data record, and the second one is which preamp it is in the orca dialog.
             "event_number" : event_number
         }
         return data

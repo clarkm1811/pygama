@@ -46,7 +46,7 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
   f_in = open(filename.encode('utf-8'), "rb")
   if f_in == None:
       print("Couldn't file the file %s" % filename)   # file the file?
-      exit(0)
+      sys.exit(0)
 
   #figure out the total size
   f_in.seek(0, SEEK_END)
@@ -76,7 +76,7 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
 
   if decoders is None:
     # The decoders variable is a list of all the decoders that exist in pygama
-    decoders = dl.Data_Loader.get_decoders()
+    decoders = dl.get_decoders()
     decoder_names = [d.name for d in decoders]
 
     print("Warning: No decoder implemented for the following data takers: ")
@@ -131,7 +131,7 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
         update_progress( float(f_in.tell()) / file_size )
 
     try:
-        event_data, data_id = dl.Data_Loader.get_next_event(f_in)
+        event_data, data_id = dl.get_next_event(f_in)
     except EOFError:
         break
     # except ValueError:
