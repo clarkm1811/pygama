@@ -1,5 +1,6 @@
 import plistlib
 import sys
+import pandas as pd
 
 def parse_header(xmlfile):
     """
@@ -101,35 +102,34 @@ def get_decoder_for_id(headerDict):
             super_keys_list.append(super_key)
             ID_val = (headerDict["dataDescription"][class_key][super_key]["dataId"])>>18
             decoderName = headerDict["dataDescription"][class_key][super_key]["decoder"]
-            
+
             d[ID_val] = decoderName
 
     return d
 
-def get_header_dataframe_info(headerDict):
-    #key by card-crate-channel
-    d = []
+def get_object_info(headerDict, class_name):
+    '''
+    Returns a dict keyed by data id with all the info from the header
+    TODO: won't currently work with any AuxHW
+    '''
+
+    object_info_list = []
 
     crates = headerDict["ObjectInfo"]["Crates"]
     for crate in crates:
         cards = crate["Cards"]
         for card in cards:
-            if card["Class Name"] == "ORGretina4MModel":
-                for (channum, en) in enumerate(card["Enabled"]):
-                    if en == False: continue
-                    ccc = (crate["CrateNumber"] << 9) + (card["Card"] << 4) + channum
+            if card["Class Name"] == class_name:
+                card["Crate"] = crate["CrateNumber"]
+                object_info_list.append(card)
 
-                    row = { "channel": ccc,
-                            "Collection Time": card["Collection Time"],
-                            "Integration Time": card["Integration Time"],
-                            "PreSum Enabled": card["PreSum Enabled"][channum],
-                            "Prerecnt": card["Prerecnt"][channum],
-                            "FtCnt": card["FtCnt"][channum],
-                            "Postrecnt": card["Postrecnt"][channum],
-                            "multirate_div": 2**card["Mrpsdv"][channum],
-                            "multirate_sum": 10 if card["Mrpsrt"][channum] == 3 else 2 **(card["Mrpsrt"][channum]+1),
-                            "channel_div": 2**card["Chpsdv"][channum],
-                            "channel_sum": 10 if card["Chpsrt"][channum] == 3 else 2 **(card["Chpsrt"][channum]+1),
-                    }
-                    d.append(row)
-    return d
+    # AuxHw = headerDict["ObjectInfo"]["AuxHw"]
+    # for aux in AuxHw:
+    #     print(aux.keys())
+    # exit()
+    if len(object_info_list) == 0:
+        print("Warning: no object info parsed for {}".format(class_name))
+        return None
+    df = pd.DataFrame.from_dict(object_info_list)
+    df.set_index(['Crate', 'Card'], inplace=True)
+    return df

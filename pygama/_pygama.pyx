@@ -7,7 +7,8 @@ from future.utils import iteritems
 
 from ._header_parser import *
 from .utils import update_progress
-import data_loader as dl
+
+from .decoders import *
 
 #Silence harmless warning about saving numpy array to hdf5
 import warnings
@@ -62,7 +63,7 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
   runNumber = get_run_number(headerDict)
   print("Run number: {}".format(runNumber))
 
-  #TODO: This is all pretty hard to read & comprehend easily.  Can we clean it up?
+  #TODO: This is all pretty hard to read & comprehend easily.  Can we clean it up?  Move to header_parser?
 
   #id_dict = flip_data_ids(headerDict)
   id_dict = get_decoder_for_id(headerDict)
@@ -76,8 +77,8 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
 
   if decoders is None:
     # The decoders variable is a list of all the decoders that exist in pygama
-    decoders = dl.get_decoders()
-    decoder_names = [d.name for d in decoders]
+    decoders = get_decoders(headerDict)
+    decoder_names = [d.decoder_name for d in decoders]
 
     print("Warning: No decoder implemented for the following data takers: ")
     for d in used_decoder_names:
@@ -86,9 +87,9 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
 
   #kill unnecessary decoders
   for d in decoders:
-    if d.name not in used_decoder_names: decoders.remove(d)
+    if d.decoder_name not in used_decoder_names: decoders.remove(d)
 
-  decoder_names = [d.name for d in decoders]
+  decoder_names = [d.decoder_name for d in decoders]
 
   #Build a map from data id to decoder
   id_to_decoder = {}
@@ -101,11 +102,12 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
       pass
 
   print("id_to_decoder contains:")
-  print("    ",id_to_decoder)
+  for key in id_to_decoder:
+    print("    {}: {}".format(key, id_to_decoder[key].decoder_name))
 
   #read all header info into a single, channel-keyed data frame for saving
 
-#  headerinfo = get_header_dataframe_info(headerDict)
+  # headerinfo = get_header_dataframe_info(headerDict)
 #  df_channels = pd.DataFrame(headerinfo)
 #  df_channels.set_index("channel", drop=False, inplace=True)
 #  active_channels = df_channels["channel"].values
@@ -131,7 +133,7 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
         update_progress( float(f_in.tell()) / file_size )
 
     try:
-        event_data, data_id = dl.get_next_event(f_in)
+        event_data, data_id = get_next_event(f_in)
     except EOFError:
         break
     # except ValueError:
