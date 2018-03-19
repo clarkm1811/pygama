@@ -8,9 +8,13 @@ from pygama.processing import process_tier_0
 import pygama.decoders as dl
 
 def main():
-    # process()
-    # plot_baselines("t1_run35366.h5")
-    plot_waveforms("t1_run35366.h5")
+    # runNumber = 35366
+    runNumber = 11510
+    n_max = 5000
+
+    process(runNumber, n_max=n_max)
+    # plot_baselines("t1_run{}.h5".format(runNumber))
+    plot_waveforms("t1_run{}.h5".format(runNumber), num_waveforms=500)
 
     plt.show()
 
@@ -60,15 +64,22 @@ def plot_waveforms(file_name, num_waveforms=5):
     plt.xlabel("Time [ns]")
     plt.ylabel("ADC [arb]")
     for i, (index, row) in enumerate(df_gretina.iterrows()):
-        time, waveform = g4.parse_event_data(row)
-        plt.plot(time, waveform)
-        if i >=5 : break
+        # time, waveform = g4.parse_event_data(row)
+        # plt.plot(time, waveform)
+        try:
+            time, waveform = g4.parse_event_data(row)
+            plt.plot(time, waveform)
+        except:
+            wf_data = row["waveform"][0].astype('float_')
+            # plt.plot(wf_data)
+            # plt.plot()
+        if i >=num_waveforms : break
 
-def process():
+def process(runNumber, n_max=5000):
     mjd_data_dir = os.path.join(os.getenv("DATADIR", "."), "mjd")
     raw_data_dir = os.path.join(mjd_data_dir,"raw")
 
-    runList = [35366]
+    runList = [runNumber]
     #
     # mjd = dl.MJDPreamp_Decoder()
     # hv = dl.ISegHV_Decoder()
@@ -76,7 +87,7 @@ def process():
 
     # mjd.chanList = [600,626,672]
 
-    process_tier_0(raw_data_dir, runList, output_dir="", chanList=None, n_max=5000)
+    process_tier_0(raw_data_dir, runList, output_dir="", chanList=None, n_max=n_max)
 
 
 if __name__=="__main__":
