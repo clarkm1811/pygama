@@ -4,6 +4,7 @@ import sys
 from scipy import signal
 
 from .dataloading import DataLoader
+from .waveform import Waveform
 
 __all__ = ['Gretina4MDecoder', 'SIS3302Decoder']
 
@@ -27,6 +28,11 @@ class Gretina4MDecoder(Digitizer):
         self.decoder_name = 'ORGretina4MWaveformDecoder' #ORGretina4M'
         self.class_name = 'ORGretina4MModel'
 
+        try:
+            self.chan_list = kwargs.pop("chan_list")
+        except KeyError:
+            self.chan_list = None
+
         super().__init__(*args, **kwargs)
 
         #The header length "should" be 32 -- 30 from gretina header, 2 from orca header
@@ -36,10 +42,20 @@ class Gretina4MDecoder(Digitizer):
         self.wf_length = 2018
         self.sample_period = 10#ns
 
-        self.active_channels = []
+        self.active_channels = self.find_active_channels()
 
         return
 
+    def crate_card_chan(self, crate, card, channel):
+        return (crate << 9) + (card << 4) + (channel)
+
+    def find_active_channels(self):
+        active_channels = []
+        for index, row in self.object_info.iterrows():
+            crate, card = index
+            for chan, chan_en in enumerate(row.Enabled):
+                if chan_en: active_channels.append( self.crate_card_chan(crate,card, chan ) )
+        return active_channels
 
     def decode_event(self,event_data_bytes, event_number, header_dict):
         # parse_event_data(evtdat, &timestamp, &energy, &channel)
@@ -67,27 +83,22 @@ class Gretina4MDecoder(Digitizer):
         energy = event_data[9] + ((event_data[10]&0x7FFF)<<16)
         wf_data = event_data[self.event_header_length:]#(self.event_header_length+self.wf_length)*2]
 
-        # import matplotlib.pyplot as plt
-        # #Get the right digitizer information:
-        # card_info = self.object_info.loc[(crate, card)]
-        # prere_cnt = card_info["Prerecnt"][channel]
-        # postre_cnt = card_info["Postrecnt"][channel]
-        # ft_cnt = card_info["FtCnt"][channel]
-        # print("{},{},{}".format(prere_cnt, postre_cnt, ft_cnt))
-        #
-        # event_data_float = event_data.astype(np.float_)
-        # event_data_float -= np.mean(event_data_float[100:800])
-        #
-        # plt.ion()
-        # plt.plot(event_data_float, ls="steps-mid")
-        # plt.axvline(self.event_header_length, ls=":", c="r")
-        # plt.axvline( len(event_data)-ft_cnt-1, c="r", ls=":" )
-        # inp = input("q to quit, else")
-        # if inp == "q": exit()
+        ccc = self.crate_card_chan(crate, card, channel)
 
-        crate_card_chan = (crate << 9) + (card << 4) + (channel)
+        if ccc not in self.active_channels:
+            #TODO: should store this to garbage data frame or something
+            return None
+            # raise ValueError("{} found data from channel {}, which is not in active channel list.".format(self.__class__.__name__, ccc))
+        elif self.chan_list is not None and ccc not in self.chan_list:
+            return None
+        # if crate_card_chan not in board_id_map:
+        #    board_id_map[crate_card_chan] = board_id
+        # else:
+        #    if not board_id_map[crate_card_chan] == board_id:
+        #        print("WARNING: previously channel %d had board serial id %d, now it has id %d" % (crate_card_chan, board_id_map[crate_card_chan], board_id))
 
-        data_dict = self.format_data(energy,timestamp, crate_card_chan, wf_data, board_id)
+
+        data_dict = self.format_data(energy,timestamp, ccc, wf_data, board_id)
         data_dict["event_number"] = event_number
         self.decoded_values.append(data_dict)
 
@@ -122,7 +133,7 @@ class Gretina4MDecoder(Digitizer):
 
         return
 
-    def parse_event_data(self,event_data):
+    def parse_event_data(self,event_data, correct_presum=True):
         '''
         event_data is a pandas df row from a decoded event
         '''
@@ -141,53 +152,72 @@ class Gretina4MDecoder(Digitizer):
         #Get the right digitizer information:
         card_info = self.object_info.loc[(crate, card)]
 
-        # if card_info["PreSum Enabled"][chan]:
-        #Correct for presumming
-        multirate_sum = 10 if card_info["Mrpsrt"][chan] == 3 else 2 **(card_info["Mrpsrt"][chan]+1)
-        multirate_div = 2**card_info["Mrpsdv"][chan]
-        ratio = multirate_sum/multirate_div
-        # "channel_div": 2**card["Chpsdv"][channum],
-        # "channel_sum": 10 if card["Chpsrt"][channum] == 3 else 2 **(card["Chpsrt"][channum]+1),
+        if not correct_presum:
+            return np.arange(self.wf_length)*self.sample_period, wf_data[-self.wf_length:]
+        else:
+            #TODO: I fix the presumming by looking for a spike in the current with a windowed convolution
+                #This slows down the decoding by almost x2.  We should try to do something faster
 
-        prere_cnt = card_info["Prerecnt"][chan]
-        postre_cnt = card_info["Postrecnt"][chan]
-        ft_cnt = card_info["FtCnt"][chan]
-        ms_start_offset = 0
+            multirate_sum = 10 if card_info["Mrpsrt"][chan] == 3 else 2 **(card_info["Mrpsrt"][chan]+1)
+            multirate_div = 2**card_info["Mrpsdv"][chan]
+            ratio = multirate_sum/multirate_div
+            # "channel_div": 2**card["Chpsdv"][channum],
+            # "channel_sum": 10 if card["Chpsrt"][channum] == 3 else 2 **(card["Chpsrt"][channum]+1),
 
-        idx_ft_start_expected = len(wf_data) - ft_cnt -1
-        idx_bl_end_expected = len(wf_data) - prere_cnt - postre_cnt - ft_cnt
+            prere_cnt = card_info["Prerecnt"][chan]
+            postre_cnt = card_info["Postrecnt"][chan]
+            ft_cnt = card_info["FtCnt"][chan]
+            ms_start_offset = 0
 
-        filter_len = 20
-        filter_win_mult = 1
+            idx_ft_start_expected = len(wf_data) - ft_cnt -1
+            idx_bl_end_expected = len(wf_data) - prere_cnt - postre_cnt - ft_cnt
 
-        filter_window = np.ones(filter_len)
-        filter_window[:int(filter_len/2)]*=1
-        filter_window[int(filter_len/2):]*=-1
+            filter_len = 10
+            filter_win_mult = 1
 
-        #TODO: doing the convolution on the whole window is unnecessarily slow
-        wf_data_cat = np.concatenate((np.ones(filter_win_mult*filter_len)*wf_data[0], wf_data, np.ones(filter_win_mult*filter_len)*wf_data[-1]))
-        wf_diff = signal.convolve(wf_data_cat, filter_window, "same")
+            filter_window = np.ones(filter_len)
+            filter_window[:int(filter_len/2)]*=1
+            filter_window[int(filter_len/2):]*=-1
 
-        idx_bl_end = np.argmax(np.abs(  wf_diff[filter_win_mult*filter_len:-filter_win_mult*filter_len][:idx_bl_end_expected+4]))
-        idx_ft_start = np.argmax(np.abs(   wf_diff[filter_win_mult*filter_len:-filter_win_mult*filter_len][idx_ft_start_expected-5:])) + idx_ft_start_expected-5
+            # def get_index(expected_idx):
+            # #TODO: seems to be slower than doing the full convolution?
+            #     wf_window_len = 10
+            #     window_min = np.amax([0, expected_idx-wf_window_len])
+            #     window_max = np.amin([expected_idx+wf_window_len, len(wf_data)])
+            #     wf_window = wf_data[window_min:window_max]
+            #     wf_data_cat = np.concatenate((np.ones(filter_win_mult*filter_len)*wf_window[0], wf_window, np.ones(filter_win_mult*filter_len)*wf_window[-1]))
+            #     wf_diff = signal.convolve(wf_data_cat, filter_window, "same")
+            #     idx_jump = np.argmax(np.abs(  wf_diff[filter_win_mult*filter_len:-filter_win_mult*filter_len])) + window_min
+            #     return idx_jump
+            #
+            # idx_bl_end = get_index(idx_bl_end_expected)
+            # idx_ft_start = get_index(idx_ft_start_expected)
 
-        # if (idx_bl_end < idx_bl_end_expected - 4) or (idx_bl_end > idx_bl_end_expected):
-            #baseline is probably very near zero, s.t. its hard to see the jump.  just assume it where its meant to be.
-            # idx_bl_end = idx_bl_end_expected
-        if (idx_ft_start < idx_ft_start_expected - 2) or (idx_ft_start > idx_ft_start_expected):
-            idx_ft_start = idx_ft_start_expected
-            # raise ValueError()
+            #TODO: doing the convolution on the whole window is unnecessarily slow
+            wf_data_cat = np.concatenate((np.ones(filter_win_mult*filter_len)*wf_data[0], wf_data, np.ones(filter_win_mult*filter_len)*wf_data[-1]))
+            wf_diff = signal.convolve(wf_data_cat, filter_window, "same")
 
-        wf_data[:idx_bl_end] /= (ratio)
-        wf_data[idx_ft_start:] /= (ratio)
+            idx_bl_end = np.argmax(np.abs(  wf_diff[filter_win_mult*filter_len:-filter_win_mult*filter_len][:idx_bl_end_expected+4]))
+            idx_ft_start = np.argmax(np.abs(   wf_diff[filter_win_mult*filter_len:-filter_win_mult*filter_len][idx_ft_start_expected-5:])) + idx_ft_start_expected-5
 
-        time_pre = np.arange(idx_bl_end)*self.sample_period*multirate_sum - (len(wf_data) - self.wf_length)
-        time_full  = np.arange(idx_ft_start-idx_bl_end)*self.sample_period + time_pre[-1] +self.sample_period# + ms_start_offset)
-        time_ft = np.arange(ft_cnt+1)*self.sample_period*multirate_sum + time_full[-1] + 0.5*(self.sample_period*multirate_sum + ms_start_offset)
+            if (idx_bl_end < idx_bl_end_expected - 8) or (idx_bl_end > idx_bl_end_expected):
+                #baseline is probably very near zero, s.t. its hard to see the jump.  just assume it where its meant to be.
+                idx_bl_end = idx_bl_end_expected
+            if (idx_ft_start < idx_ft_start_expected - 2) or (idx_ft_start > idx_ft_start_expected):
+                idx_ft_start = idx_ft_start_expected
+                # raise ValueError()
 
-        time = np.concatenate((time_pre, time_full, time_ft))
+            wf_data[:idx_bl_end] /= (ratio)
+            wf_data[idx_ft_start:] /= (ratio)
 
-        return time[-self.wf_length:], wf_data[-self.wf_length:]
+            time_pre = np.arange(idx_bl_end)*self.sample_period*multirate_sum - (len(wf_data) - self.wf_length)
+            time_full  = np.arange(idx_ft_start-idx_bl_end)*self.sample_period + time_pre[-1] +self.sample_period# + ms_start_offset)
+            time_ft = np.arange(ft_cnt+1)*self.sample_period*multirate_sum + time_full[-1] + 0.5*(self.sample_period*multirate_sum + ms_start_offset)
+
+            time = np.concatenate((time_pre, time_full, time_ft))
+
+            return time[-self.wf_length:], wf_data[-self.wf_length:]
+
 
 
 class SIS3302Decoder(Digitizer):

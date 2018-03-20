@@ -105,21 +105,6 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
   for key in id_to_decoder:
     print("    {}: {}".format(key, id_to_decoder[key].decoder_name))
 
-  #read all header info into a single, channel-keyed data frame for saving
-
-  # headerinfo = get_header_dataframe_info(headerDict)
-#  df_channels = pd.DataFrame(headerinfo)
-#  df_channels.set_index("channel", drop=False, inplace=True)
-#  active_channels = df_channels["channel"].values
-
-  # print("Active channels:",active_channels)
-  # if chanList is not None:
-  #   good_channels = np.ones((len(active_channels)))
-  #   for i, (index, row) in enumerate(df_channels.iterrows()):
-  #     if row.channel not in chanList:
-  #       good_channels[i] = 0
-  #   df_channels = df_channels[good_channels==1]
-
   #keep track of warnings we've raised for missing decoders
   unrecognized_data_ids = []
   board_id_map = {}
@@ -136,8 +121,6 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
         event_data, data_id = get_next_event(f_in)
     except EOFError:
         break
-    # except ValueError:
-    #     continue
     except Exception as e:
         print("Failed to get the next event... (Exception: {})".format(e))
         break
@@ -149,19 +132,9 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
           unrecognized_data_ids.append(data_id)
         continue
 
+
     decoder.decode_event(event_data, event_number, headerDict )
 
-    # if data_dict["channel"] not in active_channels:
-    #   # print("Data read for channel %d: not an active channel" % crate_card_chan)
-    #   continue
-    # if chanList is not None and crate_card_chan not in chanList:
-    #   continue
-    #
-    # if crate_card_chan not in board_id_map:
-    #    board_id_map[crate_card_chan] = board_id
-    # else:
-    #    if not board_id_map[crate_card_chan] == board_id:
-    #        print("WARNING: previously channel %d had board serial id %d, now it has id %d" % (crate_card_chan, board_id_map[crate_card_chan], board_id))
 
   f_in.close()
   if verbose: update_progress(1)
@@ -183,12 +156,6 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
 
   if verbose: print("Writing {} to tier1 file {}...".format(filename, t1_file_name))
   [d.to_file(t1_file_name) for d in decoders]
-
-  # board_ids = df_channels['channel'].map(board_id_map)
-  # df_channels = df_channels.assign(board_id=board_ids)
-
-  # df_data.to_hdf(t1_file_name, key="data", mode='w', data_columns=['energy', 'channel', 'timestamp'], complevel=9)
-  # df_channels.to_hdf(t1_file_name,   key="channel_info", mode='a', data_columns=True,)
 
 def ProcessTier1(filename,  processorList, output_file_string="t2", verbose=False, output_dir=None):
   '''
