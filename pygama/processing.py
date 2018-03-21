@@ -74,8 +74,8 @@ def get_default_processor_list():
     procs.AddCalculator(t0_estimate, {}, input_waveform="sg_wf", output_name="t0est")
 
     #energy estimator: pz correct, calc trap
-    procs.AddTransform(pz_correct, {"rc_1":59, "rc_2":2.333, "rc1_frac":0.9816}, input_waveform="sg_wf", output_waveform="pz_wf")
-    procs.AddTransform(trap_filter, {"rampTime":400, "flatTime":400}, input_waveform="pz_wf", output_waveform="trap_wf")
+    procs.AddTransform(pz_correct, {"rc":72}, input_waveform="sg_wf", output_waveform="pz_wf")
+    procs.AddTransform(trap_filter, {"rampTime":200, "flatTime":400}, input_waveform="pz_wf", output_waveform="trap_wf")
 
     procs.AddCalculator(trap_max, {}, input_waveform="trap_wf", output_name="trap_max")
     procs.AddCalculator(trap_max, {"method":"fixed_time","pickoff_sample":400}, input_waveform="trap_wf", output_name="trap_ft")

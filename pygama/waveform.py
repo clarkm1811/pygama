@@ -4,12 +4,13 @@ from .transforms import center
 
 class Waveform():
 
-    def __init__(self, waveform, time=None, full_sample_range=None):
+    def __init__(self, wf_data, sample_period):
+        self.data = wf_data
+        self.sample_period = sample_period
 
-        self.data = waveform
-        self.time = time
-        self.full_sample_range = full_sample_range
-
+    #Putting this method here so I can overload it in subclasses w/ more options
+    def get_waveform(self):
+        return self.data
 
     def window_waveform(self, time_point=0.5, early_samples=200, num_samples=400):
         '''Windows waveform around a risetime percentage timepoint
@@ -33,10 +34,11 @@ class Waveform():
 
         return self.windowed_wf
 
-    #Methods so you can just address the object itself as an array
-    # def __len__(self):
-    #     return len(self.data)
-    # def __getitem__(self, key):
-    #     return self.data[key]
-    # def __setitem__(self, key, value):
-    #     self.data[key] = value
+class MultisampledWaveform(Waveform):
+    def __init__(self, time, wf_data, sample_period, full_sample_range, *args, **kwargs):
+        self.time = time
+        self.full_sample_range = full_sample_range
+        super().__init__(wf_data, sample_period, **kwargs)
+
+    def get_waveform(self):
+        return self.data[self.full_sample_range[0]:self.full_sample_range[-1]]

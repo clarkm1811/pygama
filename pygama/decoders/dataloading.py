@@ -63,7 +63,7 @@ def get_next_event(f_in):
 
 def get_decoders(object_info):
     """
-        Looks through all the data takers that exist in this Data_Loader class and see which ones exist.
+        Looks through all the data takers that exist in this DataLoader class and see which ones exist.
         TODO: this only works if the subclasses have been imported.  is that what we want?
               also relies on 2-level abstraction, which is dicy
     """
@@ -88,8 +88,14 @@ class DataLoader(ABC):
     def __init__(self, object_info=None):
         self.decoded_values = []
 
+        if object_info is not None:
+            self.load_object_info(object_info)
+
+    def load_object_info(self, object_info):
         if isinstance(object_info, dict):
             self.object_info = get_object_info(object_info, self.class_name)
+        elif isinstance(object_info, pd.core.frame.DataFrame):
+            self.object_info = object_info
         elif isinstance(object_info, str):
             self.object_info = pd.read_hdf(object_info, self.class_name)
         else:

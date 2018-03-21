@@ -4,10 +4,12 @@ import sys
 from scipy import signal
 
 from .dataloading import DataLoader
-from .waveform import Waveform
+from ..waveform import Waveform, MultisampledWaveform
 
 __all__ = ['Gretina4MDecoder', 'SIS3302Decoder']
 
+def get_digitizers():
+    return [sub() for sub in Digitizer.__subclasses__()]
 
 class Digitizer(DataLoader):
     def __init__(self, *args, **kwargs):
@@ -15,6 +17,9 @@ class Digitizer(DataLoader):
 
     def decode_event(self,event_data_bytes, event_number, header_dict):
         pass
+
+    def parse_event_data(self,event_data):
+        return event_data["waveform"][0].astype('float_')
 
     # def decode_header():
     #     pass
@@ -28,10 +33,16 @@ class Gretina4MDecoder(Digitizer):
         self.decoder_name = 'ORGretina4MWaveformDecoder' #ORGretina4M'
         self.class_name = 'ORGretina4MModel'
 
-        try:
-            self.chan_list = kwargs.pop("chan_list")
+        try: self.chan_list = kwargs.pop("chan_list")
+        except KeyError: self.chan_list = None
+
+        try: self.load_object_info(kwargs.pop("object_info"))
+        except KeyError: pass
+
+        try: self.correct_presum = kwargs.pop("correct_presum")
         except KeyError:
-            self.chan_list = None
+            self.correct_presum = True
+            pass
 
         super().__init__(*args, **kwargs)
 
@@ -42,9 +53,11 @@ class Gretina4MDecoder(Digitizer):
         self.wf_length = 2018
         self.sample_period = 10#ns
 
-        self.active_channels = self.find_active_channels()
-
         return
+
+    def load_object_info(self, object_info):
+        super().load_object_info(object_info)
+        self.active_channels = self.find_active_channels()
 
     def crate_card_chan(self, crate, card, channel):
         return (crate << 9) + (card << 4) + (channel)
@@ -76,9 +89,9 @@ class Gretina4MDecoder(Digitizer):
         # this is for a uint16
         card = event_data[1]&0x1F
         crate = (event_data[1]>>5)&0xF
-
         channel = event_data[4] & 0xf
         board_id =(event_data[4]&0xFFF0)>>4
+
         timestamp = event_data[6] + (event_data[7]<<16) + (event_data[8]<<32)
         energy = event_data[9] + ((event_data[10]&0x7FFF)<<16)
         wf_data = event_data[self.event_header_length:]#(self.event_header_length+self.wf_length)*2]
@@ -91,6 +104,7 @@ class Gretina4MDecoder(Digitizer):
             # raise ValueError("{} found data from channel {}, which is not in active channel list.".format(self.__class__.__name__, ccc))
         elif self.chan_list is not None and ccc not in self.chan_list:
             return None
+
         # if crate_card_chan not in board_id_map:
         #    board_id_map[crate_card_chan] = board_id
         # else:
@@ -133,7 +147,7 @@ class Gretina4MDecoder(Digitizer):
 
         return
 
-    def parse_event_data(self,event_data, correct_presum=True):
+    def parse_event_data(self,event_data):
         '''
         event_data is a pandas df row from a decoded event
         '''
@@ -142,18 +156,19 @@ class Gretina4MDecoder(Digitizer):
         #TODO: you're hosed if presum div is set to be the same as number of presum
 
         #cast wf to double
-        wf_data = event_data["waveform"][0].astype('float_')
+        wf_data = super().parse_event_data(event_data)
 
         #we save crate_card_chan (for historical reasons), so decode that
         crate = event_data['channel'] >> 9
-        card =  (event_data['channel'] & 0xf0) >> 4
+        card =  (event_data['channel'] & 0x1f0) >> 4
         chan =  event_data['channel'] & 0xf
 
         #Get the right digitizer information:
         card_info = self.object_info.loc[(crate, card)]
 
-        if not correct_presum:
-            return np.arange(self.wf_length)*self.sample_period, wf_data[-self.wf_length:]
+
+        if not self.correct_presum:
+            return Waveform(wf_data[-self.wf_length:], self.sample_period)
         else:
             #TODO: I fix the presumming by looking for a spike in the current with a windowed convolution
                 #This slows down the decoding by almost x2.  We should try to do something faster
@@ -200,7 +215,7 @@ class Gretina4MDecoder(Digitizer):
             idx_bl_end = np.argmax(np.abs(  wf_diff[filter_win_mult*filter_len:-filter_win_mult*filter_len][:idx_bl_end_expected+4]))
             idx_ft_start = np.argmax(np.abs(   wf_diff[filter_win_mult*filter_len:-filter_win_mult*filter_len][idx_ft_start_expected-5:])) + idx_ft_start_expected-5
 
-            if (idx_bl_end < idx_bl_end_expected - 8) or (idx_bl_end > idx_bl_end_expected):
+            if (idx_bl_end < idx_bl_end_expected - 8) or (idx_bl_end > idx_bl_end_expected+2):
                 #baseline is probably very near zero, s.t. its hard to see the jump.  just assume it where its meant to be.
                 idx_bl_end = idx_bl_end_expected
             if (idx_ft_start < idx_ft_start_expected - 2) or (idx_ft_start > idx_ft_start_expected):
@@ -216,14 +231,12 @@ class Gretina4MDecoder(Digitizer):
 
             time = np.concatenate((time_pre, time_full, time_ft))
 
-            return time[-self.wf_length:], wf_data[-self.wf_length:]
-
-
+            return MultisampledWaveform(time[-self.wf_length:], wf_data[-self.wf_length:], self.sample_period, [idx_bl_end, idx_ft_start])
 
 class SIS3302Decoder(Digitizer):
     def __init__(self, *args, **kwargs):
         self.decoder_name = 'ORSIS3302DecoderForEnergy'
-        self.class_name = 'SIS3302_placeholder' #what should this be?
+        self.class_name = 'ORSIS3302Model' #what should this be?
 
         super().__init__(*args, **kwargs)
         self.values = dict()

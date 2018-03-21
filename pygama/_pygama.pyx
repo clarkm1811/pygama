@@ -3,11 +3,11 @@ cimport numpy as np
 import numpy as np
 import os, re, sys
 import pandas as pd
+import h5py
 from future.utils import iteritems
 
 from ._header_parser import *
 from .utils import update_progress
-
 from .decoders import *
 
 #Silence harmless warning about saving numpy array to hdf5
@@ -132,9 +132,7 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
           unrecognized_data_ids.append(data_id)
         continue
 
-
     decoder.decode_event(event_data, event_number, headerDict )
-
 
   f_in.close()
   if verbose: update_progress(1)
@@ -157,7 +155,7 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
   if verbose: print("Writing {} to tier1 file {}...".format(filename, t1_file_name))
   [d.to_file(t1_file_name) for d in decoders]
 
-def ProcessTier1(filename,  processorList, output_file_string="t2", verbose=False, output_dir=None):
+def ProcessTier1(filename,  processorList, digitizer_list=None, output_file_string="t2", verbose=False, output_dir=None):
   '''
   Reads in "raw," or "tier 0," Orca data and saves to a hdf5 format using pandas
     filename: path to a tier1 data file
@@ -173,21 +171,57 @@ def ProcessTier1(filename,  processorList, output_file_string="t2", verbose=Fals
   run_str = re.findall('run\d+', filename)[-1]
   runNumber = int(''.join(filter(str.isdigit, run_str)))
 
-  df = pd.read_hdf(filename,key="data")
-  appended_data = []
+  if digitizer_list is None:
+    #digitize everything available
+    digitizer_list = get_digitizers()
+  digitizer_decoder_names = [d.class_name for d in digitizer_list]
+
+  #find the available keys
+  f = h5py.File(filename, 'r')
+  for d in digitizer_list:
+    if d.decoder_name not in f.keys():
+      digitizer_list.remove(d)
 
   print("Beginning Tier 1 processing of file {}...".format(filename))
 
-  for i, (index, row) in enumerate(df.iterrows()):
-    if verbose and i%100==0: update_progress( float(i)/ len(df.index))
+  for digitizer in digitizer_list:
+    print("   Processing from digitizer {}".format(digitizer.class_name))
 
-    #convert the stored waveform (which is int16) to a float, throw it to the processorList
-    processorList.Reset( row["waveform"][0].astype('float32') )
+    object_info = pd.read_hdf(filename,key=digitizer.class_name)
+    digitizer.load_object_info(object_info)
 
-    paramDict = processorList.Process(row)
-    appended_data.append(paramDict)
+    event_df = pd.read_hdf(filename,key=digitizer.decoder_name)
+
+    appended_data = []
+
+    for i, (index, event_data) in enumerate(event_df.iterrows()):
+      if verbose and i%100==0: update_progress( float(i)/ len(event_df.index))
+
+      waveform = digitizer.parse_event_data(event_data)
+      #Currently, I'll just mandate that we only process full waveform data i guess
+      wf_data = waveform.get_waveform()
+
+      # import matplotlib.pyplot as plt
+      # print(waveform.full_sample_range)
+      # plt.plot(waveform.data)
+      # plt.show()
+      # exit()
+
+      try:
+        #convert the stored waveform (which is int16) to a float, throw it to the processorList
+        processorList.Reset( wf_data )
+
+        paramDict = processorList.Process(event_data)
+        appended_data.append(paramDict)
+      except Exception as e:
+        print(e)
+        import matplotlib.pyplot as plt
+        plt.plot(wf_data)
+        plt.show()
+        exit()
 
   if verbose: update_progress(1)
+
   verbose=True
   if verbose: print("Creating dataframe for file {}...".format(filename))
   df_data = pd.DataFrame(appended_data)
@@ -200,11 +234,11 @@ def ProcessTier1(filename,  processorList, output_file_string="t2", verbose=Fals
   df_data.to_hdf(t2_path, key="data", format='fixed', mode='w', data_columns=True)
   return df_data
 
+
 class TierOneProcessorList():
   '''
   Class to handle the list of transforms/calculations we do in the processing
   '''
-
   def __init__(self):
     self.list = []
     self.waveform_dict = {}

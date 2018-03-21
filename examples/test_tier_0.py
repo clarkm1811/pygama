@@ -10,7 +10,7 @@ import pygama.decoders as dl
 def main():
     # runNumber = 35366
     runNumber = 11510
-    n_max = 50000
+    n_max = 5000
 
     process(runNumber, n_max=n_max)
     # plot_baselines("t1_run{}.h5".format(runNumber))
@@ -64,22 +64,24 @@ def plot_waveforms(file_name, num_waveforms=5):
     plt.xlabel("Time [ns]")
     plt.ylabel("ADC [arb]")
 
-    from timeit import default_timer as timer
-    start = timer()
+    # from timeit import default_timer as timer
+    # start = timer()
 
     for i, (index, row) in enumerate(df_gretina.iterrows()):
-        time, waveform = g4.parse_event_data(row)
-        # plt.plot(time, waveform)
+        wf = g4.parse_event_data(row)
+        plt.plot(wf.time, wf.data)
+
         # try:
-        #     time, waveform = g4.parse_event_data(row)
-        #     # plt.plot(time, waveform)
-        # except:
+        #     waveform = g4.parse_event_data(row)
+        #     plt.plot(time, waveform)
+        # except Exception as e:
+        #     print(e)
         #     wf_data = row["waveform"][0].astype('float_')
         #     plt.plot(wf_data)
         #     # plt.plot()
-        # if i >=num_waveforms : break
-    end = timer()
-    print("Elapsed time: {}".format(end - start))
+        if i >=num_waveforms : break
+    # end = timer()
+    # print("Elapsed time: {}".format(end - start))
 
 def process(runNumber, n_max=5000):
     mjd_data_dir = os.path.join(os.getenv("DATADIR", "."), "mjd")
