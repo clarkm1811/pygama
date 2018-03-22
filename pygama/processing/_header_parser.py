@@ -53,8 +53,7 @@ def get_run_number(header_dict):
     for d in (header_dict["ObjectInfo"]["DataChain"]):
         if "Run Control" in d:
             return (d["Run Control"]["RunNumber"])
-    print ("No run number found in header!")
-    exit()
+    raise ValueError("No run number found in header!")
 
 def get_data_id(headerDict, class_name, super_name):
     #stored like this: headerDict["dataDescription"]["ORRunModel"]["Run"]["dataId"]

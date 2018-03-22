@@ -143,7 +143,7 @@ def calibrate_tl208(energy_series, peak_energies, plotFigure=None):
             plt.subplot(122)
             plt.hist(energy_series*rough_kev_per_adc, bins=2700, histtype="step" )
             input("-->press any key to continue...")
-            exit()
+            sys.exit()
 
 
         bounds = ([0.9*guess_e, 0.5*guess_sigma, 0, 0,0,0, 0],
