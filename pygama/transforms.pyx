@@ -24,13 +24,10 @@ def interpolate(waveform, offset):
 def savgol_filter(waveform, window_length=47, order=2):
   return signal.savgol_filter(waveform, window_length, order)
 
-def pz_correct(waveform, rc_1=70, rc_2=0, rc1_frac=1, digFreq=100E6):
+def pz_correct(waveform, rc, digFreq=100E6):
     ''' RC params are in us'''
     #get the linear filter parameters.
-    if rc_2==0 or rc1_frac == 1:
-        num, den = rc_decay(rc_1, digFreq)
-    else:
-        num, den = rc_decay_2pole(rc_1, rc_2, rc1_frac, digFreq)
+    num, den = rc_decay(rc, digFreq)
 
     #reversing num and den does the inverse transform (ie, PZ corrects)
     return signal.lfilter(den, num, waveform)
