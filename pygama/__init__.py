@@ -2,7 +2,6 @@
 
 __version__ = "0.0.1"
 
-from .decoders import *
-
-# from ._pygama import ProcessTier0,ProcessTier1, TierOneProcessorList
-# from .transforms import *
+#kill annoying h5py warning
+import warnings
+warnings.filterwarnings(action="ignore", module="h5py", category=FutureWarning)

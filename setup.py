@@ -22,11 +22,11 @@ if __name__ == "__main__":
     src = []
     ext = ".pyx" if do_cython else ".c"
     src += [
-        os.path.join("pygama", "_pygama"+ext)
+        os.path.join("pygama","processing", "_pygama"+ext)
     ]
 
     ext = [Extension(
-            "pygama._pygama",
+            "pygama.processing._pygama",
             sources=src,
             language="c",
             include_dirs=include_dirs
