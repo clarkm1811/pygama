@@ -5,6 +5,8 @@ from multiprocessing import Pool, cpu_count
 from functools import partial
 import numpy as np
 
+#TODO: this file should just be merged with the cython file, np?
+
 def process_tier_0(datadir, runList, verbose=True, output_dir=None, chanList=None, n_max = np.inf):
 
     for run in runList:

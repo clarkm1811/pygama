@@ -11,10 +11,6 @@ from ..decoders import *
 from ._header_parser import *
 from .processors import Calculator, Transformer, DatabaseLookup, Tier0Passer
 
-#Silence harmless warning about saving numpy array to hdf5
-import warnings
-warnings.filterwarnings(action="ignore", module="pandas", message="^\nyour performance")
-
 def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=False, output_dir=None, decoders=None):
   '''
   Reads in "raw," or "tier 0," Orca data and saves to a hdf5 format using pandas
