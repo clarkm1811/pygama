@@ -14,7 +14,7 @@ def remove_baseline(waveform, bl_0=0, bl_1=0):
     return (waveform - (bl_0 + bl_1*np.arange(len(waveform))))
 
 def center(waveform, center_index, n_samples_before, n_samples_after):
-  return waveform[center_index - n_samples_before : center_index+ n_samples_before]
+  return waveform[center_index - n_samples_before : center_index+ n_samples_after]
 
 def interpolate(waveform, offset):
   xp = np.arange(len(waveform))
