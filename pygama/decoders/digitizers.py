@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import sys
 from scipy import signal
+import itertools
+import array
 
 from .dataloading import DataLoader
 from ..waveform import Waveform, MultisampledWaveform
@@ -14,12 +16,49 @@ def get_digitizers():
 class Digitizer(DataLoader):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.split_waveform = True
+        self.hf5_type="table"
+        self.chan_list = None #list of channels to decode
 
     def decode_event(self,event_data_bytes, event_number, header_dict):
         pass
 
     def parse_event_data(self,event_data):
-        return Waveform(event_data["waveform"][0].astype('float_'), self.sample_period)
+        if self.split_waveform:
+            wf_data = self.reconstruct_waveform(event_data)
+        else:
+            wf_data = event_data["waveform"][0]
+
+        return Waveform(wf_data.astype('float_'), self.sample_period)
+
+    def reconstruct_waveform(self, event_data_row):
+        waveform = []
+        for i in itertools.count(0, 1):
+            try:
+                sample = event_data_row["waveform_{}".format(i)]
+                waveform.append( sample )
+            except KeyError:
+                break
+        return np.array(waveform)
+
+    def create_df(self):
+        if self.split_waveform:
+            waveform_arr = self.decoded_values.pop("waveform")
+            waveform_arr = np.array(waveform_arr, dtype="int16")
+
+            for i in range(waveform_arr.shape[1]):
+                self.decoded_values["waveform_{}".format(i)] = waveform_arr[:,i]
+
+            df = pd.DataFrame.from_dict(self.decoded_values)
+            # for name in df.columns:
+            #     if name.startswith("waveform_"): dtype = "int16"
+            #     else: dtype = self.decoded_values[name].typecode
+            #     df[name] = df[name].astype(dtype)
+
+            return df
+
+        else:
+            return super(Digitizer, self).create_df()
 
     # def decode_header():
     #     pass
@@ -53,7 +92,15 @@ class Gretina4MDecoder(Digitizer):
         self.wf_length = 2018
         self.sample_period = 10#ns
 
-        return
+        self.gretina_event_no=0
+        self.decoded_values = {
+            "event_number":[],#array.array('I'),
+            "energy": [],#array.array('I'),
+            "timestamp": [],#array.array('L'),
+            "channel": [],#array.array('I'),
+            "board_id":[],#array.array('I'),
+            "waveform":[]#np.empty((100000,2032), dtype=np.int16)
+        }
 
     def load_object_info(self, object_info):
         super().load_object_info(object_info)
@@ -112,25 +159,25 @@ class Gretina4MDecoder(Digitizer):
         #        print("WARNING: previously channel %d had board serial id %d, now it has id %d" % (crate_card_chan, board_id_map[crate_card_chan], board_id))
 
 
-        data_dict = self.format_data(energy,timestamp, ccc, wf_data, board_id)
-        data_dict["event_number"] = event_number
-        self.decoded_values.append(data_dict)
+        self.format_data(energy,timestamp, ccc, wf_data, board_id,event_number)
 
-        return data_dict
+        # return data_dict
 
-    def format_data(self,energy,timestamp,crate_card_chan,wf_arr, board_id):
+    def format_data(self,energy,timestamp,crate_card_chan,wf_arr, board_id, event_number):
         """
         Format the values that we get from this card into a pandas-friendly format.
         """
+        self.decoded_values["energy"].append(energy)
+        self.decoded_values["timestamp"].append(timestamp)
+        self.decoded_values["channel"].append(crate_card_chan)
+        self.decoded_values["board_id"].append(board_id)
+        self.decoded_values["event_number"].append(event_number)
 
-        data = {
-            "energy": energy,
-            "timestamp": timestamp,
-            "channel": crate_card_chan,
-            "board_id":board_id,
-            "waveform": [np.array(wf_arr, dtype=np.int16)]
-        }
-        return data
+        self.decoded_values["waveform"].append(wf_arr)
+
+        # self.decoded_values["waveform"][self.gretina_event_no,:] = wf_arr
+
+        self.gretina_event_no +=1
 
     def test_decode_event(self,):
         """
@@ -156,7 +203,7 @@ class Gretina4MDecoder(Digitizer):
         #TODO: you're hosed if presum div is set to be the same as number of presum
 
         #cast wf to double
-        wf = super().parse_event_data(event_data).data
+        wf_data = super().parse_event_data(event_data).data
 
         if not self.correct_presum:
             return Waveform(wf_data[-self.wf_length:], self.sample_period)

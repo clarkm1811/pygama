@@ -55,7 +55,10 @@ class MJDPreampDecoder(Poller):
         enabled = np.zeros(16)
         adc_val = np.zeros(16)
 
-        detector_names = self.get_detectors_for_preamp(header_dict,device_id)
+        try:
+            detector_names = self.get_detectors_for_preamp(header_dict,device_id)
+        except KeyError:
+            return None
 
         for i,val in enumerate(enabled):
             enabled[i] = (event_data_uint[2]>>(i) & 0x1)

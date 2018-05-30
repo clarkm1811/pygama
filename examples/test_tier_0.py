@@ -7,14 +7,16 @@ import datetime as dt
 from pygama.processing import process_tier_0
 import pygama.decoders as dl
 
+from pygama.transforms import trap_filter
+
 def main():
     # runNumber = 35366
     runNumber = 11510
-    n_max = 5000
+    n_max = 100000
 
-    process(runNumber, n_max=n_max)
+    # process(runNumber, n_max=n_max)
     # plot_baselines("t1_run{}.h5".format(runNumber))
-    plot_waveforms("t1_run{}.h5".format(runNumber), num_waveforms=500)
+    plot_waveforms("t1_run{}.h5".format(runNumber), num_waveforms=50)
 
     plt.show()
 
@@ -56,20 +58,25 @@ def plot_baselines(file_name, draw_non_detectors=True):
     plt.show()
 
 def plot_waveforms(file_name, num_waveforms=5):
-    df_gretina = pd.read_hdf(file_name, key="ORGretina4MWaveformDecoder")
+    df_gretina = pd.read_hdf(file_name, key="ORGretina4MWaveformDecoder", where="channel = 626")
 
     g4 = dl.Gretina4MDecoder(file_name)
+    # g4.correct_presum = False
 
     plt.figure()
     plt.xlabel("Time [ns]")
     plt.ylabel("ADC [arb]")
 
-    # from timeit import default_timer as timer
-    # start = timer()
+    from timeit import default_timer as timer
+    start = timer()
 
     for i, (index, row) in enumerate(df_gretina.iterrows()):
         wf = g4.parse_event_data(row)
-        plt.plot(wf.time, wf.data)
+        # continue
+        # plt.plot(wf.time, wf.data - np.mean(wf.data[:500]), ls="steps", c="b", alpha=0.1)
+        wf_sub = wf.data - np.mean(wf.data[:500])
+        # trap_filter(wf_sub, rampTime=40, flatTime=20,)
+        plt.plot( wf_sub, ls="steps", c="b", alpha=0.1 )
 
         # try:
         #     waveform = g4.parse_event_data(row)
@@ -80,8 +87,8 @@ def plot_waveforms(file_name, num_waveforms=5):
         #     plt.plot(wf_data)
         #     # plt.plot()
         if i >=num_waveforms : break
-    # end = timer()
-    # print("Elapsed time: {}".format(end - start))
+    end = timer()
+    print("Elapsed time: {}".format(end - start))
 
 def process(runNumber, n_max=5000):
     mjd_data_dir = os.path.join(os.getenv("DATADIR", "."), "mjd")
@@ -95,8 +102,11 @@ def process(runNumber, n_max=5000):
 
     # mjd.chanList = [600,626,672]
 
-    process_tier_0(raw_data_dir, runList, output_dir="", chanList=None, n_max=n_max)
-
+    from timeit import default_timer as timer
+    start = timer()
+    process_tier_0(raw_data_dir, runList, output_dir="", n_max=n_max)
+    end = timer()
+    print("Elapsed time: {}".format(end - start))
 
 if __name__=="__main__":
     main()

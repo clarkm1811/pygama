@@ -8,10 +8,11 @@ from future.utils import iteritems
 
 from ..utils import update_progress
 from ..decoders import *
+from ..decoders.digitizers import Digitizer
 from ._header_parser import *
 from .processors import Calculator, Transformer, DatabaseLookup, Tier0Passer
 
-def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=False, output_dir=None, decoders=None):
+def ProcessTier0( filename, output_file_string = "t1", chan_list=None, n_max=np.inf, verbose=False, output_dir=None, decoders=None):
   '''
   Reads in "raw," or "tier 0," Orca data and saves to a hdf5 format using pandas
     filename: path to an orca data file
@@ -85,6 +86,7 @@ def ProcessTier0( filename, output_file_string = "t1", n_max=np.inf, verbose=Fal
   #kill unnecessary decoders
   for d in decoders:
     if d.decoder_name not in used_decoder_names: decoders.remove(d)
+    if chan_list is not None and isinstance(d, Digitizer): d.chan_list = chan_list
 
   decoder_names = [d.decoder_name for d in decoders]
 
@@ -228,7 +230,7 @@ def ProcessTier1(filename,  processorList, digitizer_list=None, output_file_stri
 
   if verbose: print("Writing {} to tier1 file {}...".format(filename, t2_path))
 
-  df_data.to_hdf(t2_path, key="data", format='fixed', mode='w', data_columns=True)
+  df_data.to_hdf(t2_path, key="data", format='table', mode='w', data_columns=True)
   return df_data
 
 

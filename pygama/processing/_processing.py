@@ -7,7 +7,7 @@ import numpy as np
 
 #TODO: this file should just be merged with the cython file, np?
 
-def process_tier_0(datadir, runList, verbose=True, output_dir=None, chanList=None, n_max = np.inf):
+def process_tier_0(datadir, runList, verbose=True, output_dir=None, chan_list=None, n_max = np.inf):
 
     for run in runList:
         #Find a file in the directory with the ""
@@ -21,17 +21,17 @@ def process_tier_0(datadir, runList, verbose=True, output_dir=None, chanList=Non
         filename = filenameList[0]
         filepath = os.path.join(datadir, filename)
 
-        ProcessTier0(filepath, verbose=verbose, output_dir=output_dir, n_max=n_max)
+        ProcessTier0(filepath, verbose=verbose, output_dir=output_dir, n_max=n_max, chan_list=chan_list)
 
-def process_tier_1(datadir, runList, processor_list=None, verbose=True, output_dir=None, num_threads=1):
-    if processor_list is None:
-        processor_list = get_default_processor_list()
+def process_tier_1(datadir, runList, processor_list=None, verbose=True, output_dir=None, output_file_string="t2", num_threads=1):
+    # if processor_list is None:
+    #     processor_list = get_default_processor_list()
 
     t1_args = []
     for run in runList:#[440]:
         filepath = os.path.join(datadir, "t1_run{}.h5".format(run))
         if num_threads == 1:
-            ProcessTier1(filepath, processor_list, verbose=verbose, output_dir=output_dir  )
+            ProcessTier1(filepath, processor_list, verbose=verbose, output_dir=output_dir, output_file_string=output_file_string  )
         else:
             t1_args.append( [filepath, processor_list] )
             keywords = {"verbose": verbose, "output_dir":output_dir}

@@ -91,6 +91,8 @@ class DataLoader(ABC):
         if object_info is not None:
             self.load_object_info(object_info)
 
+        self.hf5_type="fixed"
+
     def load_object_info(self, object_info):
         if isinstance(object_info, dict):
             self.object_info = get_object_info(object_info, self.class_name)
@@ -109,9 +111,15 @@ class DataLoader(ABC):
     # def decode_header(self):
     #     pass
 
+    def create_df(self):
+        '''
+        allows us to overload for more complicated use cases
+        '''
+        return pd.DataFrame.from_dict(self.decoded_values)
+
     def to_file(self, file_name):
-        df_data = pd.DataFrame.from_dict(self.decoded_values)
-        df_data.to_hdf(file_name, key=self.decoder_name, mode='a')
+        df_data = self.create_df()
+        df_data.to_hdf(file_name, key=self.decoder_name, mode='a', format=self.hf5_type, data_columns=['channel', 'energy'])
 
         if self.object_info is not None:
             if self.class_name == self.decoder_name:
