@@ -23,7 +23,7 @@ def process_tier_0(datadir, runList, verbose=True, output_dir=None, chan_list=No
 
         ProcessTier0(filepath, verbose=verbose, output_dir=output_dir, n_max=n_max, chan_list=chan_list)
 
-def process_tier_1(datadir, runList, processor_list=None, verbose=True, output_dir=None, output_file_string="t2", num_threads=1):
+def process_tier_1(datadir, runList, processor_list, verbose=True, output_dir=None, output_file_string="t2", num_threads=1):
     # if processor_list is None:
     #     processor_list = get_default_processor_list()
 
