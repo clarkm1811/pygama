@@ -85,7 +85,7 @@ class Gretina4MDecoder(Digitizer):
 
         try: self.correct_presum = kwargs.pop("correct_presum")
         except KeyError:
-            self.correct_presum = False
+            self.correct_presum = True
             pass
 
         super().__init__(*args, **kwargs)
@@ -178,7 +178,7 @@ class Gretina4MDecoder(Digitizer):
         self.decoded_values["board_id"].append(board_id)
         self.decoded_values["event_number"].append(event_number)
 
-        self.decoded_values["waveform"].append(wf_arr)
+        self.decoded_values["waveform"].append(  wf_arr.astype("int16")  )
 
         # self.decoded_values["waveform"][self.gretina_event_no,:] = wf_arr
 
@@ -214,7 +214,6 @@ class Gretina4MDecoder(Digitizer):
         if not self.correct_presum:
             return Waveform(wf_data[-self.wf_length:], self.sample_period)
         else:
-            print("correcting")
             #TODO: I fix the presumming by looking for a spike in the current with a windowed convolution
             #This slows down the decoding by almost x2.  We should try to do something faster
 

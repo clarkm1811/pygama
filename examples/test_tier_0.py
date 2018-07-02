@@ -7,14 +7,15 @@ import datetime as dt
 
 from pygama.processing import process_tier_0
 import pygama.decoders as dl
+from pygama.calibration import *
 
 def main():
     runNumber = 35366
     n_max = np.inf
 
-    process(runNumber, n_max=n_max)
-    plot_baselines("t1_run{}.h5".format(runNumber))
-    plot_waveforms("t1_run{}.h5".format(runNumber), num_waveforms=50)
+    process(runNumber, n_max=500)
+    # plot_baselines("t1_run{}.h5".format(runNumber))
+    # plot_waveforms("t1_run{}.h5".format(runNumber), num_waveforms=50)
 
     plt.show()
 
@@ -48,8 +49,8 @@ def plot_baselines(file_name, draw_non_detectors=False):
     plt.xlabel("Time")
 
 def plot_waveforms(file_name, num_waveforms=5):
-    df_gretina = pd.read_hdf(file_name, key="ORGretina4MWaveformDecoder", where="channel = 626")
-
+    df_gretina = pd.read_hdf(file_name, key="ORGretina4MWaveformDecoder")
+    
     g4 = dl.Gretina4MDecoder(file_name)
 
     plt.figure()
