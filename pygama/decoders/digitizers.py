@@ -16,9 +16,14 @@ def get_digitizers():
 class Digitizer(DataLoader):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.split_waveform = True
-        self.hf5_type="table"
+        self.split_waveform = False
+
         self.chan_list = None #list of channels to decode
+
+        if self.split_waveform:
+            self.hf5_type="table"
+        else:
+            self.hf5_type="fixed"
 
     def decode_event(self,event_data_bytes, event_number, header_dict):
         pass
@@ -27,7 +32,7 @@ class Digitizer(DataLoader):
         if self.split_waveform:
             wf_data = self.reconstruct_waveform(event_data)
         else:
-            wf_data = event_data["waveform"][0]
+            wf_data = event_data["waveform"]
 
         return Waveform(wf_data.astype('float_'), self.sample_period)
 
@@ -80,7 +85,7 @@ class Gretina4MDecoder(Digitizer):
 
         try: self.correct_presum = kwargs.pop("correct_presum")
         except KeyError:
-            self.correct_presum = True
+            self.correct_presum = False
             pass
 
         super().__init__(*args, **kwargs)
@@ -203,18 +208,21 @@ class Gretina4MDecoder(Digitizer):
         #TODO: you're hosed if presum div is set to be the same as number of presum
 
         #cast wf to double
+
         wf_data = super().parse_event_data(event_data).data
 
         if not self.correct_presum:
             return Waveform(wf_data[-self.wf_length:], self.sample_period)
         else:
+            print("correcting")
             #TODO: I fix the presumming by looking for a spike in the current with a windowed convolution
             #This slows down the decoding by almost x2.  We should try to do something faster
 
             #we save crate_card_chan (for historical reasons), so decode that
-            crate = event_data['channel'] >> 9
-            card =  (event_data['channel'] & 0x1f0) >> 4
-            chan =  event_data['channel'] & 0xf
+            event_chan = int(event_data['channel'])
+            crate = event_chan >> 9
+            card =  (event_chan & 0x1f0) >> 4
+            chan =  event_chan & 0xf
 
             #Get the right digitizer information:
             card_info = self.object_info.loc[(crate, card)]
