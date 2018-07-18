@@ -43,6 +43,23 @@ def process_tier_1(datadir, runList, processor_list, verbose=True, output_dir=No
         # p.starmap( partial(ProcessTier0, **keywords), t0_args)
         p.starmap(partial(ProcessTier1, **keywords), t1_args)
 
+def process_simulate_tier_0(datadir, runList, verbose=True, output_dir=None, chan_list=None, n_max = np.inf):
+
+    for run in runList:
+        #Find a file in the directory with the ""
+        filenameList = glob.glob(  os.path.join(datadir, "*Run{}".format(run )))
+        if len(filenameList) == 0:
+            print("No file with name Run{} in directory {}! Skipping run...".format(run, datadir))
+            continue
+        elif len(filenameList) > 1:
+            print("More than one file with name Run{} in directory {}! Skipping run...".format(run, datadir))
+            continue
+        filename = filenameList[0]
+        filepath = os.path.join(datadir, filename)
+
+        SimulateTier0(filepath, verbose=verbose, output_dir=output_dir, n_max=n_max, chan_list=chan_list)
+
+
 # def get_default_processor_list():
 #
 #     #Make a list of processors to do to the data for the "tier one" (ie, gatified)
