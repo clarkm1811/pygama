@@ -16,6 +16,18 @@ def remove_baseline(waveform, bl_0=0, bl_1=0):
 def center(waveform, center_index, n_samples_before, n_samples_after):
   return waveform[center_index - n_samples_before : center_index+ n_samples_after]
 
+def trim_waveform(waveform, n_samples_before=None, n_samples_after=None):
+  """Cut out the first n_samples_before and the last n_samples_after samples.
+  If no values are supplied, you get the whole thing back 
+  """
+  start_index = n_samples_before
+  if(n_samples_after == 0):
+    end_index = None
+  else:
+    end_index = -1*n_samples_after
+
+  return waveform[start_index : end_index]
+
 def interpolate(waveform, offset):
   xp = np.arange(len(waveform))
   x = xp[:-1] + offset

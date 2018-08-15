@@ -94,7 +94,7 @@ class Gretina4MDecoder(Digitizer):
         #but the "reserved" from 16 on seems to be good baseline info, so lets try to use it
         self.event_header_length = 18
 
-        self.wf_length = 2018
+        self.wf_length = 2032 #TODO: This should probably be determined more rigidly
         self.sample_period = 10#ns
 
         self.gretina_event_no=0

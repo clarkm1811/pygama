@@ -7,6 +7,7 @@ class Waveform():
     def __init__(self, wf_data, sample_period):
         self.data = wf_data
         self.sample_period = sample_period
+        self.amplitude = np.amax(self.data)
 
     #Putting this method here so I can overload it in subclasses w/ more options
     def get_waveform(self):
@@ -24,10 +25,10 @@ class Waveform():
 
         #bl subtract
         try:
-            wf_copy -= self.bl_int + np.arange(len(wf_copy))*self.bl_slope
+            wf_copy = wf_copy - (self.bl_int + np.arange(len(wf_copy))*self.bl_slope)
         except AttributeError:
             p = fit_baseline(wf_copy)
-            wf_copy -= p[1] + np.arange(len(wf_copy))*p[0]
+            wf_copy = wf_copy - (p[1] + np.arange(len(wf_copy))*p[0])
 
         #Normalize the waveform by the calculated energy (noise-robust amplitude estimation)
         if method == "percent":

@@ -209,6 +209,12 @@ def ProcessTier1(filename,  processorList, digitizer_list=None, output_file_stri
       # try:
         #convert the stored waveform (which is int16) to a float, throw it to the processorList
       processorList.Reset( wf_data )
+      try:
+        processorList.param_dict["fs_start"] = waveform.full_sample_range[0]
+        processorList.param_dict["fs_end"] = waveform.full_sample_range[1]
+      except AttributeError:
+        #in case it isn't a multisampled waveform object
+        pass
 
       paramDict = processorList.Process(event_data)
       appended_data.append(paramDict)
